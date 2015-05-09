@@ -53,8 +53,8 @@ td.col-name{
     -moz-transition: all 0.1s linear;
     -webkit-transition: all 0.1s linear;
 }
-#top_bar { box-shadow: none; z-index: 1031; }
-#lower_bar { background-image: none; box-shadow: none; top: 40px}
+#top_bar { box-shadow: none; z-index: 10030; }
+#lower_bar { background-image: none; box-shadow: none; top: 40px;}
 .navbar-xs { min-height:40px; height: 40px; }
 .navbar-xs .navbar-brand { padding: 0px 12px;font-size: 40px;line-height: 40px; }
 .navbar-xs .navbar-nav > li > a, .navbar-xs .navbar-header a {  padding-top: 0px; padding-bottom: 0px; line-height: 40px; }
@@ -64,7 +64,8 @@ td.col-name{
 }
 
 .navbar-default .navbar-nav > li > a{
-    color: #EDEDED;
+    color: white/*#EDEDED*/;
+    text-shadow: none;
 }
 
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover{
@@ -84,15 +85,24 @@ td.col-name{
     padding-top: 8px;
 }
 
-.navbar-default .navbar-nav a.btn-in-a button.pbr{
+.navbar-default .navbar-nav a.btn-in-a button.pbr, .navbar-default .navbar-nav button.search{
     background-color: #8cd02c;
     border-color: #8cd02c;
-    color: #EDEDED;
+    color: white/*#EDEDED*/;
     box-shadow: none;
 }
 
-.navbar-default .navbar-nav a.btn-in-a button.pbr:hover{
+.navbar-default .navbar-nav a.btn-in-a button.pbr:hover, .navbar-default .navbar-nav button.search:hover, .navbar-default .navbar-nav button.search:focus{
     background-color: #9de42e;
     border-color: #9de42e;
-    color: white;
+
+}
+
+.navbar-default .navbar-nav button.search{
+    text-shadow: none;
+}
+
+.navbar-default .navbar-nav input#search_string{
+    width: 400px;
+    border-right: 1px solid #174635;
 }

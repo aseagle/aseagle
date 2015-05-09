@@ -76,16 +76,16 @@
                                 </ul>
                             </div><!-- /btn-group -->
                             <div class="input-group-btn">
-                                <input type="text" class="form-control" style="width:400px" placeholder="Search" name="search_string" id="search_string">
+                                <input type="text" class="form-control" placeholder="Search" name="search_string" id="search_string">
                             </div>
                             <div class="input-group-btn">
-                                <button class="btn btn-default" type="submit">&nbsp<span class="glyphicon glyphicon-search"></span>&nbsp</button>
+                                <button class="btn btn-default search" type="submit">&nbsp<span class="glyphicon glyphicon-search"></span>&nbsp</button>
                             </div>
                         </div>
                     </div>
                 </form>
             </li>
-            <li><a class="btn-in-a"><button class="btn btn-success pbr">&nbsp&nbsp&nbsp&nbsp&nbspPost Buying Request&nbsp&nbsp&nbsp&nbsp&nbsp</button></a></li>
+            <li><a class="btn-in-a" href="{{path('create_buying_request')}}"><button class="btn btn-success pbr">&nbsp&nbsp&nbsp&nbsp&nbspPost Buying Request&nbsp&nbsp&nbsp&nbsp&nbsp</button></a></li>
         </ul>
 
         <ul class="nav navbar-nav" style="float: right; padding-right: 20px;">
@@ -130,15 +130,17 @@
             var cOst = $(this).scrollTop();
 
             if(cOst > ost) {
-                $('#top_bar').addClass('top-bar-fixed').removeClass('top-bar-default');
+                //$('#top_bar').addClass('top-bar-fixed').removeClass('top-bar-default');
                 if($('.lower-my-aseagle').css('display') == 'none'){
                     $('.lower-my-aseagle').show();
                 }
+                $('#lower_bar').css("zIndex",10031);
                 $('#lower_bar').addClass('lower-bar-fixed').removeClass('lower-bar-default');
             }
             else {
-                $('#top_bar').addClass('top-bar-default').removeClass('top-bar-fixed');
+                //$('#top_bar').addClass('top-bar-default').removeClass('top-bar-fixed');
                 $('.lower-my-aseagle').hide();
+                $('#lower_bar').css("zIndex",10029);
                 $('#lower_bar').addClass('lower-bar-default').removeClass('lower-bar-fixed');
             }
 
