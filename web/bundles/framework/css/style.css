@@ -88,6 +88,7 @@ td.col-name{
     background-color: #8cd02c;
     border-color: #8cd02c;
     color: #EDEDED;
+    box-shadow: none;
 }
 
 .navbar-default .navbar-nav a.btn-in-a button.pbr:hover{
