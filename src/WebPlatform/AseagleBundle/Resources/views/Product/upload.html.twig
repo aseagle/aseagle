@@ -1,0 +1,74 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+{% block dashboard_local_css %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/product.css') }}" />
+{% endblock %}
+
+{% block dashboard_content %}
+    <div class="container-fluid" style="width: 1200px">
+        <div class="row">
+            <h1 class="page-header">Upload Product</h1>
+            <h3>Step 1</h3>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 col-md-3 cat-tree-0">
+                <form role="form">
+                    <div class="form-group">
+                        <input class="form-control" id="searchinput" type="search" placeholder="Search...">
+                    </div>
+                    <div id="searchlist" class="list-group">
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xs-3 col-md-3 cat-tree-1">
+                <form role="form">
+                    <div class="form-group">
+                        <input class="form-control" id="searchinput" type="search" placeholder="Search...">
+                    </div>
+                    <div id="searchlist" class="list-group">
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xs-3 col-md-3 cat-tree-2">
+                <form role="form">
+                    <div class="form-group">
+                        <input class="form-control" id="searchinput" type="search" placeholder="Search...">
+                    </div>
+                    <div id="searchlist" class="list-group">
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xs-3 col-md-3 cat-tree-3">
+                <form role="form">
+                    <div class="form-group">
+                        <input class="form-control" id="searchinput" type="search" placeholder="Search...">
+                    </div>
+                    <div id="searchlist" class="list-group">
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Step 2</h3>
+        </div>
+        <div class="row">
+            {% include 'AseagleBundle:Product:_form.html.twig' %}
+            <!-- /.col-lg-6 (nested) -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block dashboard_local_footer_libs %}
+    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/bootstrap-list-filter.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/js/dashboard/upload.js') }}"></script>
+    <script>
+        $(function(){
+            _AsgDashboard.Upload.set_form_upload_product();
+        });
+    </script>
+{% endblock %}

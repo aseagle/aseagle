@@ -1,0 +1,41 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+/* ************************************
+ *	ProductDetail
+ *
+ *
+ * ***********************************/
+
+.product-info table {
+    font-size: 13px;
+}
+
+.no-border {
+    border: none;
+    box-shadow: none;
+}
+
+.table-div-full {
+    display: table;
+    width: 100%;
+}
+
+.detail-info > div {
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+div#gallery{
+    margin-top: 4px;
+}
+
+#show_gallery div#gallery img {
+    display: inline;
+    width: 84.5px;
+}

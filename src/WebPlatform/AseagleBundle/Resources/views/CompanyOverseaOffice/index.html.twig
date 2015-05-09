@@ -1,0 +1,32 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+
+    {% block dashboard_content %}
+        <h1>Oversea Office</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Address</th>
+                <th>Manager</th>
+                <th>Telephone</th>
+                <th>Dutires</th>
+                <th><a href="{{ path('seller_company_oversea_office_new', {'seller_id': app.user.getCompany().getId()}) }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></th>
+            </tr>
+            </thead>
+            {% for oversea_office in oversea_offices %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ oversea_office.country.name }}</td>
+                    <td>{{ oversea_office.city }}</td>
+                    <td>{{ oversea_office.address }}</td>
+                    <td>{{ oversea_office.personInCharge }}</td>
+                    <td>{{ oversea_office.telephone }}</td>
+                    <td>{{ oversea_office.dutires }}</td>
+                    <td><a href="{{ path('seller_company_oversea_office_edit', {'seller_id': app.user.getCompany().getId(), 'id': oversea_office.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('seller_company_oversea_office_destroy', {'seller_id': app.user.getCompany().getId(), 'id': oversea_office.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}

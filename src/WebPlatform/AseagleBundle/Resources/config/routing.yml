@@ -1,0 +1,315 @@
+#just for test
+aseagle_test:
+    path:     /test
+    defaults: { _controller: AseagleBundle:Default:index }
+
+#the portal
+welcome:
+    path:     /welcome
+    defaults: { _controller: AseagleBundle:Static:welcome }
+
+main:
+    path:     /main/{category_id}
+    defaults: { _controller: AseagleBundle:Main:index }
+
+main_left_side_bar:
+    path:     /main/left_side_bar/{category_id}
+    defaults: { _controller: AseagleBundle:Main:left_side_bar }
+    requirements:
+                    _method:  GET
+
+main_filter:
+    path:     /main/filter/{category_id}
+    defaults: { _controller: AseagleBundle:Main:filter }
+    requirements:
+                    _method:  GET
+
+search:
+    path:     /search
+    defaults: { _controller: AseagleBundle:Main:search }
+    requirements:
+                _method:  GET
+
+get_list_product_search:
+    path:     /search/get_list_product_search
+    defaults: { _controller: AseagleBundle:Search:get_list_product_search }
+    requirements:
+                _method:  GET
+
+# product routing
+list_product:
+    path:     /product
+    defaults: { _controller: AseagleBundle:Product:index }
+
+show_product:
+    path:     /product/show/{id}
+    defaults: { _controller: AseagleBundle:Product:show }
+
+create_product:
+    path:     /product/create
+    defaults: { _controller: AseagleBundle:Product:create }
+
+upload_product:
+    path:     /product/upload
+    defaults: { _controller: AseagleBundle:Product:upload }
+
+edit_product:
+    path:     /product/edit/{id}
+    defaults: { _controller: AseagleBundle:Product:edit }
+
+update_product:
+    path:     /product/update/{id}
+    defaults: { _controller: AseagleBundle:Product:update }
+
+destroy_product:
+    path:     /product/destroy/{id}
+    defaults: { _controller: AseagleBundle:Product:destroy }
+    requirements:
+                    _method:  DELETE
+
+upload_file:
+    path:     /upload_file
+    defaults: { _controller: AseagleBundle:Default:upload_file }
+    requirements:
+                _method:  POST
+
+delete_file:
+    path:     /delete_file
+    defaults: { _controller: AseagleBundle:Default:delete_file }
+    requirements:
+                _method:  DELETE
+
+#message routing
+message:
+    path:     /messagecenter
+    defaults: { _controller: AseagleBundle:Message:index }
+
+sending:
+    path:     /messagecenter/send
+    defaults: { _controller: AseagleBundle:Message:sending }
+    requirements:
+               _method:  POST
+
+list_mail:
+    path:     /messagecenter/list
+    defaults: { _controller: AseagleBundle:Message:listMail }
+
+open_mail:
+    path:     /messagecenter/open/{message_id}
+    defaults: { _controller: AseagleBundle:Message:openMail }
+
+list_sent_mail:
+    path:     /messagecenter/list_sent
+    defaults: { _controller: AseagleBundle:Message:listSentMail }
+
+open_sent_mail:
+    path:     /messagecenter/open_sent/{message_id}
+    defaults: { _controller: AseagleBundle:Message:openSentMail }
+
+message_interaction:
+    path:     /messagecenter/update/{message_id}
+    defaults: { _controller: AseagleBundle:Message:messageInteraction }
+
+list_draft_mail:
+    path:     /messagecenter/list_draft
+    defaults: { _controller: AseagleBundle:Message:listDraft }
+
+list_contact:
+    path:     /messagecenter/list_contact
+    defaults: { _controller: AseagleBundle:Message:listContact }
+
+#membership routing
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+getToken:
+    path:     Main:getToken
+    defaults: { _controller: AseagleBundle:Main:getToken }
+    requirements:
+                _method:  GET
+
+#seller profile
+new_seller:
+    path:     /seller/new
+    defaults: { _controller: AseagleBundle:Seller:new }
+
+edit_seller:
+    path:     /seller/{id}/edit
+    defaults: { _controller: AseagleBundle:Seller:edit }
+
+show_seller:
+    path:     /seller/{id}/show
+    defaults: { _controller: AseagleBundle:Seller:show }
+
+#seller company_customer
+seller_company_customer_index:
+    path:     seller/{seller_id}/company_customer
+    defaults: { _controller: AseagleBundle:CompanyCustomer:index }
+
+seller_company_customer_new:
+    path:     seller/{seller_id}/company_customer/new
+    defaults: { _controller: AseagleBundle:CompanyCustomer:new }
+
+seller_company_customer_edit:
+   path:     seller/{seller_id}/company_customer/{id}/edit
+   defaults: { _controller: AseagleBundle:CompanyCustomer:edit }
+
+seller_company_customer_destroy:
+   path:     seller/{seller_id}/company_customer/{id}/destroy
+   defaults: { _controller: AseagleBundle:CompanyCustomer:destroy }
+
+#seller company_oversea_office
+seller_company_oversea_office_index:
+    path:     seller/{seller_id}/company_oversea_office
+    defaults: { _controller: AseagleBundle:CompanyOverseaOffice:index }
+
+seller_company_oversea_office_new:
+    path:     seller/{seller_id}/company_oversea_office/new
+    defaults: { _controller: AseagleBundle:CompanyOverseaOffice:new }
+
+seller_company_oversea_office_edit:
+    path:     seller/{seller_id}/company_oversea_office/{id}/edit
+    defaults: { _controller: AseagleBundle:CompanyOverseaOffice:edit }
+
+seller_company_oversea_office_destroy:
+    path:     seller/{seller_id}/company_oversea_office/{id}/destroy
+    defaults: { _controller: AseagleBundle:CompanyOverseaOffice:destroy }
+
+#seller company_factory
+seller_company_factory_index:
+    path:     seller/{seller_id}/company_factory
+    defaults: { _controller: AseagleBundle:CompanyFactory:index }
+
+seller_company_factory_new:
+    path:     seller/{seller_id}/company_factory/new
+    defaults: { _controller: AseagleBundle:CompanyFactory:new }
+
+seller_company_factory_edit:
+    path:     seller/{seller_id}/company_factory/{id}/edit
+    defaults: { _controller: AseagleBundle:CompanyFactory:edit }
+
+seller_company_factory_destroy:
+    path:     seller/{seller_id}/company_factory/{id}/destroy
+    defaults: { _controller: AseagleBundle:CompanyFactory:destroy }
+
+#seller company_certification
+seller_company_certification_index:
+    path:     seller/{seller_id}/company_certification
+    defaults: { _controller: AseagleBundle:CompanyCertification:index }
+
+seller_company_certification_new:
+    path:     seller/{seller_id}/company_certification/new
+    defaults: { _controller: AseagleBundle:CompanyCertification:new }
+
+seller_company_certification_edit:
+    path:     seller/{seller_id}/company_certification/{id}/edit
+    defaults: { _controller: AseagleBundle:CompanyCertification:edit }
+
+seller_company_certification_destroy:
+    path:     seller/{seller_id}/company_certification/{id}/destroy
+    defaults: { _controller: AseagleBundle:CompanyCertification:destroy }
+
+#seller company_honor_award
+seller_company_honor_award_index:
+    path:     seller/{seller_id}/company_honor_award
+    defaults: { _controller: AseagleBundle:CompanyHonorAward:index }
+
+seller_company_honor_award_new:
+    path:     seller/{seller_id}/company_honor_award/new
+    defaults: { _controller: AseagleBundle:CompanyHonorAward:new }
+
+seller_company_honor_award_edit:
+    path:     seller/{seller_id}/company_honor_award/{id}/edit
+    defaults: { _controller: AseagleBundle:CompanyHonorAward:edit }
+
+seller_company_honor_award_destroy:
+    path:     seller/{seller_id}/company_honor_award/{id}/destroy
+    defaults: { _controller: AseagleBundle:CompanyHonorAward:destroy }
+
+#seller company_trademark
+seller_company_trademark_index:
+    path:     seller/{seller_id}/company_trademark
+    defaults: { _controller: AseagleBundle:CompanyTrademark:index }
+
+seller_company_trademark_new:
+    path:     seller/{seller_id}/company_trademark/new
+    defaults: { _controller: AseagleBundle:CompanyTrademark:new }
+
+seller_company_trademark_edit:
+    path:     seller/{seller_id}/company_trademark/{id}/edit
+    defaults: { _controller: AseagleBundle:CompanyTrademark:edit }
+
+seller_company_trademark_destroy:
+    path:     seller/{seller_id}/company_trademark/{id}/destroy
+    defaults: { _controller: AseagleBundle:CompanyTrademark:destroy }
+
+#seller company_patent
+seller_company_patent_index:
+    path:     seller/{seller_id}/company_patent
+    defaults: { _controller: AseagleBundle:CompanyPatent:index }
+
+seller_company_patent_new:
+    path:     seller/{seller_id}/company_patent/new
+    defaults: { _controller: AseagleBundle:CompanyPatent:new }
+
+seller_company_patent_edit:
+    path:     seller/{seller_id}/company_patent/{id}/edit
+    defaults: { _controller: AseagleBundle:CompanyPatent:edit }
+
+seller_company_patent_destroy:
+    path:     seller/{seller_id}/company_patent/{id}/destroy
+    defaults: { _controller: AseagleBundle:CompanyPatent:destroy }
+
+#purchase controller
+create_buying_request:
+    path:     purchase/create_buying_request
+    defaults: { _controller: AseagleBundle:Purchase:create_buying_request }
+
+create_quotation:
+    path:     purchase/{purchase_id}/create_quotation
+    defaults: { _controller: AseagleBundle:Purchase:create_quotation }
+
+edit_quotation:
+    path:     purchase/{purchase_id}/quotation/{id}/edit
+    defaults: { _controller: AseagleBundle:Purchase:edit_quotation }
+
+buyer_get_buying_request:
+    path:     purchase/buyer_get_buying_request
+    defaults: { _controller: AseagleBundle:Purchase:buyer_get_buying_request }
+
+seller_get_buying_request:
+    path:     purchase/seller_get_buying_request
+    defaults: { _controller: AseagleBundle:Purchase:seller_get_buying_request }
+
+show_quotation:
+    path:     purchase/{purchase_id}/quotation/{id}/show
+    defaults: { _controller: AseagleBundle:Purchase:show_quotation }
+
+seller_get_quotation_detail:
+    path:     purchase/seller_get_quotation_detail
+    defaults: { _controller: AseagleBundle:Purchase:seller_get_quotation_detail }
+
+buyer_get_buying_request_detail:
+    path:     purchase/buyer_get_buying_request_detail
+    defaults: { _controller: AseagleBundle:Purchase:buyer_get_buying_request_detail }
+
+seller_get_buying_request_detail:
+    path:     purchase/seller_get_buying_request_detail
+    defaults: { _controller: AseagleBundle:Purchase:seller_get_buying_request_detail }
+

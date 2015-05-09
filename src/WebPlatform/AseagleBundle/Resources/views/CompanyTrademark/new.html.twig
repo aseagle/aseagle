@@ -1,0 +1,10 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+{% form_theme form 'AseagleBundle:Form:fields.html.twig' %}
+
+    {% block dashboard_content %}
+        <h1>New Trademarks</h1>
+        {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    {% endblock %}

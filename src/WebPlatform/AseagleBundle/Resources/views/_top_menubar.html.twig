@@ -1,0 +1,149 @@
+<div id="top_bar" class="navbar navbar-xs yamm navbar-default navbar-fixed-top bar-header" style="background: none repeat scroll 0 0 #335147">
+    <!--div class="container"-->
+
+    <div id="navbar-collapse-1" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav" style="float: right; padding-right: 20px;">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Buyer <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Seller <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Help <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                </ul>
+            </li>
+            <li><a href="#" style="font-size: 17px;" class="glyphicon glyphicon-info-sign" title="About Aseagle"></a></li>
+        </ul>
+    </div>
+    <!--/div-->
+</div>
+<div id="lower_bar" class="navbar yamm navbar-default navbar-fixed-top bar-header" style="background: none repeat scroll 0 0 #174635 ">
+    <div class="navbar-header">
+        <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle collapsed">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a href="{{path('welcome')}}" class="navbar-brand" style="padding-left: 50px;"><img src="{{ asset('bundles/framework/img/logo.png') }}" style="width: 130px; height: 25px"></a>
+
+    </div>
+    <div class="navbar-collapse collapse" style="padding-left: 235px;">
+        <ul class="nav navbar-nav">
+            <!-- Grid 12 Menu -->
+            <li class="dropdown yamm-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Menu<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="grid-demo">
+                        <div class="row" id="aseagle-navbar" style="padding: 30px">
+
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <form class="navbar-form navbar-left" role="search" action="{{path('search')}}">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    Product
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Product</a></li>
+                                    <li><a href="#">Seller</a></li>
+                                    <li><a href="#">Buyer</a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                            <div class="input-group-btn">
+                                <input type="text" class="form-control" style="width:400px" placeholder="Search" name="search_string" id="search_string">
+                            </div>
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">&nbsp<span class="glyphicon glyphicon-search"></span>&nbsp</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <li><a class="btn-in-a"><button class="btn btn-success pbr">&nbsp&nbsp&nbsp&nbsp&nbspPost Buying Request&nbsp&nbsp&nbsp&nbsp&nbsp</button></a></li>
+        </ul>
+
+        <ul class="nav navbar-nav" style="float: right; padding-right: 20px;">
+            <li><a href="{{path('buyer_get_buying_request')}}">My Aseagle</a></li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li><a href="{{path('message')}}"><span class="glyphicon glyphicon-envelope" title="Message Center"></span></a></li>
+                <li>
+                    <a href="{{ path('fos_user_security_logout') }}"><span class="glyphicon glyphicon-user" title="Profile"></span></a>
+                    <div style="display: none">
+                        {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    </div>
+                </li>
+            {% else %}
+                <!--<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> -->
+                <form action="{{ path("fos_user_security_check") }}" method="post">
+                    <label>Email</label>
+                    <input type="text" name="_username" required="required" />
+                    <label>Password</label>
+                    <input type="password" name="_password" required="required" />
+                    <button type="submit">Submit</button>
+                    |<a href="{{ path('fos_user_registration_register') }}">Register</a>
+                    <input type="hidden" name="_csrf_token" value="{{ render(controller('AseagleBundle:Main:getToken'))}}" />
+                </form>
+            {% endif %}
+        </ul>
+        <!--
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <ul class="nav navbar-nav lower-my-aseagle" style="padding-left: 10px; display: none">
+            <li><a href="{{path('buyer_get_buying_request')}}">My Aseagle</a></li>
+        </ul>
+        {% endif %}
+        -->
+    </div>
+</div>
+<script>
+    (function($) {
+        var ost = 0;
+        $(window).scroll(function() {
+            var cOst = $(this).scrollTop();
+
+            if(cOst > ost) {
+                $('#top_bar').addClass('top-bar-fixed').removeClass('top-bar-default');
+                if($('.lower-my-aseagle').css('display') == 'none'){
+                    $('.lower-my-aseagle').show();
+                }
+                $('#lower_bar').addClass('lower-bar-fixed').removeClass('lower-bar-default');
+            }
+            else {
+                $('#top_bar').addClass('top-bar-default').removeClass('top-bar-fixed');
+                $('.lower-my-aseagle').hide();
+                $('#lower_bar').addClass('lower-bar-default').removeClass('lower-bar-fixed');
+            }
+
+            ost = cOst;
+        });
+
+    })(jQuery);
+</script>

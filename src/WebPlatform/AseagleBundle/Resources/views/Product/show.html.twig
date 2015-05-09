@@ -1,0 +1,148 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+{% block local_css %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/product-detail.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/elevatezoom/jquery.fancybox.css') }}" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-info thumbnail no-border">
+                    <div class="trading-info table-div-full">
+                        <div class="col-md-5">
+                            <div id="show_gallery">
+                                <img id="image_zoom" src="{{ pic[0].smallUrl }}" data-zoom-image="{{ pic[0].url }}"/>
+                                <div id="gallery">
+                                    {% for p in pic %}
+                                        <a href="#" data-image="{{ p.smallUrl }}" data-zoom-image="{{ p.url }}">
+                                            <img id="image_zoom" src="{{  p.thumbnailUrl }}" />
+                                        </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="caption-full">
+                                <h4><a href="#">{{ n }}</a>
+                                </h4>
+                                <table class="w100">
+                                    <tr><td class="col-name lh20 w25">FOB Price:</td><td>{{ pr }}</td></tr>
+                                    <tr><td class="col-name lh20">Min.Order Quantity:</td><td>{{ m_o }}</td></tr>
+                                    <tr><td class="col-name lh20">Supply Ability:</td><td>{{ s_a }}</td></tr>
+                                    <tr><td class="col-name lh20">Port:</td><td>{{ port }}</td></tr>
+                                    <tr><td class="col-name lh20">Payment Terms:</td><td>{{ pay }}</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-info table-div-full">
+                        <div class="mapping-info">
+                            <h4>Quick Details</h4>
+                            <div class="content">
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Packaging & Delivery</h4>
+                            <div>
+                                <p>{{ d_t }}</p>
+                                <p>{{ p_d }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h4>Specifications</h4>
+                            {{ spec }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="well">
+
+                    <div class="text-right">
+                        <a class="btn btn-success">Leave a Review</a>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">10 days ago</span>
+                            <p>This product was great in terms of quality. I would definitely buy another!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">12 days ago</span>
+                            <p>I've alredy ordered another one!</p>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            Anonymous
+                            <span class="pull-right">15 days ago</span>
+                            <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <hr>
+
+        <!-- Footer -->
+        <!--
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </footer>
+        -->
+    </div>
+
+{% endblock %}
+
+{% block local_footer_libs %}
+    <script>
+        var _json_product = $.parseJSON('{{ json | raw }}');
+    </script>
+    <script src="{{ asset('bundles/framework/js/product_detail/product_detail.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/elevatezoom/jquery.elevateZoom-3.0.8.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/elevatezoom/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/elevatezoom/jquery.fancybox.pack.js') }}"></script>
+    <script>
+        //initiate the plugin and pass the id of the div containing gallery images
+        $("#image_zoom").elevateZoom({gallery:'gallery', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'});
+        //pass the images to Fancybox
+        $("#image_zoom").bind("click", function(e) {
+            var ez = $('#image_zoom').data('elevateZoom');
+            $.fancybox(ez.getGalleryList());
+            return false;
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+{% block dashboard_local_css %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootplus/css/bootplus.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/main.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/buying_request.css') }}" />
+{% endblock %}
+
+{% block dashboard_content %}
+    <!-- Page Content -->
+     <div class="row row-offcanvas row-offcanvas-left">
+        <div class="main-area">
+            {% for br in brs_info %}
+                <div class="card">
+                    <div style=" height: 20px;">
+                    <span style="text-transform: uppercase;  overflow: hidden;  text-overflow: ellipsis; width: 630px;  float: left;"><h5 class="card-title" style="white-space: nowrap;"><strong>{{ br.t }}</strong></h5></span> <span class="pull-right" style="margin-right: 20px"><span style="margin-right: 20px"> Number order: <strong>{{ br.q }}</strong> ({{ br.q_t }}) </span>   Expired: <strong>{{ br.ex_d|date('Y-m-d') }}</strong></span>
+                    </div>
+                    <div class="card-heading-header">
+                        <div class="progress" style="height: 25px; border-radius: 0px;">
+                            <div class="progress-bar progress-bar-info" role="progressbar" style="  padding-left: 5px;width:10%;  padding-top: 5px; height: 5px;text-align: left; color: #B8A9A9">Pending</div>
+                            <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="  padding-left: 5px;width:40%;  padding-top: 5px; height: 5px; text-align: left; color: #B8A9A9">Receiving quotations</div>
+                        </div>
+                    </div>
+                    <div class="card-body" style="  padding-bottom: 6px;">
+                        <div id="div-br-content" class="ellipsis-close">
+                            {{ br.m }}
+                        </div>
+                        {% if view == 'buyer' %}
+                            <div class="comments-collapse-toggle">
+                                <a data-toggle="collapse" href="#b3-comments" >{{ br.quotes|length }} quotation(s) <span class="badge">2 unread</span> <i class="icon-angle-down"></i></a>
+                                <a class="pull-right" style="cursor: pointer" onclick="document.getElementById('div-br-content').classList.toggle('ellipsis-open');"> more detail </a>
+                            </div>
+                            <div id="b3-comments" class="comments collapse" style="height: 0px;">
+                                {% for q in br.quotes %}
+                                    <div class="comment"><a target="_blank" href="{{ path('show_quotation', {'purchase_id': q.pm_id ,'id' : q.id, 'page': 'home'}) }}" ><strong>Company {{ q.co }}</strong></a>{{ q.pr ~ ' ' ~ q.c ~ ' per ' ~ q.q ~ ' ' ~  q.q_t}}</div>
+                                {% endfor %}
+                            </div>
+                        {% elseif view == 'seller' %}
+                            <div class="comments-collapse-toggle">
+                                {% if br.my_q is null %}
+                                    <a target="_blank" class="btn btn-default btn-xs" href="{{ path('create_quotation', {'purchase_id': br.pm_id ,'page': 'home'}) }}" >Send Quotation</a>
+                                {% else %}
+                                    <a target="_blank" class="btn btn-default btn-xs" href="{{ path('show_quotation', {'purchase_id': br.pm_id ,'id': br.my_q.id ,'page': 'home'}) }}" >View Quotation</a>
+                                    <a target="_blank" class="btn btn-default btn-xs" href="{{ path('edit_quotation', {'purchase_id': br.pm_id ,'id': br.my_q.id ,'page': 'home'}) }}" >Edit Quotation</a>
+                                {% endif %}
+                                <a href="#" class="pull-right"> more detail </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div><!--/main area-->
+    </div><!--/row-->
+    <hr>
+
+{% endblock %}
+

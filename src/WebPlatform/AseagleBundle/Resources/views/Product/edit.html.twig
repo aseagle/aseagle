@@ -1,0 +1,27 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+{% block dashboard_local_css %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/product.css') }}" />
+{% endblock %}
+
+{% block dashboard_content %}
+    <div class="container-fluid" style="width: 1200px">
+        <div class="row">
+            {% include 'AseagleBundle:Product:_form.html.twig' %}
+            <!-- /.col-lg-6 (nested) -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block dashboard_local_footer_libs %}
+    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/bootstrap-list-filter.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/js/dashboard/upload.js') }}"></script>
+    <script>
+        $(function(){
+            var _json_product = $.parseJSON('{{ json | raw }}');
+            _AsgDashboard.Upload.set_form_edit_product(_json_product.cat_id,_json_product.d);
+            // Load existing files:
+            $('#fileupload').fileupload('option', 'done')
+                    .call($('#fileupload'), $.Event('done'), {result: {files:_json_product.pic}});
+        });
+    </script>
+{% endblock %}

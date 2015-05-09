@@ -1,0 +1,52 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+{% block dashboard_local_css %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/product.css') }}" />
+{% endblock %}
+
+{% block dashboard_content %}
+	<table id="myTable" class="product-list table">
+		<thead>
+			<tr>
+				<th class="col-xs-1"></th>
+				<th class="col-xs-1"></th>
+				<th class="col-xs-3">Product Title</th>
+				<th class="col-xs-3">Trading Info</th>
+				<th class="col-xs-2">Category</th>
+				<th class="col-xs-1">State</th>
+				<th class="col-xs-1"></th>
+			</tr>
+		</thead>
+		<tbody>
+            {% for product in products %}
+                <tr>
+                    <td><input type="checkbox" /></td>
+                    <td><a href="/aseagle/web/app.php/product/show/{{ product.id }}" target="_blank"><img src="{{ product.picture }}" width="50" height="50" class="img-rounded" rel="popover"></a></td>
+                    <td>{{ product.title }}</td>
+                    <td>{{ product.priceOrigin }}</td>
+                    <td>{{ product.category.name }}</td>
+                    <td>{% if product.state == 1 %}Approved{% else %}Pending{% endif %}</td>
+                    <td><a href="{{ path('edit_product', {'id': product.id}) }}" class="btn btn-primary btn-xs btn-block hover-btn"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+                        <a href="{{ path('destroy_product', {'id': product.id}) }}" class="btn btn-danger btn-xs btn-block hover-btn"><span class="glyphicon glyphicon-trash"></span>Delete</a></td>
+                </tr>
+            {% endfor %}
+		</tbody>
+	</table>
+	
+    <script>
+          $(document).ready(function() {
+              $(".img-rounded").popover({
+                trigger: 'hover',
+                  placement : 'right', //placement of the popover. also can use top, bottom, left or right
+                  title : '<div style="text-align:center; color:red; text-decoration:underline; font-size:14px;"> </div>', //this is the top title bar of the popover. add some basic css
+                  html: 'true', //needed to show html of course
+                  content : function () {
+                        return '<div id="popOverBox"><img src="'+$(this)[0].src + '" width="251" height="201" /></div>';//this is the content of the html box. add the image here or anything you want really.
+                    }
+
+            });
+            function resizeInput() {
+                $(this).attr('size', $(this).val().length);
+            }
+          });
+    </script>
+    {% endblock %}

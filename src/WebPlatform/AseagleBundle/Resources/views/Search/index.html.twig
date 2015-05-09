@@ -1,0 +1,71 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+{% block local_css %}
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/main.css') }}" />
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-left">
+            <div class="left-side-bar col-xs-6 col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+
+            </div>
+
+            <div class="main-area col-xs-12 col-sm-9 col-md-8">
+                <p class="pull-left visible-xs">
+                    <button type="button" class="btn btn-primary btn-xs btn-sm" data-toggle="offcanvas">Toggle nav</button>
+                </p>
+                <div class="row">
+                    <div class="col-xs-6">
+                        <ul class="breadcrumb">
+                            <li><a href="#">Agriculture</a></li>
+                            <li><a href="#">Grain</a></li>
+                            <li class="active" ><input type="text" size="5"/> <button type="button" class="btn btn-primary btn-xs">Submit</button></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-6">
+                        <!-- Multiple Checkboxes (inline) -->
+                        <div class="form-group pull-right">
+                            <label class="checkbox-inline" for="checkboxes-0">
+                                <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+                                Gold member
+                            </label>
+                            <label class="checkbox-inline" for="checkboxes-1">
+                                <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
+                                Verified Member
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!--/main area-->
+
+            <div class="hidden-xs hidden-sm col-md-2">
+                <div class="list-group">
+                    <a href="#" class="list-group-item active">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                    <a href="#" class="list-group-item">Link</a>
+                </div>
+            </div><!--/span-->
+        </div><!--/row-->
+
+    </div>
+{% endblock %}
+
+{% block local_footer_libs %}
+    <script>
+        $(document).ready(function() {
+            _ajax_cat_filter_json = null;
+            _ajax_product_list_json = $.parseJSON('{{ search_result_lists | raw }}');
+
+        });
+    </script>
+    <script src="{{ asset('bundles/framework/vendor/hovercard/js/jquery.hovercard.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/js/main/main.js') }}"></script>
+{% endblock %}

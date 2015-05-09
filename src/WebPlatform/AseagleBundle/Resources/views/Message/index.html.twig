@@ -1,0 +1,302 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+{% block title %}Areagle - Message Center{% endblock %}
+{% block local_css %}
+    <link href="{{ asset('bundles/framework/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/framework/vendor/timeline/timeline.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/framework/vendor/morris/morris.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/framework/fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/summernote/summernote.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/taginput/css/bootstrap-tagsinput.css') }}">
+    <link href="{{ asset('bundles/framework/css/messagecenter.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block local_header_libs %}
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.js') }}"></script>
+
+    <!-- Angular JavaScript -->
+    <script src="{{ asset('bundles/framework/vendor/angular/js/angular.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/angular/js/angular-sanitize.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/angular/js/angular-ui-router.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/typeahead/js/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/taginput/js/bootstrap-tagsinput.min.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid" ng-app="msgcenter">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation" style="padding-left: 10px; padding-right: 10px;">
+            <div class="box-header">
+                <i class="fa fa-inbox"></i>
+                <h3 class="box-title">INBOX</h3>
+            </div>
+            <!-- compose message btn -->
+            <a class="btn btn-block btn-primary" href="#/compose"><i class="fa fa-pencil"></i> Compose Message</a>
+            <!-- Navigation - folders-->
+            <div style="margin-top: 15px;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="header">Folders</li>
+                    <li ui-sref-active="active"><a ui-sref="mail" href="#/mail"><i class="fa fa-inbox"></i> Inbox</a></li>
+                    <li ui-sref-active="active"><a ui-sref="draft" href="#/draft"><i class="fa fa-pencil-square-o"></i> Drafts</a></li>
+                    <li ui-sref-active="active"><a ui-sref="sent" href="#/sent"><i class="fa fa-mail-forward"></i> Sent</a></li>
+                    <li ui-sref-active="active"><a ui-sref="starred" href="#/starred"><i class="fa fa-star"></i> Starred</a></li>
+                    <li ui-sref-active="active"><a ui-sref="junk" href="#/junk"><i class="fa fa-folder"></i> Junk</a></li>
+                </ul>
+            </div>
+        </div><!-- /.col (LEFT) -->
+        <div class="col-sm-9 col-md-10 main">
+            <!--toggle sidebar button-->
+              <p class="visible-xs">
+                <button type="button" class="btn btn-primary btn-xs btn-sm" data-toggle="offcanvas">Toggle nav</button>
+              </p>
+           <div class="table-wrap">
+            <div class="row pad">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <label style="margin-right: 10px;">
+                        <input type="checkbox" id="check-all"/>
+                    </label>
+                    <!-- Action button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm btn-flat dropdown-toggle" data-toggle="dropdown">
+                            Action <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Mark as read</a></li>
+                            <li><a href="#">Mark as unread</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Move to junk</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Delete</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 search-form">
+                    <form action="#" class="text-right">
+                        <div class="input-group">
+                            <input type="text" class="form-control input-sm" placeholder="Search">
+                            <div class="input-group-btn">
+                                <button type="submit" name="q" class="btn btn-sm btn-primary"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.row -->
+
+            <div class="table-responsive" style="height: 320px">
+                <ui-view>
+                    <i>Some content will load here!</i>
+                </ui-view>
+            </div><!-- /.table-responsive -->
+
+           </div><!-- /.table-wrap -->
+        </div><!-- /.col (RIGHT) -->
+    </div><!-- /.row -->
+
+
+<script id="mail.html" type="text/ng-template">
+	<ng-view title="Mail">
+		<table class="table table-mailbox">
+		<tr class="{[{is_read(mail.r)}]}" ng-repeat="mail in mails">
+		<td class="small-col"><input type="checkbox" /></td>
+		<td class="small-col"><i class="fa fa-star"></i></td>
+		<td class="name"><a href="#/open/{[{mail.id}]}">{[{mail.author.fname}]}</a></td>
+		<td class="subject"><a href="#/open/{[{mail.id}]}"">{[{mail.subj}]}<span>{[{mail.body}]}</span></a></td>
+		<td class="time">{[{get_time(mail.date)}]}</td>
+		</tr>
+		</table>
+	</ng-view>
+</script>
+
+<script id="sent_mail.html" type="text/ng-template">
+	<ng-view title="Mail">
+		<table class="table table-mailbox">
+		<tr class="read" ng-repeat="mail in mails">
+		<td class="small-col"><input type="checkbox" /></td>
+		<td class="small-col"><i class="fa fa-star"></i></td>
+		<td class="name"><a href="#/open_sent/{[{mail.id}]}">To: {[{mail.receivers[0].fname}]}</a></td>
+		<td class="subject"><a href="#/open_sent/{[{mail.id}]}"">{[{mail.subj}]}<span>{[{mail.body}]}</span></a></td>
+		<td class="time">{[{get_time(mail.date)}]}</td>
+		</tr>
+		</table>
+	</ng-view>
+</script>
+
+<script id="open.html" type="text/ng-template">
+	<ng-view title="Open">
+		<div class="email-open">
+			<h2 class="email-open-header">
+			{[{mail.subj}]}<span class="label txt-color-red">inbox</span>
+			<a href="javascript:void(0);" rel="tooltip" data-placement="left" data-original-title="Print" class="txt-color-darken pull-right"><i class="fa fa-print"></i></a>
+			</h2>
+
+			<div class="inbox-info-bar">
+				<div class="row">
+					<div class="col-sm-9">
+						<img src="img/avatars/{[{mail.author.id}]}.png" alt="me" class="away">
+						<strong>{[{mail.author.fname}]}</strong>
+						<span class="hidden-mobile">&lt;{[{mail.author.company.name}]}&gt;to <strong>me</strong> on <i>{[{mail.date}]}</i></span>
+					</div>
+					<div class="col-sm-3 text-right">
+						<div class="btn-group text-left">
+							<button class="btn btn-primary btn-sm replythis" ng-click="Reply()">
+								<i class="fa fa-reply"></i> Reply
+							</button>
+							<button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-angle-down"></i>
+							</button>
+							<ul class="dropdown-menu pull-right">
+								<li>
+									<a href="javascript:void(0);" class="replythis"><i class="fa fa-reply"></i> Reply</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);" class="replythis"><i class="fa fa-mail-forward"></i> Forward</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);"><i class="fa fa-print"></i> Print</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a href="javascript:void(0);"><i class="fa fa-ban"></i> Mark as spam!</a>
+								</li>
+								<li>
+									<a href="javascript:void(0);"><i class="fa fa-trash-o"></i> Delete forever</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="inbox-message" ng-bind-html="mail.body">
+
+			</div>
+		</div>
+	</ng-view>
+</script>
+
+<script id="compose.html" type="text/ng-template">
+	<ng-view title="Compose">
+		<div class="email-compose">
+		<h2 class="email-open-header">
+		   Compose New Email <span class="label txt-color-white">DRAFT</span>
+		   <a href="javascript:void(0);" rel="tooltip" data-placement="left" data-original-title="Print" class="txt-color-darken pull-right"><i class="fa fa-print"></i></a>
+		</h2>
+
+		<form enctype="multipart/form-data" action="dummy.php" method="POST" class="form-horizontal" id="email-compose-form">
+			<div class="inbox-info-bar no-padding">
+				<div class="row">
+					<div class="form-group">
+						<label class="control-label col-md-1"><strong>To</strong></label>
+						<div class="col-md-11">
+							<div class="bs-example">
+								<input class="form-control" placeholder="Receiever" type="text" ng-model="Receivers" tag-input>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="inbox-info-bar no-padding">
+				<div class="row">
+					<div class="form-group">
+						<label class="control-label col-md-1"><strong>Subject</strong></label>
+						<div class="col-md-11">
+							<input class="form-control" placeholder="Email Subject" type="text" ng-model="Subject">
+							<em><a href="javascript:void(0);" class="show-next" rel="tooltip" data-placement="bottom" data-original-title="Attachments"><i class="fa fa-paperclip fa-lg"></i></a></em>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="inbox-info-bar no-padding hidden">
+				<div class="row">
+					<div class="form-group">
+						<label class="control-label col-md-1"><strong>Attachments</strong></label>
+						<div class="col-md-11">
+							<input class="form-control fileinput" type="file" multiple="multiple" ng-model="Body" >
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="inbox-message no-padding">
+				<div id="emailbody" wysi-html5>
+						<!--br><br><br><br><br>Thanks,<br><strong>John Doe</strong><br><br><small>CEO - SmartAdmin <br> 231 Ajax Rd, Detroit MI - 48212, USA<br><i class="fa fa-phone"> (313) 647 4761</i></small><br-->
+				</div>
+			</div>
+
+			<div class="inbox-compose-footer">
+				<button class="btn btn-danger" type="button">
+					Disregard
+				</button>
+				<button class="btn btn-info" type="button">
+					Draft
+				</button>
+				<button ng-click="Send()" data-loading-text="&lt;i class='fa fa-refresh fa-spin'&gt;&lt;/i&gt; &nbsp; Sending..." class="btn btn-primary pull-right" type="button" id="send">
+					Send <i class="fa fa-arrow-circle-right fa-lg"></i>
+				</button>
+			</div>
+		</form>
+		</div>
+	</ng-view>
+</script>
+
+</div><!-- ./wrapper -->
+<!--script>
+$(document).ready(function() {
+
+    $.ajax({
+        type: "POST",
+        url: "/messagecenter/list_sent",
+        dataType: "json"
+    }).done(function( msg ) {
+                console.log(msg);
+            });
+
+    $.ajax({
+        type: "POST",
+        url: "/messagecenter/open_sent/1",
+        dataType: "json"
+    }).done(function( msg ) {
+                console.log(msg);
+            });
+
+     $.ajax({
+     type: "POST",
+     url: "/messagecenter/list/2?search_str=&is_read=false&is_star=false&is_task=&sender=&sort_by_sender=&sort_by_date=&page=",
+     dataType: "json"
+     }).done(function( msg ) {
+     console.log(msg);
+     });
+
+     $.ajax({
+     type: "POST",
+     url: "/messagecenter/open/2",
+     dataType: "json"
+     }).done(function( msg ) {
+     console.log(msg);
+     });
+
+/*
+     $.ajax({
+     type: "POST",
+     url: "messagecenter/send",
+     data: { received_ids : "2,3", subject : "abc abc", body : "123 abc 123"},
+     dataType: "json"
+     }).done(function( msg ) {
+     console.log(msg);
+     });
+     */
+});
+</script-->
+
+{% endblock %}
+
+{% block local_footer_libs %}
+    <!-- Custom Theme JavaScript -->
+    <script src="{{ asset('bundles/framework/js/dashboard/messagecenter.js') }}"></script>
+    <script src="{{ asset('bundles/framework/js/dashboard/messagecenter_app.js') }}"></script>
+{% endblock %}

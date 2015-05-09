@@ -1,0 +1,97 @@
+body {
+    padding-top: 91px;
+    padding-bottom: 20px;
+}
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+td, th {
+    line-height: 1.5;
+}
+
+th.lh20, td.lh20 {
+    line-height: 2.0;
+}
+
+td.col-name{
+    color: #666;
+}
+
+.w11{
+    width: 11%;
+}
+
+.w22{
+    width: 22%;
+}
+
+.w25{
+    width: 25%;
+}
+
+.w100{
+    width: 100%;
+}
+
+.top-bar-fixed{
+    top: -51px;
+}
+.top-bar-default{
+    top: 0;
+}
+
+.lower-bar-fixed{
+    top: 0 !important;
+}
+.lower-bar-default{
+    top: 51;
+}
+
+.bar-header{
+    transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    -webkit-transition: all 0.1s linear;
+}
+#top_bar { box-shadow: none; z-index: 1031; }
+#lower_bar { background-image: none; box-shadow: none; top: 40px}
+.navbar-xs { min-height:40px; height: 40px; }
+.navbar-xs .navbar-brand { padding: 0px 12px;font-size: 40px;line-height: 40px; }
+.navbar-xs .navbar-nav > li > a, .navbar-xs .navbar-header a {  padding-top: 0px; padding-bottom: 0px; line-height: 40px; }
+
+.navbar-fixed-top {
+    border-width: 0 0 0px;
+}
+
+.navbar-default .navbar-nav > li > a{
+    color: #EDEDED;
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover{
+    color: white;
+}
+
+.navbar-default .navbar-nav .btn{
+    border-radius: 0;
+}
+
+.navbar-default .navbar-nav a span.glyphicon{
+    font-size: 15.5px;
+}
+
+.navbar-default .navbar-nav a.btn-in-a{
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.navbar-default .navbar-nav a.btn-in-a button.pbr{
+    background-color: #8cd02c;
+    border-color: #8cd02c;
+    color: #EDEDED;
+}
+
+.navbar-default .navbar-nav a.btn-in-a button.pbr:hover{
+    background-color: #9de42e;
+    border-color: #9de42e;
+    color: white;
+}

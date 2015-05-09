@@ -1,0 +1,28 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+
+    {% block dashboard_content %}
+        <h1>Patents</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Products</th>
+                <th>Annual Turnover</th>
+                <th><a href="{{ path('seller_company_patent_new', {'seller_id': app.user.getCompany().getId()}) }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></th>
+            </tr>
+            </thead>
+            {% for patent in patents %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ patent.name }}</td>
+                    <td>{{ patent.country.name }}</td>
+                    <td>{{ patent.products }}</td>
+                    <td>{{ patent.annualTurnover }}</td>
+                    <td><a href="{{ path('seller_company_patent_edit', {'seller_id': app.user.getCompany().getId(), 'id': patent.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('seller_company_patent_destroy', {'seller_id': app.user.getCompany().getId(), 'id': patent.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}

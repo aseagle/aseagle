@@ -1,0 +1,206 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+  
+  
+  
+/* ************************************
+ *	Leftside bar filter & sub category. 
+ * 
+ * 
+ * ***********************************/
+  
+.column-left {
+	padding-bottom: 15px;	
+	font-size: 12px;
+}
+
+  
+.column-left .header {
+	color: #333;
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 24px;
+	margin-bottom: 6px;
+}
+
+.column-left .c-box {
+	max-height: 156px;
+	overflow: hidden;
+	overflow-y: auto; 
+}
+
+.column-left ul {
+	list-style: none;
+	margin: 0;
+	font-size: 12px;
+	padding-left:10px;
+}
+
+.column-left input[type="checkbox"] {
+    margin-right: 5px;
+}
+  
+  
+.c-box li>a {
+	padding: 0px 0px 0px 0px;
+	transition: padding-left .2s ease-in-out;
+	-moz-transition: padding-left .2s ease-in-out;
+	-webkit-transition: padding-left .2s ease-in-out;
+	-o-transition: padding-left .2s ease-in-out;  
+}
+
+.c-box li>a:hover {
+	padding-left: 5px;
+	font-weight: bold;
+}
+  
+
+.nav .filter-selected>a {
+	font-weight: bold;
+}
+
+.nav .cat-selected>a {
+	font-weight: bold;
+}
+
+.nav .cat-selected>a:hover {
+	padding-left: 0px;
+	font-weight: bold;
+}
+
+/* ************************************
+ *	Product list / Product card. 
+ * 
+ * 
+ * ***********************************/
+  
+
+
+/* ************************************
+ *	Rightside bar [Advertising OR promotion]. 
+ * 
+ * 
+ * ***********************************/
+  
+.my-card {
+	padding-top: 0px;
+	margin: 10px 0 20px 0;
+	background-color: #ffffff;
+	border: 1px solid #d8d8d8;
+	border-top-width: 1;
+	border-bottom-width: 1px;
+	/*-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;*/
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: Roboto, arial, sans-serif;
+	font-size: 13px;
+	line-height: 20px;
+	color: #444444;
+}
+
+.my-card .card-title {
+	padding: 0 20px;
+  	margin: 0;
+}
+ 
+.my-card .card-heading {
+  padding: 0px;
+  margin: 5 0 5 0;
+}
+
+.my-card .card-heading.simple {
+  font-size: 20px;
+  font-weight: 300;
+  color: #777;
+  border-bottom: 1px solid #e5e5e5;
+  line-height: 40px;
+}
+
+.my-card .card-heading-header > a > img {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+  vertical-align: middle;
+  float:left;
+  border: 0;
+  /*-webkit-border-radius: 10%;
+     -moz-border-radius: 10%;
+          border-radius: 10%;*/
+}
+
+.my-card .card-heading.image .card-heading-header {
+  display: inline-block;
+  vertical-align: top;
+  
+}
+
+.my-card .card-heading.image .card-heading-header h3 {
+  margin: 0;
+  font-size: 12px;
+  line-height: 16px;
+  color: #262626;
+}
+
+.my-card .card-heading.image .card-heading-header h3.prop {
+  margin: 5px;
+  font-size: 12px;
+  line-height: 16px;
+  color: #262626;
+}
+
+.my-card .card-heading.image .card-heading-header h3.title {
+	  margin: 0 0 10 0;
+	  font-size: 14px;
+	  line-height: 16px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis; 
+	  text-transform: uppercase;
+}
+
+.my-card .card-heading.image .card-heading-header em {
+	color: #999999;
+}
+
+.my-card .card-heading.image .card-heading-header strong {
+	font-size: 14px;
+	color: #000000;
+}
+
+.my-card .card-heading.image .card-heading-header dfn {
+	color: #1555BB;
+}
+
+.my-card .card-heading.image .card-heading-header span {
+  font-size: 9px;
+  color: #999999;
+}
+
+/* hover button*/
+.my-card:hover {
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.hover-btn {
+	display: none;
+}
+.my-card:hover .hover-btn {
+	display: block;
+}
+
+.short-text {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+}

@@ -1,0 +1,32 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+
+    {% block dashboard_content %}
+        <h1>Certifications</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Issued By</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Scope</th>
+                <th><a href="{{ path('seller_company_certification_new', {'seller_id': app.user.getCompany().getId()}) }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></th>
+            </tr>
+            </thead>
+            {% for certification in certifications %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ certification.name }}</td>
+                    <td>{{ certification.type }}</td>
+                    <td>{{ certification.issuedBy|date("m/d/Y")}}</td>
+                    <td>{{ certification.startDate|date("m/d/Y") }}</td>
+                    <td>{{ certification.endDate|date("m/d/Y") }}</td>
+                    <td>{{ certification.scope }}</td>
+                    <td><a href="{{ path('seller_company_certification_edit', {'seller_id': app.user.getCompany().getId(), 'id': certification.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('seller_company_certification_destroy', {'seller_id': app.user.getCompany().getId(), 'id': certification.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}

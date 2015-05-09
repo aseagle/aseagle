@@ -1,0 +1,60 @@
+{% block head %}
+    <!DOCTYPE html>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- global css -->
+    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootstrap/css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootstrap/css/offcanvas.css') }}">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/yamm/yamm.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/framework/css/style.css') }}" />
+    <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
+
+    <!-- local css -->
+    {% block local_css %}{% endblock %}
+
+	<!-- global libs -->
+    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/jquery-1.11.0.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
+
+    <!-- local head libs -->
+    {% block local_header_libs %}{% endblock %}
+{% endblock %}
+
+{% block body %}
+    <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    {% include 'AseagleBundle::_top_menubar.html.twig' %}
+
+    <div class="block">
+        {% block content %}{% endblock %}
+    </div>
+    <hr>
+    <footer>
+        <p>© Company 2014</p>
+    </footer>
+
+    <!-- global libs -->
+    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/offcanvas.js') }}"></script>
+    <script src="{{ asset('bundles/framework/js/require.js') }}"></script>
+
+    <script src="{{ asset('bundles/framework/js/_util/util.js') }}"></script>
+    <script src="{{ asset('bundles/framework/js/_util/mapping_en.js') }}"></script>
+    <!-- local footer libs -->
+    {% block local_footer_libs %}{% endblock %}
+
+    {% if code is defined %}
+        <h2>Code behind this page</h2>
+        <div class="block">
+            <div class="symfony-content">{{ code|raw }}</div>
+        </div>
+    {% endif %}
+{% endblock %}

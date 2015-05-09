@@ -1,0 +1,28 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+
+    {% block dashboard_content %}
+        <h1>Honor Awards</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Issued By</th>
+                <th>Start Date</th>
+                <th>Description</th>
+                <th><a href="{{ path('seller_company_honor_award_new', {'seller_id': app.user.getCompany().getId()}) }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></th>
+            </tr>
+            </thead>
+            {% for award in awards %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ award.name }}</td>
+                    <td>{{ award.issuedBy|date("m/d/Y")}}</td>
+                    <td>{{ award.startDate|date("m/d/Y") }}</td>
+                    <td>{{ award.description }}</td>
+                    <td><a href="{{ path('seller_company_honor_award_edit', {'seller_id': app.user.getCompany().getId(), 'id': award.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('seller_company_honor_award_destroy', {'seller_id': app.user.getCompany().getId(), 'id': award.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}

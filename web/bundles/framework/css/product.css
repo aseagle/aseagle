@@ -1,0 +1,46 @@
+/* upload & edit product */
+body {
+/* padding-top: 50px;
+    padding-bottom: 20px;*/
+}
+
+#searchlist {
+    max-height: 200px;
+    overflow-y: hidden;
+    overflow: auto;
+}
+
+.required:after {
+    content: "*";
+    padding-left:1%;
+}
+
+/* list product */
+.product-list input {
+    display: block;
+    margin: 0px;
+    width: auto;
+    font-family: serif;
+}
+.product-list.input-text-quick-edit {
+    display: block;
+    height: 34px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.product-list .hover-btn {
+    display: none;
+}
+
+.product-list tbody:hover tr:hover{
+    background-color: #fffff0;
+}
+.product-list tr:hover .hover-btn {
+    display: block;
+}

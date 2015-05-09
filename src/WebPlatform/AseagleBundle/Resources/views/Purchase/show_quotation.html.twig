@@ -1,0 +1,14 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+
+    {% block content %}
+        <h1>Quotation</h1>
+        <table>
+            <tr><td>Buying Request: </td><td>{{ quote.br_t }}</td></tr>
+            <tr><td>Quotation Message: </td><td>{{ quote.q_m }}</td></tr>
+            <tr><td>Price: </td><td>{{ quote.pr ~ ' ' ~ quote.c ~ ' per ' ~ quote.q ~ ' ' ~  quote.q_t}}</td></tr>
+            <tr><td>Payment Term: </td><td>{{ quote.p_t }}</td></tr>
+            <tr><td>Deliver time: </td><td>{{ quote.d_t }}</td></tr>
+            <tr><td>{% if view == 'seller' %}<a class="btn btn-default btn-xs" href="{{ path('edit_quotation', {'purchase_id': quote.pm_id ,'id': quote.id}) }}" >Edit Quotation</a>{% endif %}</td><td></td></tr>
+        </table>
+
+    {% endblock %}

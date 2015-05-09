@@ -1,0 +1,116 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+    {% block local_css %}
+        <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/framework/fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/framework/css/dashboard.css') }}" />
+        {% block dashboard_local_css %}{% endblock %}
+    {% endblock %}
+
+    {% block content %}
+		<div class="container-fluid">
+	      <div class="row row-offcanvas row-offcanvas-left">
+	         <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation" style="padding-left: 0px; padding-right: 0px;">
+	           <div class="sidebar">
+	            <!--ul class="nav nav-sidebar">
+	              <li class="active"><a href="#">Overview</a></li>
+	              <li><a href="#">Reports</a></li>
+	              <li><a href="#">Analytics</a></li>
+	              <li><a href="#">Export</a></li>
+	            </ul>
+	            <ul class="nav nav-sidebar">
+	              <li><a href="">Nav item</a></li>
+	              <li><a href="">Nav item again</a></li>
+	              <li><a href="">One more nav</a></li>
+	              <li><a href="">Another nav item</a></li>
+	              <li><a href="">More navigation</a></li>
+	            </ul>
+	            <ul class="nav nav-sidebar">
+	              <li><a href="">Nav item again</a></li>
+	              <li><a href="">One more nav</a></li>
+	              <li><a href="">Another nav item</a></li>
+	            </ul-->
+	          		<ul class="nav" id="side-menu">
+                        <li>
+                            <a class="active" href="#"><i class="fa fa-dashboard fa-fw"></i> My Aseagle<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href="#">Member's Updates</a></li>
+                                <li><a href="#">Weekly Activities</a></li>
+                                <li><a href="#">Recommended Services</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-bars fa-fw"></i> Purchase Management<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+
+                                <li><a href="{{path('create_buying_request')}}">Create Buying Request</a></li>
+                                <li><a href="{{path('buyer_get_buying_request')}}">Buyer - Buying Requests</a></li>
+                                {% if app.user.getIsSeller() == true %}
+                                    <li><a href="{{path('seller_get_buying_request')}}">Seller - Buying Requests</a></li>
+                                    <li><a href="#">Quotations</a></li>
+                                {% endif %}
+                                <li><a href="#">Favorite Products</a></li>
+                                <li><a href="#">Manage Deals</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-building-o fa-fw"></i> Company Profile<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                {% if app.user.getIsSeller() != true %}
+                                    <li><a href="{{path('new_seller')}}">Company Information</a></li>
+                                {% else %}
+                                    <li><a href="{{path('edit_seller',{'id' : app.user.getCompany().getId()})}}">General Information</a></li>
+                                    <li><a href="{{path('seller_company_customer_index',{'seller_id' : app.user.getCompany().getId()})}}">Customers</a></li>
+                                    <li><a href="{{path('seller_company_factory_index',{'seller_id' : app.user.getCompany().getId()})}}">Factories</a></li>
+                                    <li><a href="{{path('seller_company_certification_index',{'seller_id' : app.user.getCompany().getId()})}}">Certifications</a></li>
+                                    <li><a href="{{path('seller_company_oversea_office_index',{'seller_id' : app.user.getCompany().getId()})}}">Oversea Offices</a></li>
+                                    <li><a href="{{path('seller_company_trademark_index',{'seller_id' : app.user.getCompany().getId()})}}">Trademarks</a></li>
+                                    <li><a href="{{path('seller_company_honor_award_index',{'seller_id' : app.user.getCompany().getId()})}}">Honor Awards</a></li>
+                                    <li><a href="{{path('seller_company_patent_index',{'seller_id' : app.user.getCompany().getId()})}}">Patents</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                        {% if app.user.getIsSeller() == true %}
+                        <li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Product Management<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                    <li><a href="{{path('upload_product')}}">Create Product</a></li>
+                                    <li><a href="{{path('list_product',{'seller_id' : app.user.getCompany().getId()})}}">Product List</a></li>
+                                    <li><a href="#">Make Groups</a></li>
+                            </ul>
+                        </li>
+                        {% endif %}
+                        <li>
+                            <a href="#"><i class="fa fa-cog fa-fw"></i> Account Settings<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level collapse">
+                                <li><a href="{{path('fos_user_change_password')}}">Security Settings</a></li>
+                                <li><a href="{{path('fos_user_profile_edit')}}">Personal Information</a></li>
+                                <li><a href="#">My Preferences</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+				</div>
+	        </div>
+	        
+	        <div class="col-sm-9 col-md-10 main">
+	          <!--toggle sidebar button-->
+	          <p class="visible-xs">
+	            <button type="button" class="btn btn-primary btn-xs btn-sm" data-toggle="offcanvas">Toggle nav</button>
+	          </p>
+				{% block dashboard_content %}{% endblock %}
+		     </div>
+		</div>
+	</div>
+
+    {% endblock %}
+
+    {% block local_footer_libs %}
+        <script>
+            $(document).ready(function() {
+
+            });
+        </script>
+        <script src="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('bundles/framework/js/dashboard/dashboard.js') }}"></script>
+        {% block dashboard_local_footer_libs %}{% endblock %}
+    {% endblock %}

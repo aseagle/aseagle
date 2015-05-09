@@ -1,0 +1,4 @@
+aseagle:
+    resource: "@AseagleBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,392 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+
+{% block title %}Areagle - Welcome{% endblock %}
+
+{% block content_header '' %}
+
+    {% block content %}
+
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+            
+            #searchlist {
+            	max-height: 200px;
+				overflow-y: hidden;
+				overflow: auto;
+            }
+            
+            .required:after {
+			    content: "*";
+			    padding-left:1%;
+			}
+
+
+        </style>
+
+
+		<div class="container-fluid" style="width: 1200px">
+			<div class="row">
+				<h1 class="page-header">Upload Product</h1>
+				<h3>Step 1</h3>
+			</div>
+			<div class="row">
+				<div class="col-xs-3 col-md-3 cat-tree-0">
+					<form role="form">
+						<div class="form-group">
+							<input class="form-control" id="searchinput" type="search" placeholder="Search...">
+						</div>
+						<div id="searchlist" class="list-group">
+						</div>
+					</form>
+				</div>
+
+				<div class="col-xs-3 col-md-3 cat-tree-1">
+					<form role="form">
+						<div class="form-group">
+							<input class="form-control" id="searchinput" type="search" placeholder="Search...">
+						</div>
+						<div id="searchlist" class="list-group">
+
+						</div>
+					</form>
+				</div>
+
+				<div class="col-xs-3 col-md-3 cat-tree-2">
+					<form role="form">
+						<div class="form-group">
+							<input class="form-control" id="searchinput" type="search" placeholder="Search...">
+						</div>
+						<div id="searchlist" class="list-group">
+
+						</div>
+					</form>
+				</div>
+
+				<div class="col-xs-3 col-md-3 cat-tree-3">
+					<form role="form">
+						<div class="form-group">
+							<input class="form-control" id="searchinput" type="search" placeholder="Search...">
+						</div>
+						<div id="searchlist" class="list-group">
+
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<h3>Step 2</h3>
+			</div>
+			<div class="row">
+				<div class="col-sx-12 col-sm-12 col-md-12">
+					<form class="form-horizontal" id="upload-product-form" action="{{path('create_product')}}" method="post">
+						<fieldset>
+						<input id="category_id" type="text" name="category_id" value="">
+						
+						<legend>Product Basic Infomation</legend>
+						<div class="product-basic-information"> <!-- Need build this form -->
+							<div class="form-group">
+						  <label class="col-md-4 control-label" for="title">Product Title</label>  
+						  <div class="col-md-6">
+						  <input id="title" name="title" type="text" placeholder="Product Title" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+						
+						<!-- Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="specification">Product Specification</label>  
+						  <div class="col-md-6">
+						  <input id="specification" name="brief_description" type="text" placeholder="specification" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+						
+						<!-- Textarea -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="description">Product Description</label>
+						  <div class="col-md-6">                     
+						    <textarea class="form-control" id="specification" name="specification"></textarea>
+						  </div>
+						</div>
+						        
+				        <div class="div-file-upload-content">
+				            {% include 'AseagleBundle::_file_upload.html.twig' %}
+                            <input type="hidden" id="hid-list-file-upload" name="hid-list-file-upload">
+				        </div>
+						
+						</div>
+						
+						<legend>Product Details</legend>
+						<div class="product-detail-fields"> <!-- Need build this form -->
+							
+						</div>
+						
+						<!-- Form Name -->
+						<legend>Trade Informations</legend>
+						<div class="trade-information">
+						<!-- Min. Order Quantity -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="buttondropdown">Min. Order Quantity</label>
+						  <div class="col-md-6">
+						    <div class="input-group">
+						      <input id="buttondropdown" name="min_order" class="form-control" placeholder="Min. Order Quantity" type="text" required="">
+						      <div class="input-group-btn">
+						      	<input type="hidden" name="min_order_unit_type" value="">
+						        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						          Unit Type
+						          <span class="caret"></span>
+						        </button>
+						        <ul class="dropdown-menu pull-right dropdown-menu-unit-type">
+						        	
+						        </ul>
+						      </div>
+						    </div>								
+						  </div>
+						</div>
+						
+						<!-- FOB Price -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="prependedtext">FOB Price</label>
+						  <div class="col-md-1">
+						  	<select id="selectbasic" name="price_currency" class="form-control" style="padding: 3px">
+						      <option value="USD">USD</option>
+						      <option value="SGD">SGD</option>
+						      <option value="VND">VND</option>
+						    </select>
+						  </div>
+						 <div class="col-md-5">
+						    <div class="input-group">
+						      <input id="buttondropdown" name="price_origin" class="form-control" placeholder="FOB Price" type="text" required="">
+						      <div class="input-group-btn">
+						      	<input type="hidden" name="price_unit_type" value="">
+						        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						          <em>per</em> Unit Type
+						          <span class="caret"></span>
+						        </button>
+						        <ul class="dropdown-menu pull-right dropdown-menu-unit-type">
+
+						        </ul>
+						      </div>
+						    </div>
+						    <p class="help-block">Please include both the amount and type of unit </p>
+						  </div>
+						</div>
+						
+						<!-- Port -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="textinput">Port</label>  
+						  <div class="col-md-6">
+						  <input id="textinput" name="port" type="text" placeholder="Port" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+						
+						<!-- Payment Terms - Multiple Checkboxes (inline) -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="checkboxes">Payment Terms</label>
+						  <div class="col-md-4">
+						    <label class="checkbox-inline" for="checkboxes-0">
+						      <input type="checkbox" name="payment_terms" id="checkboxes-0" value="1">
+						      L/C
+						    </label>
+						    <label class="checkbox-inline" for="checkboxes-1">
+						      <input type="checkbox" name="payment_terms" id="checkboxes-1" value="2">
+						      D/A
+						    </label>
+						    <label class="checkbox-inline" for="checkboxes-2">
+						      <input type="checkbox" name="payment_terms" id="checkboxes-2" value="3">
+						      D/P
+						    </label>
+						    <label class="checkbox-inline" for="checkboxes-3">
+						      <input type="checkbox" name="payment_terms" id="checkboxes-3" value="4">
+						      T/T
+						    </label>
+						    <label class="checkbox-inline" for="checkboxes-4">
+						      <input type="checkbox" name="payment_terms" id="checkboxes-4" value="5">
+						      Western Union
+						    </label>
+						    <label class="checkbox-inline" for="checkboxes-5">
+						      <input type="checkbox" name="payment_terms" id="checkboxes-5" value="6">
+						      MoneyGram
+						    </label>
+						    <label class="checkbox-inline" for="checkboxes-6">
+						      <input type="checkbox" name="payment_terms" id="checkboxes-6" value="7">
+						      Other
+						    </label>
+						  </div>
+						</div>
+						
+						<!-- Supply Ability -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="buttondropdown">Supply Ability</label>
+						  <div class="col-md-4">
+						    <div class="input-group">
+						      <input id="buttondropdown" name="supply_ability" class="form-control" placeholder="How many" type="text" required="">
+						      <div class="input-group-btn">
+						      	<input type="hidden" name="supply_applity_unit" value="">
+						        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						          Unit Type
+						          <span class="caret"></span>
+						        </button>
+						        <ul class="dropdown-menu pull-right dropdown-menu-unit-type">
+
+						        </ul>
+						      </div>
+						    </div>
+						  </div>
+						  <div class="col-md-2">
+						  	<select id="selectbasic" name="supply_ability_per_time" class="form-control" style="padding: 3px">
+						      <option value="" selected disabled>per Time</option>
+						      <option value="1">per Day</option>
+						      <option value="2">per Week</option>
+						      <option value="1">per Month</option>
+						      <option value="2">per Quater</option>
+						      <option value="1">per Year</option>
+						    </select>
+						  </div>
+						</div>
+						
+						<!-- Delivery Time - Text input-->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="textinput">Delivery Time</label>  
+						  <div class="col-md-6">
+						  <input id="textinput" name="deliver_time" type="text" placeholder="Delivery Time" class="form-control input-md" required="">
+						    
+						  </div>
+						</div>
+						
+						<!-- Packaging Details Textarea -->
+						<div class="form-group">
+						  <label class="col-md-4 control-label" for="textarea">Packaging Details</label>
+						  <div class="col-md-6">                     
+						    <textarea class="form-control" id="textarea" placeholder="Packaging Details" name="packaging"></textarea>
+						  </div>
+						</div>
+						</div>
+						<button id="btn-upload-file-submit" type="submit" class="btn btn-default">Submit</button>
+						</fieldset>
+						</form>
+				</div>
+				<!-- /.col-lg-6 (nested) -->
+			</div>
+		</div>
+
+
+    	<script src="{{ asset('bundles/framework/vendor/bootstrap/js/bootstrap-list-filter.min.js') }}"></script>
+    	<script src="{{ asset('bundles/framework/js/dashboard/upload.js') }}"></script>
+        <script src="http://malsup.github.com/jquery.form.js"></script>
+
+        <script src="{{ asset('bundles/framework/vendor/headroom/headroom.min.js') }}"></script>
+
+
+        <script>
+            $(document).ready(function() {
+                //set form to ajax form
+                $("#upload-product-form").ajaxForm();
+
+                //Prepare string of uploaded files
+                $("#btn-upload-file-submit").click(function(){
+                    var images = "";
+                    $("div#fileupload tr").each(function(){
+                        image = $(this).find("span.preview a").attr("href");
+                        images += image.split('/')[image.split('/').length-3] + "/" + image.split('/')[image.split('/').length-2] + "/" + image.split('/')[image.split('/').length-1] + ";";
+                    });
+                    $("#hid-list-file-upload").val(images.length ? images.substr(0,images.length-1) : "");
+
+                    return true;
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "purchase/query_my_buying_request",
+                    data: {},
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+                /*
+                $.ajax({
+                    type: "POST",
+                    url: "purchase/create_quotation",
+                    data: { pr_id : "9",product_id : "21",expired_date: "2015-10-10 19:00:00", quote_message : "abc abc",price: "25", quantity : "3", quantity_type: "bag", payment_term:"cash", deliver_time:"7 days"},
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "purchase/create_buying_request",
+                    data: { category_id : "3", title : "rare rice",expired_date : "2015-10-10 19:00:00", buying_request_message : "abc abc", quantity : "3", quantity_type: "bag"},
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/messagecenter/list_sent",
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/messagecenter/list_contact",
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/messagecenter/list_draft",
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/messagecenter/open_sent/1",
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/messagecenter/list/2?search_str=&is_read=false&is_star=false&is_task=&sender=&sort_by_sender=&sort_by_date=&page=",
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+                $.ajax({
+                    type: "POST",
+                    url: "/messagecenter/open/2",
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "messagecenter/send",
+                    data: { category_id : "3", received_ids : "c_2,7", subject : "abc abc", body : "123 abc 123"},
+                    dataType: "json"
+                }).done(function( msg ) {
+                            console.log(msg);
+                        });
+                 */
+
+            });
+        </script>
+    {% endblock %}

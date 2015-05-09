@@ -1,0 +1,18 @@
+parameters:
+#    aseagle.example.class: WebPlatform\AseagleBundle\Example
+     mapping_helper.class: WebPlatform\AseagleBundle\Services\MappingHelper
+     image_helper.class: WebPlatform\AseagleBundle\Services\ImageHelper
+     global_helper.class: WebPlatform\AseagleBundle\Services\GlobalHelper
+     message_helper.class: WebPlatform\AseagleBundle\Services\MessageHelper
+services:
+#    aseagle.example:
+#        class: %aseagle.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+     mapping_helper:
+         class: "%mapping_helper.class%"
+     image_helper:
+         class: "%image_helper.class%"
+     global_helper:
+         class: "%global_helper.class%"
+     message_helper:
+              class: "%message_helper.class%"

@@ -1,0 +1,26 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="left-side-bar col-xs-6 col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
+        For Category Menu Bar
+        </div>
+
+        <div class="main-area col-xs-12 col-sm-9 col-md-8">
+            {% for product in products %}
+                {% if loop.index%4 == 0 %}
+                    <div style="display: inline-block">
+                        <div style="float: left; margin-left: 30px; width: 200px; height: 300px;">{% include 'AseagleBundle:Static:_single_square_product.html.twig' with {'product': product } %}</div>
+                {% elseif loop.index%4 == 3 %}
+                    <div style="float: left; margin-left: 30px; width: 200px; height: 300px;">{% include 'AseagleBundle:Static:_single_square_product.html.twig' with {'product': product } %}</div>
+                    </div>
+                {% else %}
+                    <div style="float: left; margin-left: 30px; width: 200px; height: 300px;">{% include 'AseagleBundle:Static:_single_square_product.html.twig' with {'product': product } %}</div>
+                {% endif %}
+            {% endfor %}
+        </div><!--/main area-->
+    </div>
+</div>
+{% endblock %}

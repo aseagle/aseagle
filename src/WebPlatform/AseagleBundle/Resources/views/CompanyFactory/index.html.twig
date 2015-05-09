@@ -1,0 +1,30 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+
+    {% block dashboard_content %}
+        <h1>Factories</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Year Cooperation</th>
+                <th>Total Transaction</th>
+                <th>Product Capacity</th>
+                <th><a href="{{ path('seller_company_factory_new', {'seller_id': app.user.getCompany().getId()}) }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></th>
+            </tr>
+            </thead>
+            {% for factory in factories %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ factory.name }}</td>
+                    <td>{{ factory.country.name }}</td>
+                    <td>{{ factory.yearCooperation|date("m/d/Y") }}</td>
+                    <td>{{ factory.totalTransaction }}</td>
+                    <td>{{ factory.productCapacity }}</td>
+                    <td><a href="{{ path('seller_company_factory_edit', {'seller_id': app.user.getCompany().getId(), 'id': factory.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('seller_company_factory_destroy', {'seller_id': app.user.getCompany().getId(), 'id': factory.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}
