@@ -106,3 +106,7 @@ td.col-name{
     width: 400px;
     border-right: 1px solid #174635;
 }
+
+.textarea-wysihtml5 {
+    height: 150px !important;
+}

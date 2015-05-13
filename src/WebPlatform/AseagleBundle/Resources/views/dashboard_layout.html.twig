@@ -3,6 +3,8 @@
         <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('bundles/framework/fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}" type="text/css" />
         <link rel="stylesheet" href="{{ asset('bundles/framework/css/dashboard.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootstrap-wysihtml5/bootstrap-wysihtml5.css') }}" />
+
         {% block dashboard_local_css %}{% endblock %}
     {% endblock %}
 
@@ -105,12 +107,22 @@
     {% endblock %}
 
     {% block local_footer_libs %}
-        <script>
-            $(document).ready(function() {
-
-            });
-        </script>
         <script src="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.js') }}"></script>
         <script src="{{ asset('bundles/framework/js/dashboard/dashboard.js') }}"></script>
+        <script src="{{ asset('bundles/framework/vendor/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
+        <script src="{{ asset('bundles/framework/vendor/bootstrap-wysihtml5/bootstrap3-wysihtml5.js') }}"></script>
+        <script>
+            $(document).ready(function() {
+                $('.textarea-wysihtml5').wysihtml5({
+                    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                    "emphasis": true, //Italics, bold, etc. Default true
+                    "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                    "html": false, //Button which allows you to edit the generated HTML. Default false
+                    "link": true, //Button to insert a link. Default true
+                    "image": true, //Button to insert an image. Default true,
+                    "color": true //Button to change color of font
+                });
+            });
+        </script>
         {% block dashboard_local_footer_libs %}{% endblock %}
     {% endblock %}

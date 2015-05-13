@@ -20,9 +20,11 @@ class CompanyHonorAwardController extends Controller
         $company_honor_award = new CompanyHonorAward();
         $form = $this->createFormBuilder($company_honor_award)
             ->add('name', 'text', array('label' => 'Award Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give factory a name')))
-            ->add('issued_by', 'date', array('label' => 'Issued By:'))
-            ->add('start_date', 'date', array('label' => 'Start Date:'))
-            ->add('description', 'textarea', array('label' => 'Description:', 'attr'=> array('class'=>'form-control')))
+            ->add('issued_by', 'collot_datetime', array('label' => 'Issued By:', 'attr'=> array('class'=>'form-control input-md'),'pickerOptions' =>
+                array('format' => 'mm/dd/yyyy', 'autoclose' => true, 'startView' => 'month', 'minView' => 'month', 'todayBtn' => true, 'todayHighlight' => true,)))
+            ->add('start_date', 'collot_datetime', array('label' => 'Start Date:', 'attr'=> array('class'=>'form-control input-md'),'pickerOptions' =>
+                array('format' => 'mm/dd/yyyy', 'autoclose' => true, 'startView' => 'month', 'minView' => 'month', 'todayBtn' => true, 'todayHighlight' => true,)))
+            ->add('description', 'textarea', array('label' => 'Description:', 'attr'=> array('class'=>'form-control textarea-wysihtml5')))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 
