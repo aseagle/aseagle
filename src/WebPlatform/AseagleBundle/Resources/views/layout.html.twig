@@ -5,22 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<!-- global css -->
-    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootstrap/css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootstrap/css/offcanvas.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/bootstrap/css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/bootstrap/css/offcanvas.css') }}">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/yamm/yamm.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/yamm/yamm.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/libs/css/style.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/bootstrap-wysihtml5/bootstrap-wysihtml5.css') }}" />
     <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
 
     <!-- local css -->
     {% block local_css %}{% endblock %}
 
 	<!-- global libs -->
-    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/jquery-1.11.0.min.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
+    {% javascripts '@AseagleBundle/Resources/public/js/*' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <script src="{{ asset('bundles/libs/vendor/bootstrap/js/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 
     <!-- local head libs -->
     {% block local_header_libs %}{% endblock %}
@@ -34,6 +39,12 @@
     {% include 'AseagleBundle::_top_menubar.html.twig' %}
 
     <div class="block">
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <input id="flash-notice" class="alert-success" type="hidden" value="{{ flashMessage }}"/>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('fail') %}
+            <input id="flash-notice" class="alert-danger" type="hidden" value="{{ flashMessage }}"/>
+        {% endfor %}
         {% block content %}{% endblock %}
     </div>
     <hr>
@@ -42,12 +53,44 @@
     </footer>
 
     <!-- global libs -->
-    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/offcanvas.js') }}"></script>
-    <script src="{{ asset('bundles/framework/js/require.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/bootstrap/js/offcanvas.js') }}"></script>
+    <script src="{{ asset('bundles/libs/js/require.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/bootstrap-wysihtml5/bootstrap3-wysihtml5.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            //initiate for all editor
+            $('.textarea-wysihtml5').wysihtml5({
+                "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
+                "emphasis": true, //Italics, bold, etc. Default true
+                "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
+                "html": false, //Button which allows you to edit the generated HTML. Default false
+                "link": true, //Button to insert a link. Default true
+                "image": true, //Button to insert an image. Default true,
+                "color": true //Button to change color of font
+            });
 
-    <script src="{{ asset('bundles/framework/js/_util/util.js') }}"></script>
-    <script src="{{ asset('bundles/framework/js/_util/mapping_en.js') }}"></script>
+            //initiate for all datetimepicker
+            $('.form_datetime').datetimepicker({"formatter":"js","format":"dd\/mm\/yyyy","autoclose":true,"startView":"month","minView":"month","todayBtn":true,"todayHighlight":true});
+
+            //check for alert
+            if ($('input#flash-notice').length){
+                show_alert($('input#flash-notice').attr('class'),$('input#flash-notice').val());
+            }
+        });
+
+        function show_alert(classname, note){
+            if($('.dashboard-content').length){
+                $('.dashboard-content p:first-child').after('<div class="alert '+classname+'" role="alert">'+note+'</div>');
+            }else{
+                $('input#flash-notice').after('<div class="alert '+classname+'" role="alert">'+note+'</div>');
+            }
+        }
+    </script>
+    <script src="{{ asset('bundles/libs/js/_util/util.js') }}"></script>
+    <script src="{{ asset('bundles/libs/js/_util/mapping_en.js') }}"></script>
     <!-- local footer libs -->
     {% block local_footer_libs %}{% endblock %}
 

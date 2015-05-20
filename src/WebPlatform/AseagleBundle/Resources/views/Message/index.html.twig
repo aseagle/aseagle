@@ -1,27 +1,27 @@
 {% extends 'AseagleBundle::layout.html.twig' %}
 {% block title %}Areagle - Message Center{% endblock %}
 {% block local_css %}
-    <link href="{{ asset('bundles/framework/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('bundles/framework/vendor/timeline/timeline.css') }}" rel="stylesheet">
-    <link href="{{ asset('bundles/framework/vendor/morris/morris.css') }}" rel="stylesheet">
-    <link href="{{ asset('bundles/framework/fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/summernote/summernote.css') }}">
-    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/taginput/css/bootstrap-tagsinput.css') }}">
-    <link href="{{ asset('bundles/framework/css/messagecenter.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/libs/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/libs/vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/libs/vendor/timeline/timeline.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/libs/vendor/morris/morris.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/libs/fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/summernote/summernote.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/taginput/css/bootstrap-tagsinput.css') }}">
+    <link href="{{ asset('bundles/libs/css/messagecenter.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block local_header_libs %}
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/metisMenu/metisMenu.min.js') }}"></script>
 
     <!-- Angular JavaScript -->
-    <script src="{{ asset('bundles/framework/vendor/angular/js/angular.min.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/angular/js/angular-sanitize.min.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/angular/js/angular-ui-router.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/summernote/summernote.min.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/typeahead/js/typeahead.bundle.min.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/taginput/js/bootstrap-tagsinput.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/angular/js/angular.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/angular/js/angular-sanitize.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/angular/js/angular-ui-router.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/summernote/summernote.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/typeahead/js/typeahead.bundle.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/taginput/js/bootstrap-tagsinput.min.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -297,6 +297,6 @@ $(document).ready(function() {
 
 {% block local_footer_libs %}
     <!-- Custom Theme JavaScript -->
-    <script src="{{ asset('bundles/framework/js/dashboard/messagecenter.js') }}"></script>
-    <script src="{{ asset('bundles/framework/js/dashboard/messagecenter_app.js') }}"></script>
+    <script src="{{ asset('bundles/libs/js/dashboard/messagecenter.js') }}"></script>
+    <script src="{{ asset('bundles/libs/js/dashboard/messagecenter_app.js') }}"></script>
 {% endblock %}

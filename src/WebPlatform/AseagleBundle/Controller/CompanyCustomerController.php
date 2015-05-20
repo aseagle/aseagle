@@ -29,12 +29,14 @@ class CompanyCustomerController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             // save company_profile
-            $company_customer->setCompany($this->getUser()->getCompany());
+            $company = $this->getUser()->getCompany();
+            $company_customer->setCompany($company);
             $em = $this->getDoctrine()->getManager();
             $em->persist($company_customer);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('seller_company_customer_index'));
+            $this->get('session')->getFlashBag()->add('success', 'Customer '.$company_customer->getName().' is created!');
+            return $this->redirect($this->generateUrl('seller_company_customer_index',array('seller_id'=>$company->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyCustomer:new.html.twig', array(
                 'form' => $form->createView()
@@ -59,7 +61,8 @@ class CompanyCustomerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirect($this->generateUrl('seller_company_customer_index'));
+            $this->get('session')->getFlashBag()->add('success', 'Customer '.$company_customer->getName().' is updated!');
+            return $this->redirect($this->generateUrl('seller_company_customer_index',array('seller_id'=>$company_customer->getCompany()->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyCustomer:edit.html.twig', array(
                 'form' => $form->createView()
@@ -70,9 +73,11 @@ class CompanyCustomerController extends Controller
     public function destroyAction($id)
     {
         $company_customer = $this->getDoctrine()->getRepository('AseagleBundle:CompanyCustomer')->find($id);
+        $name = $company_customer->getName();
         $em = $this->getDoctrine()->getManager();
         $em->remove($company_customer);
         $em->flush();
-        return $this->redirect($this->generateUrl('seller_company_customer_index'));
+        $this->get('session')->getFlashBag()->add('success', 'Customer '.$name.' is deleted!');
+        return $this->redirect($this->generateUrl('seller_company_customer_index',array('seller_id'=>$company_customer->getCompany()->getId())));
     }
 }

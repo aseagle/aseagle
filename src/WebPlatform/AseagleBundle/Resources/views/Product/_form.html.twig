@@ -25,7 +25,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="description">Product Description</label>
                     <div class="col-md-6">
-                        <textarea class="form-control" id="specification" name="specification">{% if b_d is defined %}{{ b_d }}{% endif %}</textarea>
+                        <textarea class="form-control textarea-wysihtml5" id="specification" name="specification">{% if b_d is defined %}{{ b_d }}{% endif %}</textarea>
                     </div>
                 </div>
 
@@ -179,7 +179,7 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="textarea">Packaging Details</label>
                     <div class="col-md-6">
-                        <textarea class="form-control" id="textarea" placeholder="Packaging Details" name="packaging">{% if p_d is defined %}{{ p_d }}{% endif %}</textarea>
+                        <textarea class="form-control textarea-wysihtml5" id="textarea" placeholder="Packaging Details" name="packaging">{% if p_d is defined %}{{ p_d }}{% endif %}</textarea>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,12 @@
 <script>
     $(document).ready(function() {
         //set form to ajax form
-        $("#upload-product-form").ajaxForm();
+        $("#upload-product-form").ajaxForm(function(result) {
+            if(result.result){
+                show_alert('alert-success',result.result);
+                window.scrollTo(0,0);
+            }
+        });
 
         //Prepare string of uploaded files
         $("#btn-upload-file-submit").click(function(){

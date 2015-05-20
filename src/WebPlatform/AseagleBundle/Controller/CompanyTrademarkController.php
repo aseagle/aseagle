@@ -21,8 +21,8 @@ class CompanyTrademarkController extends Controller
         $form = $this->createFormBuilder($company_trademark)
             ->add('name', 'text', array('label' => 'Certification Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a name')))
             ->add('registration_number', 'text', array('label' => 'Registration Number:', 'attr'=> array('class'=>'form-control input-md')))
-            ->add('start_date', 'date', array('label' => 'Start Date:') )
-            ->add('end_date', 'date', array('label' => 'End Date:') )
+            ->add('start_date', 'collot_datetime', array('label' => 'Start Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
+            ->add('end_date', 'collot_datetime', array('label' => 'End Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('approved_goods', 'text', array('label' => 'Approved Goods:', 'attr'=> array('class'=>'form-control input-md')) )
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
@@ -30,12 +30,14 @@ class CompanyTrademarkController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             // save company_profile
-            $company_trademark->setCompany($this->getUser()->getCompany());
+            $company = $this->getUser()->getCompany();
+            $company_trademark->setCompany($company);
             $em = $this->getDoctrine()->getManager();
             $em->persist($company_trademark);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('seller_company_trademark_index'));
+            $this->get('session')->getFlashBag()->add('success', 'Trademake '.$company_trademark->getName().' is created!');
+            return $this->redirect($this->generateUrl('seller_company_trademark_index',array('seller_id'=>$company->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyTrademark:new.html.twig', array(
                 'form' => $form->createView()
@@ -49,8 +51,8 @@ class CompanyTrademarkController extends Controller
         $form = $this->createFormBuilder($company_trademark)
             ->add('name', 'text', array('label' => 'Certification Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a name')))
             ->add('registration_number', 'text', array('label' => 'Registration Number:', 'attr'=> array('class'=>'form-control input-md')))
-            ->add('start_date', 'date', array('label' => 'Start Date:') )
-            ->add('end_date', 'date', array('label' => 'End Date:') )
+            ->add('start_date', 'collot_datetime', array('label' => 'Start Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
+            ->add('end_date', 'collot_datetime', array('label' => 'End Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('approved_goods', 'text', array('label' => 'Approved Goods:', 'attr'=> array('class'=>'form-control input-md')) )
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
@@ -60,7 +62,8 @@ class CompanyTrademarkController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirect($this->generateUrl('seller_company_trademark_index'));
+            $this->get('session')->getFlashBag()->add('success', 'Trademake '.$company_trademark->getName().' is updated!');
+            return $this->redirect($this->generateUrl('seller_company_trademark_index',array('seller_id'=>$company_trademark->getCompany()->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyTrademark:edit.html.twig', array(
                 'form' => $form->createView()
@@ -71,10 +74,12 @@ class CompanyTrademarkController extends Controller
     public function destroyAction($id)
     {
         $company_trademark = $this->getDoctrine()->getRepository('AseagleBundle:CompanyTrademark')->find($id);
+        $name = $company_trademark->getName();
         $em = $this->getDoctrine()->getManager();
         $em->remove($company_trademark);
         $em->flush();
-        return $this->redirect($this->generateUrl('seller_company_trademark_index'));
+        $this->get('session')->getFlashBag()->add('success', 'Trademake '.$name.' is deleted!');
+        return $this->redirect($this->generateUrl('seller_company_trademark_index',array('seller_id'=>$company_trademark->getCompany()->getId())));
     }
 
 }

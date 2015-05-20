@@ -19,11 +19,11 @@
                     <td>{{ loop.index }}</td>
                     <td>{{ factory.name }}</td>
                     <td>{{ factory.country.name }}</td>
-                    <td>{{ factory.yearCooperation|date("m/d/Y") }}</td>
+                    <td>{{ factory.yearCooperation|date("d/m/Y") }}</td>
                     <td>{{ factory.totalTransaction }}</td>
                     <td>{{ factory.productCapacity }}</td>
                     <td><a href="{{ path('seller_company_factory_edit', {'seller_id': app.user.getCompany().getId(), 'id': factory.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('seller_company_factory_destroy', {'seller_id': app.user.getCompany().getId(), 'id': factory.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <a href="{{ path('seller_company_factory_destroy', {'seller_id': app.user.getCompany().getId(), 'id': factory.id}) }}" onclick="return confirm('Are you sure you want to delete Factory {{ factory.name }}?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             {% endfor %}
         </table>

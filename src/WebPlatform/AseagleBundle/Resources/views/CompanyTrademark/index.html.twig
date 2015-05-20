@@ -19,11 +19,11 @@
                     <td>{{ loop.index }}</td>
                     <td>{{ trademark.name }}</td>
                     <td>{{ trademark.registrationNumber }}</td>
-                    <td>{{ trademark.startDate|date("m/d/Y") }}</td>
-                    <td>{{ trademark.endDate|date("m/d/Y") }}</td>
+                    <td>{{ trademark.startDate|date("d/m/Y") }}</td>
+                    <td>{{ trademark.endDate|date("d/m/Y") }}</td>
                     <td>{{ trademark.approvedGoods }}</td>
                     <td><a href="{{ path('seller_company_trademark_edit', {'seller_id': app.user.getCompany().getId(), 'id': trademark.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('seller_company_trademark_destroy', {'seller_id': app.user.getCompany().getId(), 'id': trademark.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <a href="{{ path('seller_company_trademark_destroy', {'seller_id': app.user.getCompany().getId(), 'id': trademark.id}) }}" onclick="return confirm('Are you sure you want to delete Trademark {{ trademark.name }}?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             {% endfor %}
         </table>

@@ -17,11 +17,11 @@
                 <tr>
                     <td>{{ loop.index }}</td>
                     <td>{{ award.name }}</td>
-                    <td>{{ award.issuedBy|date("m/d/Y")}}</td>
-                    <td>{{ award.startDate|date("m/d/Y") }}</td>
-                    <td>{{ award.description }}</td>
+                    <td>{{ award.issuedBy|date("d/m/Y")}}</td>
+                    <td>{{ award.startDate|date("d/m/Y") }}</td>
+                    <td><span>{{ award.description | raw }}</span></td>
                     <td><a href="{{ path('seller_company_honor_award_edit', {'seller_id': app.user.getCompany().getId(), 'id': award.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('seller_company_honor_award_destroy', {'seller_id': app.user.getCompany().getId(), 'id': award.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <a href="{{ path('seller_company_honor_award_destroy', {'seller_id': app.user.getCompany().getId(), 'id': award.id}) }}" onclick="return confirm('Are you sure you want to delete Award {{ award.name }}?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             {% endfor %}
         </table>

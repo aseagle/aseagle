@@ -21,7 +21,7 @@
                     <td>{{ patent.products }}</td>
                     <td>{{ patent.annualTurnover }}</td>
                     <td><a href="{{ path('seller_company_patent_edit', {'seller_id': app.user.getCompany().getId(), 'id': patent.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('seller_company_patent_destroy', {'seller_id': app.user.getCompany().getId(), 'id': patent.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <a href="{{ path('seller_company_patent_destroy', {'seller_id': app.user.getCompany().getId(), 'id': patent.id}) }}" onclick="return confirm('Are you sure you want to delete Patent {{ patent.name }}?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             {% endfor %}
         </table>

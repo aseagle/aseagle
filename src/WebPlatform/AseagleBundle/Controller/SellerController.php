@@ -15,7 +15,7 @@ class SellerController extends Controller
         $form = $this->createFormBuilder($company_profile)
             ->add('name', 'text', array('label' => 'Company Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a name')))
             ->add('reg_address', 'text', array('label' => 'Register Address:', 'attr'=> array('class'=>'form-control input-md')))
-            ->add('reg_year', 'date', array('label' => 'Register Year:'))
+            ->add('reg_year', 'collot_datetime', array('label' => 'Register Year:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('reg_country',null , array('label' => 'Register Country:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('total_employee', 'integer', array('label' => 'Total of Employee:', 'attr'=> array('class'=>'form-control input-md')) )
             ->add('ops_address', 'text', array('label' => 'Operation Address:', 'attr'=> array('class'=>'form-control input-md')))
@@ -40,8 +40,8 @@ class SellerController extends Controller
             ->add('currency', 'text', array('attr'=> array('class'=>'form-control input-md')))
             ->add('payment_type', 'text', array('attr'=> array('class'=>'form-control input-md')))
             ->add('language', 'text', array('attr'=> array('class'=>'form-control input-md')))
-            ->add('company_advantage', 'textarea', array('attr'=> array('class'=>'form-control')))
-            ->add('detail_introduction', 'textarea', array('attr'=> array('class'=>'form-control')))
+            ->add('company_advantage', 'textarea', array('attr'=> array('class'=>'form-control textarea-wysihtml5')))
+            ->add('detail_introduction', 'textarea', array('attr'=> array('class'=>'form-control textarea-wysihtml5')))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 
@@ -57,6 +57,8 @@ class SellerController extends Controller
             $seller->setCompany($company_profile);
             $seller->setIsSeller(true);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add('success', 'Company '.$company_profile->getName().' is created!');
             return $this->redirect($this->generateUrl('edit_seller',array("id" => $company_profile->getId())));
         }else{
             return $this->render('AseagleBundle:Seller:new.html.twig', array(
@@ -72,7 +74,7 @@ class SellerController extends Controller
         $form = $this->createFormBuilder($company_profile)
             ->add('name', 'text', array('label' => 'Company Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a name')))
             ->add('reg_address', 'text', array('label' => 'Register Address:', 'attr'=> array('class'=>'form-control input-md')))
-            ->add('reg_year', 'date', array('label' => 'Register Year:'))
+            ->add('reg_year', 'collot_datetime', array('label' => 'Register Year:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('reg_country',null , array('label' => 'Register Country:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('total_employee', 'integer', array('label' => 'Total of Employee:', 'attr'=> array('class'=>'form-control input-md')) )
             ->add('ops_address', 'text', array('label' => 'Operation Address:', 'attr'=> array('class'=>'form-control input-md')))
@@ -97,8 +99,8 @@ class SellerController extends Controller
             ->add('currency', 'text', array('attr'=> array('class'=>'form-control input-md')))
             ->add('payment_type', 'text', array('attr'=> array('class'=>'form-control input-md')))
             ->add('language', 'text', array('attr'=> array('class'=>'form-control input-md')))
-            ->add('company_advantage', 'textarea', array('attr'=> array('class'=>'form-control')))
-            ->add('detail_introduction', 'textarea', array('attr'=> array('class'=>'form-control')))
+            ->add('company_advantage', 'textarea', array('attr'=> array('class'=>'form-control textarea-wysihtml5')))
+            ->add('detail_introduction', 'textarea', array('attr'=> array('class'=>'form-control textarea-wysihtml5')))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 
@@ -107,6 +109,8 @@ class SellerController extends Controller
             $em = $this->getDoctrine()->getManager();
             //$em->persist($company_profile);
             $em->flush();
+
+            $this->get('session')->getFlashBag()->add('success', 'Company '.$company_profile->getName().' is updated!');
             return $this->redirect($this->generateUrl('edit_seller',array("id" => $company_profile->getId())));
         }else{
             return $this->render('AseagleBundle:Seller:edit.html.twig', array(

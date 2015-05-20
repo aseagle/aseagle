@@ -1,9 +1,8 @@
 {% extends 'AseagleBundle::layout.html.twig' %}
     {% block local_css %}
-        <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/framework/fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}" type="text/css" />
-        <link rel="stylesheet" href="{{ asset('bundles/framework/css/dashboard.css') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/bootstrap-wysihtml5/bootstrap-wysihtml5.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/metisMenu/metisMenu.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/libs/fonts/font-awesome-4.1.0/css/font-awesome.min.css') }}" type="text/css" />
+        <link rel="stylesheet" href="{{ asset('bundles/libs/css/dashboard.css') }}" />
 
         {% block dashboard_local_css %}{% endblock %}
     {% endblock %}
@@ -94,11 +93,12 @@
 				</div>
 	        </div>
 	        
-	        <div class="col-sm-9 col-md-10 main">
+	        <div class="col-sm-9 col-md-10 dashboard-content main">
 	          <!--toggle sidebar button-->
 	          <p class="visible-xs">
 	            <button type="button" class="btn btn-primary btn-xs btn-sm" data-toggle="offcanvas">Toggle nav</button>
 	          </p>
+
 				{% block dashboard_content %}{% endblock %}
 		     </div>
 		</div>
@@ -107,22 +107,8 @@
     {% endblock %}
 
     {% block local_footer_libs %}
-        <script src="{{ asset('bundles/framework/vendor/metisMenu/metisMenu.min.js') }}"></script>
-        <script src="{{ asset('bundles/framework/js/dashboard/dashboard.js') }}"></script>
-        <script src="{{ asset('bundles/framework/vendor/bootstrap-wysihtml5/wysihtml5-0.3.0.js') }}"></script>
-        <script src="{{ asset('bundles/framework/vendor/bootstrap-wysihtml5/bootstrap3-wysihtml5.js') }}"></script>
-        <script>
-            $(document).ready(function() {
-                $('.textarea-wysihtml5').wysihtml5({
-                    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-                    "emphasis": true, //Italics, bold, etc. Default true
-                    "lists": false, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-                    "html": false, //Button which allows you to edit the generated HTML. Default false
-                    "link": true, //Button to insert a link. Default true
-                    "image": true, //Button to insert an image. Default true,
-                    "color": true //Button to change color of font
-                });
-            });
-        </script>
+        <script src="{{ asset('bundles/libs/vendor/metisMenu/metisMenu.min.js') }}"></script>
+        <script src="{{ asset('bundles/libs/js/dashboard/dashboard.js') }}"></script>
+
         {% block dashboard_local_footer_libs %}{% endblock %}
     {% endblock %}

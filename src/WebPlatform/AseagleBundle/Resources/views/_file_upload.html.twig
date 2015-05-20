@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="{{ asset('bundles/framework/vendor/jquery_file_upload/css/jquery.fileupload.css') }}">
-<link rel="stylesheet" href="{{ asset('bundles/framework/vendor/jquery_file_upload/css/jquery.fileupload-ui.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/libs/vendor/jquery_file_upload/css/jquery.fileupload.css') }}">
+<link rel="stylesheet" href="{{ asset('bundles/libs/vendor/jquery_file_upload/css/jquery.fileupload-ui.css') }}">
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 
-<noscript><link rel="stylesheet" href="{{ asset('bundles/framework/vendor/jquery_file_upload/css/jquery.fileupload-noscript.css') }}"></noscript>
-<noscript><link rel="stylesheet" href="{{ asset('bundles/framework/vendor/jquery_file_upload/css/jquery.fileupload-ui-noscript.css') }}"></noscript>
+<noscript><link rel="stylesheet" href="{{ asset('bundles/libs/vendor/jquery_file_upload/css/jquery.fileupload-noscript.css') }}"></noscript>
+<noscript><link rel="stylesheet" href="{{ asset('bundles/libs/vendor/jquery_file_upload/css/jquery.fileupload-ui-noscript.css') }}"></noscript>
 
 <div class="div-file-upload">
     <div id="fileupload" action="{{path('upload_file')}}" method="POST" enctype="multipart/form-data">
@@ -134,23 +134,23 @@
         {% endraw %}
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/vendor/jquery.ui.widget.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/vendor/jquery.ui.widget.js') }}"></script>
     <script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
     <script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
     <script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
     <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/jquery.iframe-transport.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/jquery.fileupload.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/jquery.fileupload-process.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/jquery.fileupload-image.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/jquery.fileupload-audio.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/jquery.fileupload-video.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/jquery.fileupload-validate.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/jquery.fileupload-ui.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/main.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/jquery.iframe-transport.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/jquery.fileupload.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/jquery.fileupload-process.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/jquery.fileupload-image.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/jquery.fileupload-audio.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/jquery.fileupload-video.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/jquery.fileupload-validate.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/jquery.fileupload-ui.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/main.js') }}"></script>
     <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
     <!--[if (gte IE 8)&(lt IE 10)]>
-    <script src="{{ asset('bundles/framework/vendor/jquery_file_upload/js/cors/jquery.xdr-transport.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/cors/jquery.xdr-transport.js') }}"></script>
     <![endif]-->
 </div>
 

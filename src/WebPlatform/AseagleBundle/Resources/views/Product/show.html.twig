@@ -1,7 +1,7 @@
 {% extends 'AseagleBundle::layout.html.twig' %}
 {% block local_css %}
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/product-detail.css') }}" />
-    <link rel="stylesheet" href="{{ asset('bundles/framework/vendor/elevatezoom/jquery.fancybox.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/libs/css/product-detail.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/elevatezoom/jquery.fancybox.css') }}" />
 {% endblock %}
 
 {% block content %}
@@ -131,10 +131,10 @@
     <script>
         var _json_product = $.parseJSON('{{ json | raw }}');
     </script>
-    <script src="{{ asset('bundles/framework/js/product_detail/product_detail.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/elevatezoom/jquery.elevateZoom-3.0.8.min.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/elevatezoom/jquery.fancybox.js') }}"></script>
-    <script src="{{ asset('bundles/framework/vendor/elevatezoom/jquery.fancybox.pack.js') }}"></script>
+    <script src="{{ asset('bundles/libs/js/product_detail/product_detail.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/elevatezoom/jquery.elevateZoom-3.0.8.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/elevatezoom/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/elevatezoom/jquery.fancybox.pack.js') }}"></script>
     <script>
         //initiate the plugin and pass the id of the div containing gallery images
         $("#image_zoom").elevateZoom({gallery:'gallery', cursor: 'pointer', galleryActiveClass: 'active', imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'});

@@ -1,6 +1,6 @@
 {% extends 'AseagleBundle::dashboard_layout.html.twig' %}
 {% block dashboard_local_css %}
-    <link rel="stylesheet" href="{{ asset('bundles/framework/css/product.css') }}" />
+    <link rel="stylesheet" href="{{ asset('bundles/libs/css/product.css') }}" />
 {% endblock %}
 
 {% block dashboard_content %}
@@ -64,8 +64,8 @@
 {% endblock %}
 
 {% block dashboard_local_footer_libs %}
-    <script src="{{ asset('bundles/framework/vendor/bootstrap/js/bootstrap-list-filter.min.js') }}"></script>
-    <script src="{{ asset('bundles/framework/js/dashboard/upload.js') }}"></script>
+    <script src="{{ asset('bundles/libs/vendor/bootstrap/js/bootstrap-list-filter.min.js') }}"></script>
+    <script src="{{ asset('bundles/libs/js/dashboard/upload.js') }}"></script>
     <script>
         $(function(){
             _AsgDashboard.Upload.set_form_upload_product();

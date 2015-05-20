@@ -221,7 +221,7 @@ class ProductController extends Controller
         $em->persist($product);
         $em->flush();
 
-        return new Response(json_encode(array('result'=>'ok')),200,array('Content-Type'=>'application/json'));
+        return new Response(json_encode(array('result'=>'Product '.$product->getTitle().' is created!')),200,array('Content-Type'=>'application/json'));
     }
 
     public function showAction($id)
@@ -516,16 +516,18 @@ class ProductController extends Controller
 
         $em->flush();
 
-        return new Response(json_encode(array('result'=>'ok')),200,array('Content-Type'=>'application/json'));
+        return new Response(json_encode(array('result'=>'Product '.$product->getTitle().' is updated!')),200,array('Content-Type'=>'application/json'));
     }
 
     public function destroyAction($id)
     {
         $product = $this->getDoctrine()->getRepository('AseagleBundle:Product')->find($id);
+        $name = $product->getTitle();
         $em = $this->getDoctrine()->getManager();
         $em->remove($product);
         $em->flush();
-        return $this->redirect($this->generateUrl('list_product'));
+        $this->get('session')->getFlashBag()->add('success', 'Product '.$name.' is deleted!');
+        return $this->redirect($this->generateUrl('list_product',array('seller_id'=>$product->getOwner()->getCompany()->getId())));
         //TODO: Delete physical picture files
     }
 }

@@ -31,12 +31,14 @@ class CompanyOverseaOfficeController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             // save company_profile
-            $company_oversea_office->setCompany($this->getUser()->getCompany());
+            $company = $this->getUser()->getCompany();
+            $company_oversea_office->setCompany($company);
             $em = $this->getDoctrine()->getManager();
             $em->persist($company_oversea_office);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('seller_company_oversea_office_index'));
+            $this->get('session')->getFlashBag()->add('success', 'Award '.$company_oversea_office->getCountry()->getName().' is created!');
+            return $this->redirect($this->generateUrl('seller_company_oversea_office_index',array('seller_id'=>$company->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyOverseaOffice:new.html.twig', array(
                 'form' => $form->createView()
@@ -63,7 +65,8 @@ class CompanyOverseaOfficeController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirect($this->generateUrl('seller_company_oversea_office_index'));
+            $this->get('session')->getFlashBag()->add('success', 'Award '.$company_oversea_office->getCountry()->getName().' is updated!');
+            return $this->redirect($this->generateUrl('seller_company_oversea_office_index',array('seller_id'=>$company_oversea_office->getCompany()->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyOverseaOffice:new.html.twig', array(
                 'form' => $form->createView()
@@ -74,10 +77,12 @@ class CompanyOverseaOfficeController extends Controller
     public function destroyAction($id)
     {
         $company_oversea_office = $this->getDoctrine()->getRepository('AseagleBundle:CompanyOverseaOffice')->find($id);
+        $name = $company_oversea_office->getCountry()->getName();
         $em = $this->getDoctrine()->getManager();
         $em->remove($company_oversea_office);
         $em->flush();
-        return $this->redirect($this->generateUrl('seller_company_oversea_office_index'));
+        $this->get('session')->getFlashBag()->add('success', 'Award '.$name.' is deleted!');
+        return $this->redirect($this->generateUrl('seller_company_oversea_office_index',array('seller_id'=>$company_oversea_office->getCompany()->getId())));
     }
 
 }

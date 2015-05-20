@@ -29,12 +29,14 @@ class CompanyPatentController extends Controller
         $form->handleRequest($request);
         if ($form->isValid()) {
             // save company_profile
-            $company_patent->setCompany($this->getUser()->getCompany());
+            $company = $this->getUser()->getCompany();
+            $company_patent->setCompany($company);
             $em = $this->getDoctrine()->getManager();
             $em->persist($company_patent);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('seller_company_patent_index'));
+            $this->get('session')->getFlashBag()->add('success', 'Patent '.$company_patent->getName().' is created!');
+            return $this->redirect($this->generateUrl('seller_company_patent_index',array('seller_id'=>$company->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyPatent:new.html.twig', array(
                 'form' => $form->createView()
@@ -58,7 +60,8 @@ class CompanyPatentController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            return $this->redirect($this->generateUrl('seller_company_patent_index'));
+            $this->get('session')->getFlashBag()->add('success', 'Patent '.$company_patent->getName().' is updated!');
+            return $this->redirect($this->generateUrl('seller_company_patent_index',array('seller_id'=>$company_patent->getCompany()->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyPatent:edit.html.twig', array(
                 'form' => $form->createView()
@@ -69,10 +72,12 @@ class CompanyPatentController extends Controller
     public function destroyAction($id)
     {
         $company_patent = $this->getDoctrine()->getRepository('AseagleBundle:CompanyPatent')->find($id);
+        $name = $company_patent->getName();
         $em = $this->getDoctrine()->getManager();
         $em->remove($company_patent);
         $em->flush();
-        return $this->redirect($this->generateUrl('seller_company_patent_index'));
+        $this->get('session')->getFlashBag()->add('success', 'Patent '.$name.' is deleted!');
+        return $this->redirect($this->generateUrl('seller_company_patent_index',array('seller_id'=>$company_patent->getCompany()->getId())));
     }
 
 }

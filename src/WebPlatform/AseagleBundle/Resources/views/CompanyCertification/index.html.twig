@@ -20,12 +20,12 @@
                     <td>{{ loop.index }}</td>
                     <td>{{ certification.name }}</td>
                     <td>{{ certification.type }}</td>
-                    <td>{{ certification.issuedBy|date("m/d/Y")}}</td>
-                    <td>{{ certification.startDate|date("m/d/Y") }}</td>
-                    <td>{{ certification.endDate|date("m/d/Y") }}</td>
+                    <td>{{ certification.issuedBy|date("d/m/Y")}}</td>
+                    <td>{{ certification.startDate|date("d/m/Y") }}</td>
+                    <td>{{ certification.endDate|date("d/m/Y") }}</td>
                     <td>{{ certification.scope }}</td>
                     <td><a href="{{ path('seller_company_certification_edit', {'seller_id': app.user.getCompany().getId(), 'id': certification.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('seller_company_certification_destroy', {'seller_id': app.user.getCompany().getId(), 'id': certification.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <a href="{{ path('seller_company_certification_destroy', {'seller_id': app.user.getCompany().getId(), 'id': certification.id}) }}" onclick="return confirm('Are you sure you want to delete Certification {{ certification.name }}?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             {% endfor %}
         </table>

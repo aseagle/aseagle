@@ -25,7 +25,7 @@
                     <td>{{ oversea_office.telephone }}</td>
                     <td>{{ oversea_office.dutires }}</td>
                     <td><a href="{{ path('seller_company_oversea_office_edit', {'seller_id': app.user.getCompany().getId(), 'id': oversea_office.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{{ path('seller_company_oversea_office_destroy', {'seller_id': app.user.getCompany().getId(), 'id': oversea_office.id}) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <a href="{{ path('seller_company_oversea_office_destroy', {'seller_id': app.user.getCompany().getId(), 'id': oversea_office.id}) }}" onclick="return confirm('Are you sure you want to delete Office {{ oversea_office.country.name }}?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
                 </tr>
             {% endfor %}
         </table>

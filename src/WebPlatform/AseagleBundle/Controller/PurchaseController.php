@@ -19,11 +19,11 @@ class PurchaseController extends Controller
         $buying_request = new BuyingRequest();
         $form = $this->createFormBuilder($buying_request)
             ->add('title', 'text', array('label' => 'Title:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a title')))
-            ->add('buying_request_message', 'textarea', array('label' => 'Detail:', 'attr' => array('class'=>'form-control')) )
+            ->add('buying_request_message', 'textarea', array('label' => 'Detail:', 'attr' => array('class'=>'form-control textarea-wysihtml5')) )
             ->add('category',null , array('label' => 'Category:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('quantity', 'integer', array('label' => 'Quantity:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('quantity_type', 'text', array('label' => 'Quantity Type:', 'attr'=> array('class'=>'form-control input-md')) )
-            ->add('expired_date', 'date', array('label' => 'Expired Date:') )
+            ->add('expired_date', 'collot_datetime', array('label' => 'Expired Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 
@@ -50,7 +50,8 @@ class PurchaseController extends Controller
                 }
             }
 
-            return $this->redirect($this->generateUrl('create_buying_request'));
+            $this->get('session')->getFlashBag()->add('success', 'Buying Request '.$buying_request->getTitle().' is created!');
+            return $this->redirect($this->generateUrl('buyer_get_buying_request'));
         }else{
             return $this->render('AseagleBundle:Purchase:buying_request.html.twig', array(
                 'form' => $form->createView()
@@ -104,7 +105,7 @@ class PurchaseController extends Controller
 
         $quotation = new Quotation();
         $form = $this->createFormBuilder($quotation)
-            ->add('quote_message', 'textarea', array('label' => 'Message:', 'attr' => array('class'=>'form-control')) )
+            ->add('quote_message', 'textarea', array('label' => 'Message:', 'attr' => array('class'=>'form-control textarea-wysihtml5')) )
             ->add('product','entity', array(
                 'class' => 'AseagleBundle:Product',
                 'choices' => $user->getProducts(),
@@ -118,7 +119,7 @@ class PurchaseController extends Controller
             ->add('quantity_type', 'text', array('label' => 'Quantity Type:', 'attr' => array('class'=>'form-control input-md')) )
             ->add('payment_term', 'text', array('label' => 'Payment Term:', 'attr' => array('class'=>'form-control input-md')) )
             ->add('deliver_time', 'text', array('label' => 'Deliver Time:', 'attr' => array('class'=>'form-control input-md')) )
-            ->add('expired_date', 'date', array('label' => 'Expired Date:') )
+            ->add('expired_date', 'collot_datetime', array('label' => 'Expired Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
         $form->handleRequest($request);
@@ -134,7 +135,9 @@ class PurchaseController extends Controller
             $message_helper = $this->get('message_helper');
             $message_helper->sendMessage('', $pm->getBuyingRequest()->getBuyerId(),'[Quote] '.$pm->getBuyingRequest()->getTitle().$pm->getBuyingRequest()->getExpiredDate()->format('Y-m-d H:i:s'),$quotation->getQuoteMessage().$quotation->getPrice().$quotation->getQuantity().$quotation->getQuantityType().$quotation->getPaymentTerm().$quotation->getDeliverTime(), $user, $em);
 
-            return $this->redirect($this->generateUrl('create_quote',array('purchase_id'=>$purchase_id)));
+            $this->get('session')->getFlashBag()->add('success', 'Quotation for Request '.$pm->getBuyingRequest()->getTitle().' is created!');
+            return $this->redirect($this->generateUrl('seller_get_buying_request'));
+            //return $this->redirect($this->generateUrl('create_quote',array('purchase_id'=>$purchase_id)));
         }else{
             return $this->render('AseagleBundle:Purchase:quotation.html.twig', array(
                 'form' => $form->createView()
@@ -150,7 +153,7 @@ class PurchaseController extends Controller
 
         $quotation = $em->getRepository('AseagleBundle:Quotation')->find($id);
         $form = $this->createFormBuilder($quotation)
-            ->add('quote_message', 'textarea', array('label' => 'Message:', 'attr' => array('class'=>'form-control')) )
+            ->add('quote_message', 'textarea', array('label' => 'Message:', 'attr' => array('class'=>'form-control textarea-wysihtml5')) )
             ->add('product','entity', array(
                 'class' => 'AseagleBundle:Product',
                 'choices' => $user->getProducts(),
@@ -164,7 +167,7 @@ class PurchaseController extends Controller
             ->add('quantity_type', 'text', array('label' => 'Quantity Type:', 'attr' => array('class'=>'form-control input-md')) )
             ->add('payment_term', 'text', array('label' => 'Payment Term:', 'attr' => array('class'=>'form-control input-md')) )
             ->add('deliver_time', 'text', array('label' => 'Deliver Time:', 'attr' => array('class'=>'form-control input-md')) )
-            ->add('expired_date', 'date', array('label' => 'Expired Date:') )
+            ->add('expired_date', 'collot_datetime', array('label' => 'Expired Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
         $form->handleRequest($request);
@@ -176,6 +179,7 @@ class PurchaseController extends Controller
             $message_helper = $this->get('message_helper');
             $message_helper->sendMessage('', $pm->getBuyingRequest()->getBuyerId(),'[Quote] '.$pm->getBuyingRequest()->getTitle().$pm->getBuyingRequest()->getExpiredDate()->format('Y-m-d H:i:s'),$quotation->getQuoteMessage().$quotation->getPrice().$quotation->getQuantity().$quotation->getQuantityType().$quotation->getPaymentTerm().$quotation->getDeliverTime(), $user, $em);
 
+            $this->get('session')->getFlashBag()->add('success', 'Quotation for Request '.$pm->getBuyingRequest()->getTitle().' is updated!');
             return $this->redirect($this->generateUrl('create_quote'));
         }else{
             return $this->render('AseagleBundle:Purchase:quotation.html.twig', array(
