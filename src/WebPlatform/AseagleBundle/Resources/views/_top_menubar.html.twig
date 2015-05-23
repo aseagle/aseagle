@@ -50,7 +50,44 @@
     </div>
     <div class="navbar-collapse collapse" style="padding-left: 235px;">
         <ul class="nav navbar-nav">
+            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">a</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">a1</a></li>
+                            <li><a href="#">a2</a></li>
+                            <li><a href="#">a3</a></li>
+                            <li><a href="#">a4</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">b</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">b1</a></li>
+                            <li><a href="#">b2</a></li>
+                            <li><a href="#">b3</a></li>
+                            <li><a href="#">b4</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">c</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">c1</a></li>
+                            <li><a href="#">c2</a></li>
+                            <li><a href="#">c3</a></li>
+                            <li><a href="#">c4</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">d</a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">d1</a></li>
+                            <li><a href="#">d2</a></li>
+                            <li><a href="#">d3</a></li>
+                            <li><a href="#">d4</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
             <!-- Grid 12 Menu -->
+            <!--
             <li class="dropdown yamm-fw"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Menu<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li class="grid-demo">
@@ -60,6 +97,7 @@
                     </li>
                 </ul>
             </li>
+            -->
             <li>
                 <form class="navbar-form navbar-left" role="search" action="{{path('search')}}">
                     <div class="form-group">
@@ -124,6 +162,18 @@
     </div>
 </div>
 <script>
+
+    (function($){
+        $(document).ready(function(){
+            $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                $(this).parent().siblings().removeClass('open');
+                $(this).parent().toggleClass('open');
+            });
+        });
+    })(jQuery);
+
     (function($) {
         var ost = 0;
         $(window).scroll(function() {
