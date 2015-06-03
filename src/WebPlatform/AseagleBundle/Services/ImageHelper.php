@@ -78,4 +78,14 @@ class ImageHelper {
         }
         return $result;
     }
+
+    public function generate_one_large_image_url($str_images, $root) {
+
+        $result = '';
+        if(isset($str_images) && $str_images != ""){
+            $images = explode(";", $str_images);
+            $result = $result.($root.dirname($images[0])."/".basename($images[0]));
+        }
+        return $result;
+    }
 } 

@@ -19,6 +19,8 @@ class AppKernel extends Kernel
             new WebPlatform\AseagleBundle\AseagleBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new SC\DatetimepickerBundle\SCDatetimepickerBundle(),
+            new Dmishh\Bundle\RecaptchaBundle\RecaptchaBundle(),
+            new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

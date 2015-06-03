@@ -73,6 +73,26 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: WebPlatform\AseagleBundle\Entity\User
+    service:
+            mailer: fos_user.mailer.twig_swift
+    registration:
+            confirmation:
+                enabled:    true
+                from_email: # Use this node only if you don't want the global email address for the confirmation email
+                                address: "noreply@aseagle.net"
+                                sender_name: "Aseagle"
+                template: FOSUserBundle:Registration:email.txt.twig
 
 sc_datetimepicker:
     picker: ~
+
+recaptcha:
+    public_key: "6Lct0gcTAAAAAG0w18ExgK81pQTwyQ2P9CKqi1Rt"
+    private_key: "6Lct0gcTAAAAAF-VgIoyyVGMFC80y2GHI0e4YK30"
+    use_https: false # optional
+
+ewz_recaptcha:
+    public_key: "6Lct0gcTAAAAAG0w18ExgK81pQTwyQ2P9CKqi1Rt"
+    private_key: "6Lct0gcTAAAAAF-VgIoyyVGMFC80y2GHI0e4YK30"
+    locale_key: "%kernel.default_locale%"
+    enabled: false
