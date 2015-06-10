@@ -14,7 +14,7 @@ class StaticController extends Controller
         $cats = $this->getDoctrine()->getRepository('AseagleBundle:Category')->findBy(array('parent_id' => '1'),null,null,null);
 
         //get 3 lastest product
-        $products = $this->getDoctrine()->getRepository('AseagleBundle:Product')->findBy(array(),null,3,null);
+        $products = $this->getDoctrine()->getRepository('AseagleBundle:Product')->findBy(array(),null,4,null);
         $banner_products_info = array();
         foreach($products as $product)
         {
