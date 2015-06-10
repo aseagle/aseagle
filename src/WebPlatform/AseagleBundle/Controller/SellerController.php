@@ -42,6 +42,7 @@ class SellerController extends Controller
             ->add('language', 'text', array('attr'=> array('class'=>'form-control input-md')))
             ->add('company_advantage', 'textarea', array('attr'=> array('class'=>'form-control textarea-wysihtml5')))
             ->add('detail_introduction', 'textarea', array('attr'=> array('class'=>'form-control textarea-wysihtml5')))
+            ->add('picture', 'hidden', array('label' => 'Pictures:'))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 
@@ -101,6 +102,7 @@ class SellerController extends Controller
             ->add('language', 'text', array('attr'=> array('class'=>'form-control input-md')))
             ->add('company_advantage', 'textarea', array('attr'=> array('class'=>'form-control textarea-wysihtml5')))
             ->add('detail_introduction', 'textarea', array('attr'=> array('class'=>'form-control textarea-wysihtml5')))
+            ->add('picture', 'hidden', array('label' => 'Pictures:'))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 

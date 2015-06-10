@@ -19,6 +19,7 @@ class CompanyPatentController extends Controller
     {
         $company_patent = new CompanyPatent();
         $form = $this->createFormBuilder($company_patent)
+            ->add('image', 'hidden', array('label' => 'Image:'))
             ->add('name', 'text', array('label' => 'Patent Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a name')))
             ->add('country',null , array('label' => 'Country:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('products', 'text', array('label' => 'Product:', 'attr' => array('class'=>'form-control input-md')) )
@@ -48,6 +49,7 @@ class CompanyPatentController extends Controller
     {
         $company_patent = $this->getDoctrine()->getRepository('AseagleBundle:CompanyPatent')->find($id);
         $form = $this->createFormBuilder($company_patent)
+            ->add('image', 'hidden', array('label' => 'Image:'))
             ->add('name', 'text', array('label' => 'Patent Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a name')))
             ->add('country',null , array('label' => 'Country:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('products', 'text', array('label' => 'Product:', 'attr' => array('class'=>'form-control input-md')) )

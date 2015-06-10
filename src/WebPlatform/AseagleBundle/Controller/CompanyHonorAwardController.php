@@ -19,6 +19,7 @@ class CompanyHonorAwardController extends Controller
     {
         $company_honor_award = new CompanyHonorAward();
         $form = $this->createFormBuilder($company_honor_award)
+            ->add('image', 'hidden', array('label' => 'Image:'))
             ->add('name', 'text', array('label' => 'Award Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give factory a name')))
             ->add('issued_by', 'collot_datetime', array('label' => 'Issued By:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('start_date', 'collot_datetime', array('label' => 'Start Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
@@ -48,6 +49,7 @@ class CompanyHonorAwardController extends Controller
     {
         $company_honor_award = $this->getDoctrine()->getRepository('AseagleBundle:CompanyHonorAward')->find($id);
         $form = $this->createFormBuilder($company_honor_award)
+            ->add('image', 'hidden', array('label' => 'Image:'))
             ->add('name', 'text', array('label' => 'Award Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give Award a name')))
             ->add('issued_by', 'collot_datetime', array('label' => 'Issued By:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('start_date', 'collot_datetime', array('label' => 'Start Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))

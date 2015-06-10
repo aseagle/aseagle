@@ -20,8 +20,8 @@
             var _json_product = $.parseJSON('{{ json | raw }}');
             _AsgDashboard.Upload.set_form_edit_product(_json_product.cat_id,_json_product.d);
             // Load existing files:
-            $('#fileupload').fileupload('option', 'done')
-                    .call($('#fileupload'), $.Event('done'), {result: {files:_json_product.pic}});
+            //$('#fileupload').fileupload('option', 'done')
+            //        .call($('#fileupload'), $.Event('done'), {result: {files:_json_product.pic}});
         });
     </script>
 {% endblock %}

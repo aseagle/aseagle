@@ -29,6 +29,13 @@ class CompanyHonorAward
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image = null;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="issued_by", type="date")
@@ -209,5 +216,29 @@ class CompanyHonorAward
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return CompanyHonorAward
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

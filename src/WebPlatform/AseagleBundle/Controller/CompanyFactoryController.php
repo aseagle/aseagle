@@ -25,6 +25,7 @@ class CompanyFactoryController extends Controller
             ->add('year_cooperation', 'collot_datetime', array('label' => 'Year Cooperation:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('total_transaction', 'integer', array('label' => 'Total Transaction:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('product_capacity', 'text', array('label' => 'Product Capacity:', 'attr'=> array('class'=>'form-control input-md')))
+            ->add('picture', 'hidden', array('label' => 'Pictures:'))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 
@@ -55,6 +56,7 @@ class CompanyFactoryController extends Controller
             ->add('year_cooperation', 'collot_datetime', array('label' => 'Year Cooperation:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
             ->add('total_transaction', 'integer', array('label' => 'Total Transaction:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('product_capacity', 'text', array('label' => 'Product Capacity:', 'attr'=> array('class'=>'form-control input-md')))
+            ->add('picture', 'hidden', array('label' => 'Pictures:'))
             ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
             ->getForm();
 

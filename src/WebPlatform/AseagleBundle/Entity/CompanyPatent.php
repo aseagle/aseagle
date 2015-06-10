@@ -29,6 +29,13 @@ class CompanyPatent
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image = null;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="country_id", type="integer")
@@ -239,5 +246,29 @@ class CompanyPatent
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return CompanyPatent
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

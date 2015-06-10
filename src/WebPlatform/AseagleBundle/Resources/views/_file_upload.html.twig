@@ -16,11 +16,12 @@
                             <span>Add files...</span>
                             <input type="file" name="files[]" multiple>
                         </span>
-
+                <!--
                 <button type="reset" class="btn btn-warning cancel">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     <span>Cancel upload</span>
                 </button>
+                -->
                 <button type="button" class="btn btn-danger delete">
                     <i class="glyphicon glyphicon-trash"></i>
                     <span>Delete</span>
@@ -91,46 +92,46 @@
     <!-- The template to display files available for download -->
     <script id="template-download" type="text/x-tmpl">
         {% raw %}
-                {% for (var i=0, file; file=o.files[i]; i++) { %}
-                    <tr class="template-download fade">
-                        <td>
-                            <span class="preview">
-                                {% if (file.thumbnailUrl) { %}
-                                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-                                {% } %}
-                            </span>
-                        </td>
-                        <td>
-                            <p class="name">
-                                {% if (file.url) { %}
-                                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-                                {% } else { %}
-                                    <span>{%=file.name%}</span>
-                                {% } %}
-                            </p>
-                            {% if (file.error) { %}
-                                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% for (var i=0, file; file=o.files[i]; i++) { %}
+                <tr class="template-download fade">
+                    <td>
+                        <span class="preview">
+                            {% if (file.thumbnailUrl) { %}
+                                <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
                             {% } %}
-                        </td>
-                        <td>
-                            <span class="size">{%=o.formatFileSize(file.size)%}</span>
-                        </td>
-                        <td>
-                            {% if (file.deleteUrl) { %}
-                                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{% endraw %}{{path('delete_file')}}{% raw %}{%=('?file=' + file.name + '&dir=' + file.dir)%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
-                                    <i class="glyphicon glyphicon-trash"></i>
-                                    <span>Delete</span>
-                                </button>
-                                <input type="checkbox" name="delete" value="1" class="toggle">
+                        </span>
+                    </td>
+                    <td>
+                        <p class="name">
+                            {% if (file.url) { %}
+                                <a href="{%=file.url%}" title="{%=decodeURI(file.name)%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=decodeURI(file.name)%}</a>
                             {% } else { %}
-                                <button class="btn btn-warning cancel">
-                                    <i class="glyphicon glyphicon-ban-circle"></i>
-                                    <span>Cancel</span>
-                                </button>
+                                <span>{%=decodeURI(file.name)%}</span>
                             {% } %}
-                        </td>
-                    </tr>
-                {% } %}
+                        </p>
+                        {% if (file.error) { %}
+                            <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+                        {% } %}
+                    </td>
+                    <td>
+                        <span class="size">{%=o.formatFileSize(file.size)%}</span>
+                    </td>
+                    <td>
+                        {% if (file.deleteUrl) { %}
+                            <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{% endraw %}{{path('delete_file')}}{% raw %}{%=('?file=' + file.name + '&dir=' + file.dir)%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                                <i class="glyphicon glyphicon-trash"></i>
+                                <span>Delete</span>
+                            </button>
+                            <input type="checkbox" name="delete" value="1" class="toggle">
+                        {% } else { %}
+                            <button class="btn btn-warning cancel">
+                                <i class="glyphicon glyphicon-ban-circle"></i>
+                                <span>Cancel</span>
+                            </button>
+                        {% } %}
+                    </td>
+                </tr>
+            {% } %}
         {% endraw %}
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -152,5 +153,45 @@
     <!--[if (gte IE 8)&(lt IE 10)]>
     <script src="{{ asset('bundles/libs/vendor/jquery_file_upload/js/cors/jquery.xdr-transport.js') }}"></script>
     <![endif]-->
+    <script>
+        $( document ).ready( function(){
+            // Load existing files:
+
+            var root_path = '/aseagle/web/files/';
+            {% if json is defined %}
+                var products_with_pic = $.parseJSON('{{ json | raw }}');
+                // Load existing files
+                $('#fileupload').fileupload('option', 'done')
+                    .call($('#fileupload'), $.Event('done'), {result: {files:products_with_pic.pic}});
+            {% else %}
+                // Load existing files
+                if($('#form_picture').val().length){
+                    var pics = [];
+                    $('#form_picture').val().split(";").forEach(function(element){
+                        var path = element.replace(/[^\/]*$/, '');
+                        var filename = element.replace(/^.*[\\\/]/, '');
+                        pics.push({name: filename,size: 0, type:'image/jpeg',url: root_path + element,smallUrl: root_path + path + '/small/' + filename, thumbnailUrl:root_path + path + '/thumbnail/' + filename, deleteUrl: root_path + element,deleteType: "DELETE"});
+                    });
+                    $('#fileupload').fileupload('option', 'done')
+                            .call($('#fileupload'), $.Event('done'), {result: {files: pics}});
+                }
+            {% endif %}
+
+            //prepare string of uploaded files in new-create
+            $('#form_save').click(function() {
+                var images = "";
+                $("div#fileupload tr").each(function(){
+                    var image = $(this).find("span.preview a").attr("href");
+                    images += image.split('/')[image.split('/').length-3] + "/" + image.split('/')[image.split('/').length-2] + "/" + image.split('/')[image.split('/').length-1] + ";";
+                });
+                $("#form_picture").val(images.length ? images.substr(0,images.length-1) : "");
+
+                return true;
+            });
+        });
+
+
+
+    </script>
 </div>
 

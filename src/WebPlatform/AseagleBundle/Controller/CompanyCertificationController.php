@@ -19,6 +19,7 @@ class CompanyCertificationController extends Controller
     {
         $company_certification = new CompanyCertification();
         $form = $this->createFormBuilder($company_certification)
+            ->add('image', 'hidden', array('label' => 'Image:'))
             ->add('name', 'text', array('label' => 'Certification Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give certification a name')))
             ->add('type', 'integer', array('label' => 'Type:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('issued_by', 'collot_datetime', array('label' => 'Issued By:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
@@ -50,6 +51,7 @@ class CompanyCertificationController extends Controller
     {
         $company_certification = $this->getDoctrine()->getRepository('AseagleBundle:CompanyCertification')->find($id);
         $form = $this->createFormBuilder($company_certification)
+            ->add('image', 'hidden', array('label' => 'Image:'))
             ->add('name', 'text', array('label' => 'Certification Name:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give certification a name')))
             ->add('type', 'integer', array('label' => 'Type:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('issued_by', 'collot_datetime', array('label' => 'Issued By:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))

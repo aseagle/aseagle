@@ -88,7 +88,7 @@ class UploadHandler
             'max_file_size' => 1000000,
             'min_file_size' => 1,
             // The maximum number of files for the upload directory:
-            'max_number_of_files' => 10,
+            'max_number_of_files' => 100,
             // Defines which files are handled as image files:
             'image_file_types' => '/\.(gif|jpe?g|png)$/i',
             // Use exif_imagetype on all files to correct file extensions:

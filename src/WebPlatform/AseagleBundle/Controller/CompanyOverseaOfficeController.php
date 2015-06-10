@@ -19,6 +19,7 @@ class CompanyOverseaOfficeController extends Controller
     {
         $company_oversea_office = new CompanyOverseaOffice();
         $form = $this->createFormBuilder($company_oversea_office)
+            ->add('image', 'hidden', array('label' => 'Image:'))
             ->add('country',null , array('label' => 'Country:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('city', 'text', array('label' => 'City:', 'attr' => array('class'=>'form-control input-md')) )
             ->add('address', 'text', array('label' => 'Address:', 'attr' => array('class'=>'form-control input-md')))
@@ -50,6 +51,7 @@ class CompanyOverseaOfficeController extends Controller
     {
         $company_oversea_office = $this->getDoctrine()->getRepository('AseagleBundle:CompanyOverseaOffice')->find($id);
         $form = $this->createFormBuilder($company_oversea_office)
+            ->add('image', 'hidden', array('label' => 'Image:'))
             ->add('country',null , array('label' => 'Country:', 'attr'=> array('class'=>'form-control input-md')))
             ->add('city', 'text', array('label' => 'City:', 'attr' => array('class'=>'form-control input-md')) )
             ->add('address', 'text', array('label' => 'Address:', 'attr' => array('class'=>'form-control input-md')))

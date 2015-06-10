@@ -22,6 +22,13 @@ class CompanyOverseaOffice
     private $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     */
+    private $image = null;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="country_id", type="integer")
@@ -300,5 +307,29 @@ class CompanyOverseaOffice
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return CompanyOverseaOffice
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

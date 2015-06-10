@@ -20,7 +20,7 @@ class DefaultController extends Controller
     public function upload_fileAction()
     {
         error_reporting(E_ALL | E_STRICT);
-        require('bundles/framework/vendor/jquery_file_upload/server/php/UploadHandler.php');
+        require('bundles/libs/vendor/jquery_file_upload/server/php/UploadHandler.php');
 
         //get current user
         $user = $this->getUser();
@@ -44,7 +44,7 @@ class DefaultController extends Controller
     public static function handleFile($path, $user)
     {
         error_reporting(E_ALL | E_STRICT);
-        require('bundles/framework/js/jquery-file-upload/server/php/UploadHandler.php');
+        require('bundles/libs/vendor/jquery_file_upload/server/php/UploadHandler.php');
 
         $today = date('Y-m-d');
         $upload_handler = new UploadHandler(null, true, null,$path);

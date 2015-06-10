@@ -29,6 +29,13 @@ class CompanyFactory
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=500, nullable=true)
+     */
+    private $picture = null;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="country_id", type="integer")
@@ -268,5 +275,29 @@ class CompanyFactory
     public function getCountry()
     {
         return $this->country;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return CompanyFactory
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }

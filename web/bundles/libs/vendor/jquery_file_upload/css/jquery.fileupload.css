@@ -34,3 +34,8 @@
     height: 100%;
   }
 }
+
+/* Add for single upload file*/
+.single-upload .table-striped, .single-upload .progress-striped{
+    margin-bottom: 0 !important;
+}

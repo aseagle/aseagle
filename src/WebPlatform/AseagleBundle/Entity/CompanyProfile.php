@@ -45,6 +45,13 @@ class CompanyProfile
     /**
      * @var string
      *
+     * @ORM\Column(name="picture", type="string", length=500, nullable=true)
+     */
+    private $picture = null;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="reg_address", type="string", length=255)
      */
     private $reg_address;
@@ -1473,5 +1480,29 @@ class CompanyProfile
     public function getPurchaseManagements()
     {
         return $this->purchase_managements;
+    }
+
+    /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return CompanyProfile
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
     }
 }
