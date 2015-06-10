@@ -27,7 +27,7 @@
                     <div class="yamm">
                         <ul class="left-bar" style="display: block; border: 1px solid rgba(0, 0, 0, 0.15);border-radius: 4px; width: 80%;padding: 5px 0;">
                             {% for cat in cats %}
-                                {% if loop.index <= 12 %}
+                                {% if loop.index <= 14 %}
                                     <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ cat.name }}</a>
                                         <ul class="dropdown-menu">
                                             <div class="yamm-content">
@@ -54,7 +54,7 @@
                                             </div>
                                         </ul>
                                     </li>
-                                {% elseif loop.index == 13  %}
+                                {% elseif loop.index == 14  %}
                                     <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">More Categories</a>
                                         <ul class="dropdown-menu">
                                             <div class="yamm-content">
@@ -68,9 +68,7 @@
                                                     {% for subcat in cat.children() %}
                                                         <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
                                                     {% endfor %}
-                                                    </ul>
                                 {% elseif loop.index == cats|length  %}
-                                                    <ul class="col-sm-2 list-unstyled">
                                                         <li>
                                                             <p>
                                                                 <strong>{{ cat.name }}</strong>
@@ -85,7 +83,6 @@
                                         </ul>
                                     </li>
                                 {% else %}
-                                    <ul class="col-sm-2 list-unstyled">
                                         <li>
                                             <p>
                                                 <strong>{{ cat.name }}</strong>
@@ -94,7 +91,6 @@
                                         {% for subcat in cat.children() %}
                                             <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
                                         {% endfor %}
-                                    </ul>
                                 {% endif %}
                             {% endfor %}
                         </ul>
