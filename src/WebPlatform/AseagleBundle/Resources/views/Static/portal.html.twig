@@ -24,24 +24,81 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3">
-                    <ul class="dropdown-menu" style="display: block">
-                        {% for cat in cats %}
-                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ cat.name }}</a>
-                                <ul class="dropdown-menu">
-                                    <div class="yamm-content">
-                                        <div class="row">
-                                            <p>s dfsdf sdfsdf</p></br>
-                                            <p>s dfsdf sdfsdf</p></br>
-                                            <p>s dfsdf sdfsdf</p></br>
-                                            <p>s dfsdf sdfsdf</p></br>
-                                            <p>s dfsdf sdfsdf</p></br>
-                                        </div>
-                                    </div>
-
-                                </ul>
-                            </li>
-                        {% endfor %}
-                    </ul>
+                    <div class="yamm">
+                        <ul class="left-bar" style="display: block; border: 1px solid rgba(0, 0, 0, 0.15);border-radius: 4px; width: 80%;padding: 5px 0;">
+                            {% for cat in cats %}
+                                {% if loop.index <= 12 %}
+                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ cat.name }}</a>
+                                        <ul class="dropdown-menu">
+                                            <div class="yamm-content">
+                                                <div class="row">
+                                                    {% for subcat in cat.children() %}
+                                                        {% if loop.index%10 == 1 %}
+                                                            <ul class="col-sm-2 list-unstyled">
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                            <!--
+                                                                <li>
+                                                                    <p>
+                                                                        <strong>Section Title</strong>
+                                                                    </p>
+                                                                </li>
+                                                                -->
+                                                        {% elseif loop.index%10 == 0 or loop.index == cat.children()|length%}
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                            </ul>
+                                                        {% else%}
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                {% elseif loop.index == 13  %}
+                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">More Categories</a>
+                                        <ul class="dropdown-menu">
+                                            <div class="yamm-content">
+                                                <div class="row">
+                                                    <ul class="col-sm-2 list-unstyled">
+                                                        <li>
+                                                            <p>
+                                                                <strong>{{ cat.name }}</strong>
+                                                            </p>
+                                                        </li>
+                                                    {% for subcat in cat.children() %}
+                                                        <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                    {% endfor %}
+                                                    </ul>
+                                {% elseif loop.index == cats|length  %}
+                                                    <ul class="col-sm-2 list-unstyled">
+                                                        <li>
+                                                            <p>
+                                                                <strong>{{ cat.name }}</strong>
+                                                            </p>
+                                                        </li>
+                                                        {% for subcat in cat.children() %}
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <ul class="col-sm-2 list-unstyled">
+                                        <li>
+                                            <p>
+                                                <strong>{{ cat.name }}</strong>
+                                            </p>
+                                        </li>
+                                        {% for subcat in cat.children() %}
+                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9">
                     <div id="pavcontentslider2" class="carousel slide pavcontentslider">
