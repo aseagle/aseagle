@@ -19,7 +19,7 @@ class StaticController extends Controller
         foreach($products as $product)
         {
             $image_helper = $this->get('image_helper');
-            $root = "http://localhost/aseagle/web/files/";
+            $root = "/aseagle/web/files/";
             array_push($banner_products_info, array(
                 'id' => $product->getId(),
                 'cat_id' => $product->getCategoryId(),
