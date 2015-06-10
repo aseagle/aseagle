@@ -95,4 +95,4 @@ ewz_recaptcha:
     public_key: "6Lct0gcTAAAAAG0w18ExgK81pQTwyQ2P9CKqi1Rt"
     private_key: "6Lct0gcTAAAAAF-VgIoyyVGMFC80y2GHI0e4YK30"
     locale_key: "%kernel.default_locale%"
-    enabled: false
+    enabled: true
