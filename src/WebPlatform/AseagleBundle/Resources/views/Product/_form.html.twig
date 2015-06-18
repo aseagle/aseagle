@@ -1,8 +1,8 @@
 <div class="col-sx-12 col-sm-12 col-md-12">
     <form class="form-horizontal" id="upload-product-form" action="{% if id is defined %}{{path('update_product',{'id':id})}}{% else %}{{path('create_product')}}{% endif %}" method="post">
-        <fieldset>
-            <input id="category_id" type="text" name="category_id" value="">
-            <legend>Product Basic Infomation</legend>
+            <fieldset>
+                <input id="category_id" type="text" name="category_id" value="">
+                <legend>Product Basic Infomation</legend>
             <div class="product-basic-information"> <!-- Need build this form -->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="title">Product Title</label>

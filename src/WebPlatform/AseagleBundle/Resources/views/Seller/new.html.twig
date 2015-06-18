@@ -2,9 +2,42 @@
 {% form_theme form 'AseagleBundle:Form:fields.html.twig' %}
 
     {% block dashboard_content %}
-    <h1>New Seller</h1>
+        <h1>Company Profile</h1>
         {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}}) }}
-    {{ form_errors(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
+        {{ form_errors(form) }}
+        <fieldset>
+            <legend>Basic Infomation</legend>
+            {{ form_row(form.name) }}
+            {{ form_row(form.type) }}
+            {{ form_row(form.reg_address) }}
+            {{ form_row(form.registration_number) }}
+            {{ form_row(form.reg_year) }}
+            {{ form_row(form.reg_country) }}
+            {{ form_row(form.phone_number) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.website) }}
+            <legend>Gallery</legend>
+            {{ form_row(form.picture) }}
+            <legend><a data-toggle="collapse" href="#scale-trade" aria-expanded="false" aria-controls="scale-trade">Company Scale & Trade Info <span class="glyphicon glyphicon-collapse-down"></span></a></legend>
+        </fieldset>
+        <div class="collapse" id="scale-trade">
+            <div class="">
+                <div class="form-group">
+                    {{ form_label(form.annual_revenue, null, { 'label_attr': {'class': 'col-md-2 control-label'}}) }}
+                    <div class="col-xs-4">
+                        {{ form_widget(form.annual_revenue) }}
+                    </div>
+                    <div class="col-xs-2">
+                        {{ form_widget(form.annual_revenue_currency) }}
+                    </div>
+                </div>
+                {% for child in form %}
+                    {% if child.vars.name != 'save' %}
+                        {{ form_row(child) }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {{ form_row(form.save) }}
+        {{ form_end(form) }}
     {% endblock %}

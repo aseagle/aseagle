@@ -31,9 +31,9 @@ class CompanyProfile
     /**
      * @var string
      *
-     * @ORM\Column(name="detail_introduction", type="string", length=4096)
+     * @ORM\Column(name="detail_introduction", type="string", length=4096, nullable=true)
      */
-    private $detail_introduction;
+    private $detail_introduction = null;
 
     /**
      * @var string
@@ -50,6 +50,34 @@ class CompanyProfile
     private $picture = null;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="type", type="boolean")
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="registration_number", type="string", length=255)
+     */
+    private $registration_number;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone_number", type="string", length=15)
+     */
+    private $phone_number;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=100)
+     */
+    private $email;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="reg_address", type="string", length=255)
@@ -64,46 +92,67 @@ class CompanyProfile
     private $reg_country_id;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="ops_address", type="string", length=255)
+     * @ORM\Column(name="annual_revenue", type="integer", nullable=true)
      */
-    private $ops_address;
+    private $annual_revenue = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ops_city", type="string", length=255)
+     * @ORM\Column(name="annual_revenue_currency", type="string", length=10, nullable=true)
      */
-    private $ops_city;
+    private $annual_revenue_currency = null;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="global_offices", type="string", length=255, nullable=true)
+     */
+    private $global_offices = null;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ops_address", type="string", length=255, nullable=true)
+     */
+    private $ops_address = null;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ops_city", type="string", length=255, nullable=true)
+     */
+    private $ops_city = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="ops_country_id", type="integer")
+     * @ORM\Column(name="ops_country_id", type="integer", nullable=true)
      */
-    private $ops_country_id;
+    private $ops_country_id = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ops_zip", type="string", length=16)
+     * @ORM\Column(name="ops_zip", type="string", length=16, nullable=true)
      */
-    private $ops_zip;
+    private $ops_zip = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="main_products", type="string", length=4096)
+     * @ORM\Column(name="main_products", type="string", length=4096, nullable=true)
      */
-    private $main_products;
+    private $main_products=null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="others_selling", type="string", length=4096)
+     * @ORM\Column(name="others_selling", type="string", length=4096, nullable=true)
      */
-    private $others_selling;
+    private $others_selling = null;
 
     /**
      * @var \DateTime
@@ -113,11 +162,11 @@ class CompanyProfile
     private $reg_year;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="total_employee", type="integer")
+     * @ORM\Column(name="total_employee", type="string", length=20, nullable=true)
      */
-    private $total_employee;
+    private $total_employee = null;
 
     /**
      * @var string
@@ -129,114 +178,114 @@ class CompanyProfile
     /**
      * @var string
      *
-     * @ORM\Column(name="legal_owner", type="string", length=255)
+     * @ORM\Column(name="legal_owner", type="string", length=255, nullable=true)
      */
-    private $legal_owner;
+    private $legal_owner = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="office_site", type="integer")
+     * @ORM\Column(name="office_site", type="integer", nullable=true)
      */
-    private $office_site;
+    private $office_site = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="company_advantage", type="string", length=1024)
+     * @ORM\Column(name="company_advantage", type="string", length=1024, nullable=true)
      */
-    private $company_advantage;
+    private $company_advantage = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="total_sale_volumn", type="string", length=255)
+     * @ORM\Column(name="total_sale_volumn", type="string", length=255, nullable=true)
      */
-    private $totalSale_volumn;
+    private $totalSale_volumn = null;
 
     /**
      * @var string
      *
      * @ORM\Column(name="export_percentage", type="string", length=255)
      */
-    private $export_percentage;
+    private $export_percentage = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="main_markets_distribution", type="string", length=255)
+     * @ORM\Column(name="main_markets_distribution", type="string", length=255, nullable=true)
      */
-    private $main_markets_distribution;
+    private $main_markets_distribution = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="year_start_export", type="integer")
+     * @ORM\Column(name="year_start_export", type="integer", nullable=true)
      */
-    private $year_start_export;
+    private $year_start_export = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="total_trade_staff", type="integer")
+     * @ORM\Column(name="total_trade_staff", type="integer", nullable=true)
      */
-    private $total_trade_staff;
+    private $total_trade_staff = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="total_rnd_staff", type="integer")
+     * @ORM\Column(name="total_rnd_staff", type="integer", nullable=true)
      */
-    private $total_rnd_staff;
+    private $total_rnd_staff = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="total_qc_staff", type="integer")
+     * @ORM\Column(name="total_qc_staff", type="integer", nullable=true)
      */
-    private $total_qc_staff;
+    private $total_qc_staff = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nearest_port", type="string", length=255)
+     * @ORM\Column(name="nearest_port", type="string", length=255, nullable=true)
      */
-    private $nearest_port;
+    private $nearest_port = null;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="average_lead_time", type="integer")
+     * @ORM\Column(name="average_lead_time", type="integer", nullable=true)
      */
-    private $average_lead_time;
+    private $average_lead_time = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="deliver_term", type="string", length=255)
+     * @ORM\Column(name="deliver_term", type="string", length=255, nullable=true)
      */
-    private $deliver_term;
+    private $deliver_term = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="currency", type="string", length=255)
+     * @ORM\Column(name="currency", type="string", length=255, nullable=true)
      */
-    private $currency;
+    private $currency = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="payment_type", type="string", length=255)
+     * @ORM\Column(name="payment_type", type="string", length=255, nullable=true)
      */
-    private $payment_type;
+    private $payment_type = null;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="language", type="string", length=255)
+     * @ORM\Column(name="language", type="string", length=255, nullable=true)
      */
-    private $language;
+    private $language = null;
 
     /**
      * @var integer
@@ -621,29 +670,6 @@ class CompanyProfile
     public function getRegYear()
     {
         return $this->reg_year;
-    }
-
-    /**
-     * Set total_employee
-     *
-     * @param integer $totalEmployee
-     * @return CompanyProfile
-     */
-    public function setTotalEmployee($totalEmployee)
-    {
-        $this->total_employee = $totalEmployee;
-
-        return $this;
-    }
-
-    /**
-     * Get total_employee
-     *
-     * @return integer 
-     */
-    public function getTotalEmployee()
-    {
-        return $this->total_employee;
     }
 
     /**
@@ -1504,5 +1530,198 @@ class CompanyProfile
     public function getPicture()
     {
         return $this->picture;
+    }
+
+    /**
+     * Set type
+     *
+     * @param boolean $type
+     *
+     * @return CompanyProfile
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return boolean
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set registrationNumber
+     *
+     * @param string $registrationNumber
+     *
+     * @return CompanyProfile
+     */
+    public function setRegistrationNumber($registrationNumber)
+    {
+        $this->registration_number = $registrationNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get registrationNumber
+     *
+     * @return string
+     */
+    public function getRegistrationNumber()
+    {
+        return $this->registration_number;
+    }
+
+    /**
+     * Set phoneNumber
+     *
+     * @param string $phoneNumber
+     *
+     * @return CompanyProfile
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phone_number = $phoneNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get phoneNumber
+     *
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phone_number;
+    }
+
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return CompanyProfile
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set annualRevenue
+     *
+     * @param integer $annualRevenue
+     *
+     * @return CompanyProfile
+     */
+    public function setAnnualRevenue($annualRevenue)
+    {
+        $this->annual_revenue = $annualRevenue;
+
+        return $this;
+    }
+
+    /**
+     * Get annualRevenue
+     *
+     * @return integer
+     */
+    public function getAnnualRevenue()
+    {
+        return $this->annual_revenue;
+    }
+
+    /**
+     * Set annualRevenueCurrency
+     *
+     * @param string $annualRevenueCurrency
+     *
+     * @return CompanyProfile
+     */
+    public function setAnnualRevenueCurrency($annualRevenueCurrency)
+    {
+        $this->annual_revenue_currency = $annualRevenueCurrency;
+
+        return $this;
+    }
+
+    /**
+     * Get annualRevenueCurrency
+     *
+     * @return string
+     */
+    public function getAnnualRevenueCurrency()
+    {
+        return $this->annual_revenue_currency;
+    }
+
+
+    /**
+     * Set totalEmployee
+     *
+     * @param string $totalEmployee
+     *
+     * @return CompanyProfile
+     */
+    public function setTotalEmployee($totalEmployee)
+    {
+        $this->total_employee = $totalEmployee;
+
+        return $this;
+    }
+
+    /**
+     * Get totalEmployee
+     *
+     * @return string
+     */
+    public function getTotalEmployee()
+    {
+        return $this->total_employee;
+    }
+
+    /**
+     * Set globalOffices
+     *
+     * @param string $globalOffices
+     *
+     * @return CompanyProfile
+     */
+    public function setGlobalOffices($globalOffices)
+    {
+        $this->global_offices = $globalOffices;
+
+        return $this;
+    }
+
+    /**
+     * Get globalOffices
+     *
+     * @return string
+     */
+    public function getGlobalOffices()
+    {
+        return $this->global_offices;
     }
 }

@@ -15,6 +15,8 @@ td.col-name{
     color: #666;
 }
 
+
+
 .w11{
     width: 11%;
 }
@@ -149,4 +151,9 @@ td.col-name{
 .yamm .left-bar .yamm-content .row > ul{
     float: none;
     display: table-cell;
+}
+
+label.required:after {
+    /*content: " *";
+    color: red;*/
 }
