@@ -93,8 +93,8 @@ class SellerController extends Controller
             ->add('website', 'text', array('label' => 'Website:', 'attr'=> array('class'=>'form-control input-md')))
 
             ->add('annual_revenue', 'integer', array('label' => 'Annual Revenue:', 'required' => false, 'attr'=> array('class'=>'form-control input-md')) )
-            ->add('annual_revenue_currency', 'choice', array('choices' => array('usd' => 'USD', 'sgd' => 'SGD', 'vnd' => 'VND'), 'label' => 'Annual Revenue Currency:', 'attr'=> array('class'=>'form-control input-md')) )
-            ->add('total_employee', 'choice', array('choices' => array('0-10' => '0 - 10', '11–50' => '11 – 50', '51–100' => '51 – 100', '101–200' => '101 – 200', '201–500' => '201 – 500', '501–1000' => '501 – 1000', '1001–2000' => '1001 – 2000', '2001–5000' => '2001 – 5000', '5001–10000' => '5001 – 10,000', 'over10000' => 'Over 10,000'),'label' => 'Total Employees:', 'attr'=> array('class'=>'form-control input-md')))
+            ->add('annual_revenue_currency', 'choice', array('choices' => array('usd' => 'USD', 'sgd' => 'SGD', 'vnd' => 'VND'), 'label' => 'Annual Revenue Currency:', 'required' => false, 'attr'=> array('class'=>'form-control input-md')) )
+            ->add('total_employee', 'choice', array('choices' => array('0-10' => '0 - 10', '11–50' => '11 – 50', '51–100' => '51 – 100', '101–200' => '101 – 200', '201–500' => '201 – 500', '501–1000' => '501 – 1000', '1001–2000' => '1001 – 2000', '2001–5000' => '2001 – 5000', '5001–10000' => '5001 – 10,000', 'over10000' => 'Over 10,000'),'label' => 'Total Employees:', 'required' => false, 'attr'=> array('class'=>'form-control input-md')))
             ->add('main_markets_distribution', 'text', array('label' => 'Key Export Markets:', 'required' => false, 'attr'=> array('class'=>'form-control input-md')))
             ->add('main_products', 'text', array('label' => 'Primary Productions:', 'required' => false, 'attr'=> array('class'=>'form-control input-md')))
 
