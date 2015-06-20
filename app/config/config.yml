@@ -77,7 +77,7 @@ fos_user:
             mailer: fos_user.mailer.twig_swift
     registration:
             confirmation:
-                enabled:    true
+                enabled:    false
                 from_email: # Use this node only if you don't want the global email address for the confirmation email
                                 address: "noreply@aseagle.net"
                                 sender_name: "Aseagle"
