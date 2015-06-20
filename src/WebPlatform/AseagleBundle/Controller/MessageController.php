@@ -120,7 +120,9 @@ class MessageController extends Controller
                     array_push($receivers, array( 'id' => $com->getId(), 'fname' => 'Company '.$com->getName()));
                 }else{
                     $reuser = $this->getDoctrine()->getRepository('AseagleBundle:User')->find($reuserid);
-                    array_push($receivers, array( 'id' => $reuser->getId(), 'fname' => $reuser->getUsername()));
+                    if($reuser != null){
+                        array_push($receivers, array( 'id' => $reuser->getId(), 'fname' => $reuser->getUsername()));
+                    }
                 }
             }
 
