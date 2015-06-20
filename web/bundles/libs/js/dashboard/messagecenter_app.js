@@ -58,7 +58,7 @@ angular.module('msgcenter', [
 }])
 
 .controller('MailController', function ($scope,  $http) {
-	$http.get('/messagecenter/list').success(function(data) {
+	$http.get('./messagecenter/list').success(function(data) {
 		$scope.mails = data;
 	});
 
@@ -77,7 +77,7 @@ angular.module('msgcenter', [
 	};
 })
 .controller('SentController', function ($scope,  $http) {
-	$http.get('/messagecenter/list_sent').success(function(data) {
+	$http.get('./messagecenter/list_sent').success(function(data) {
 		$scope.mails = data;
 	});
 
@@ -96,7 +96,7 @@ angular.module('msgcenter', [
 	};
 })
 .controller('DraftController', function ($scope,  $http) {
-	$http.get('/messagecenter/list_draft').success(function(data) {
+	$http.get('./messagecenter/list_draft').success(function(data) {
 		$scope.mails = data;
 	});
 
@@ -115,7 +115,7 @@ angular.module('msgcenter', [
 	};
 })
 .controller('OpenController', function ($scope, $http, $stateParams, $location, $sce, OpenMessage) {
-	$http.get('/messagecenter/open/'+$stateParams.id).success(function(data) {
+	$http.get('./messagecenter/open/'+$stateParams.id).success(function(data) {
 		$scope.mail = data;
 		OpenMessage.updatecurrent(data);
 			if(typeof $scope.mail.body !== 'undefined') {
@@ -134,7 +134,7 @@ angular.module('msgcenter', [
 	}
 })
 .controller('OpenSentController', function ($scope, $http, $stateParams, $location, $sce, OpenMessage) {
-	$http.get('/messagecenter/open_sent/'+$stateParams.id).success(function(data) {
+	$http.get('./messagecenter/open_sent/'+$stateParams.id).success(function(data) {
 		$scope.mail = data;
 		OpenMessage.updatecurrent(data);
 			if(typeof $scope.mail.body !== 'undefined') {
@@ -167,7 +167,7 @@ angular.module('msgcenter', [
 		alert("send to:" + $scope.Receivers);
 		$http({
 		  method  : 'POST',
-		  url     : '/messagecenter/send',
+		  url     : './messagecenter/send',
 		  data    : $.param({ received_ids : $scope.Receivers, subject : $scope.Subject, body : $('#emailbody').code()}),  // pass in data as strings	
 		  headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
 		 }).success(function(data) {
@@ -200,7 +200,7 @@ angular.module('msgcenter', [
 		alert("send to:" + $scope.Receivers);
 		$http({
 		  method  : 'POST',
-		  url     : '/messagecenter/send',
+		  url     : './messagecenter/send',
 		  data    : $.param({ received_ids : $scope.Receivers, subject : $scope.Subject, body : $('#emailbody').code()}),  // pass in data as strings	
 		  headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
 		 }).success(function(data) {
@@ -223,7 +223,7 @@ angular.module('msgcenter', [
         	var contact = new Bloodhound({
 			  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
 			  queryTokenizer: Bloodhound.tokenizers.whitespace,
-			  prefetch: '/messagecenter/list_contact'
+			  prefetch: './messagecenter/list_contact'
 			});
 			contact.initialize();
 

@@ -213,11 +213,13 @@ class MessageController extends Controller
         {
             if($contact->getIsCompany()===true){
                 $com = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($contact->getContactId());
-                array_push($mapped_contact_info, array(
-                    'id' => $com->getId(),
-                    'name' => $com->getName(),
-                    'c' => true
-                ));
+                if($com != null){
+                    array_push($mapped_contact_info, array(
+                        'id' => $com->getId(),
+                        'name' => $com->getName(),
+                        'c' => true
+                    ));
+                }
             }else{
                 $con = $this->getDoctrine()->getRepository('AseagleBundle:User')->find($contact->getContactId());
                 array_push($mapped_contact_info, array(
