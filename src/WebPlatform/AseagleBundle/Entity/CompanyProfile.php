@@ -206,7 +206,7 @@ class CompanyProfile
     /**
      * @var string
      *
-     * @ORM\Column(name="export_percentage", type="string", length=255)
+     * @ORM\Column(name="export_percentage", type="string", length=255, nullable=true)
      */
     private $export_percentage = null;
 
