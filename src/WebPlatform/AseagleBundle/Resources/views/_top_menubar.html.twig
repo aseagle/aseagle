@@ -141,7 +141,7 @@
                 </li>
             {% else %}
                 <!--<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> -->
-                <li><a href="#" class="btn-login">Login</a></li>
+                <li><a href="#" data-toggle="popover" class="btn-login">Login</a></li>
                 <li><a href="{{ path('fos_user_registration_register') }}">Signup</a></li>
             {% endif %}
         </ul>
@@ -182,6 +182,7 @@
                 $(this).parent().toggleClass('open');
             });
 
+            //Add form to login popover
             $('.btn-login').popover({
                 placement: 'bottom',
                 html : true,
@@ -189,9 +190,13 @@
                     return $(".login-form").html();
                 }
             });
-
-            $(document).on('blur','.btn-login', function() {
-                $(this).popover('hide');
+            // Close login popover when clicking outside
+            $('body').on('click', function (e) {
+                //only buttons
+                if ($(e.target).data('toggle') !== 'popover'
+                        && $(e.target).parents('.popover.in').length === 0) {
+                    $('[data-toggle="popover"]').popover('hide');
+                }
             });
         });
     })(jQuery);
