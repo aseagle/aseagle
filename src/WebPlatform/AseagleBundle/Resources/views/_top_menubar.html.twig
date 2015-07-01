@@ -1,4 +1,4 @@
-<div id="top_bar" class="navbar navbar-xs yamm navbar-default navbar-fixed-top bar-header" style="background: none repeat scroll 0 0 #335147">
+<div id="top_bar" class="navbar navbar-xs yamm navbar-default navbar-fixed-top bar-header" style="background: none repeat scroll 0 0 #113f0f">
     <!--div class="container"-->
 
     <div id="navbar-collapse-1" class="navbar-collapse collapse">
@@ -38,7 +38,7 @@
     </div>
     <!--/div-->
 </div>
-<div id="lower_bar" class="navbar yamm navbar-default navbar-fixed-top bar-header" style="background: none repeat scroll 0 0 #174635 ">
+<div id="lower_bar" class="navbar yamm navbar-default navbar-fixed-top bar-header" style="background: none repeat scroll 0 0 #046100 ">
     <div class="navbar-header">
         <button type="button" data-toggle="collapse" data-target="#navbar-collapse-1" class="navbar-toggle collapsed">
             <span class="icon-bar"></span>
@@ -126,7 +126,7 @@
             <li><a class="btn-in-a" href="{{path('create_buying_request')}}"><button class="btn btn-success pbr">&nbsp&nbsp&nbsp&nbsp&nbspPost Buying Request&nbsp&nbsp&nbsp&nbsp&nbsp</button></a></li>
         </ul>
 
-        <ul class="nav navbar-nav" style="float: right; padding-right: 20px;">
+        <ul class="nav navbar-nav" style="float: right; {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %} padding-right: 20px {% endif %};">
             <li><a href="{{path('buyer_get_buying_request')}}">My Aseagle</a></li>
             {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                 <li><a href="{{path('message')}}"><span class="glyphicon glyphicon-envelope" title="Message Center"></span></a></li>
@@ -141,15 +141,8 @@
                 </li>
             {% else %}
                 <!--<a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a> -->
-                <form action="{{ path("fos_user_security_check") }}" method="post">
-                    <label>Email</label>
-                    <input type="text" name="_username" required="required" />
-                    <label>Password</label>
-                    <input type="password" name="_password" required="required" />
-                    <button type="submit">Submit</button>
-                    |<a href="{{ path('fos_user_registration_register') }}">Register</a>
-                    <input type="hidden" name="_csrf_token" value="{{ render(controller('AseagleBundle:Main:getToken'))}}" />
-                </form>
+                <li><a href="#" data-toggle="popover" class="btn-login">Login</a></li>
+                <li><a href="{{ path('fos_user_registration_register') }}">Signup</a></li>
             {% endif %}
         </ul>
         <!--
@@ -161,6 +154,23 @@
         -->
     </div>
 </div>
+
+<div class="hidden login-form">
+    <form action="{{ path("fos_user_security_check") }}" class="form-horizontal" style="width: 200px" method="post">
+            <label>Email</label>
+            <div>
+                <input type="text" name="_username" required="required" />
+            </div>
+            <label>Password</label>
+            <div>
+                <input type="password" name="_password" required="required" />
+            </div>
+            <div style="padding-top: 5px;">
+                <button class="btn btn-primary" type="submit">Submit</button>
+            </div>
+        <input type="hidden" name="_csrf_token" value="{{ render(controller('AseagleBundle:Main:getToken'))}}" />
+    </form>
+</div>
 <script>
 
     (function($){
@@ -170,6 +180,23 @@
                 event.stopPropagation();
                 $(this).parent().siblings().removeClass('open');
                 $(this).parent().toggleClass('open');
+            });
+
+            //Add form to login popover
+            $('.btn-login').popover({
+                placement: 'bottom',
+                html : true,
+                content: function() {
+                    return $(".login-form").html();
+                }
+            });
+            // Close login popover when clicking outside
+            $('body').on('click', function (e) {
+                //only buttons
+                if ($(e.target).data('toggle') !== 'popover'
+                        && $(e.target).parents('.popover.in').length === 0) {
+                    $('[data-toggle="popover"]').popover('hide');
+                }
             });
         });
     })(jQuery);

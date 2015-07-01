@@ -157,3 +157,14 @@ label.required:after {
     content: " *";
     color: red;
 }
+
+/* added 26 June 2005 for register*/
+.col-70-auto {
+    width: 60%;
+    margin: auto;
+}
+
+.col-30-auto {
+    width: 30%;
+    margin: auto;
+}
