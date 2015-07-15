@@ -66,6 +66,13 @@ class Product
     /**
      * @var integer
      *
+     * @ORM\Column(name="company_id", type="integer", nullable=true)
+     */
+    private $company_id = null;
+
+    /**
+     * @var integer
+     *
      * @ORM\Column(name="min_order", type="integer", nullable=true)
      */
     private $min_order = null;
@@ -501,6 +508,12 @@ class Product
      * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      */
     protected $owner;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CompanyProfile", inversedBy="products")
+     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     */
+    protected $company;
 
     /**
      * @ORM\OneToMany(targetEntity="ProductTag", mappedBy="product")
@@ -2265,5 +2278,53 @@ class Product
     public function getQuotations()
     {
         return $this->quotations;
+    }
+
+    /**
+     * Set companyId
+     *
+     * @param integer $companyId
+     *
+     * @return Product
+     */
+    public function setCompanyId($companyId)
+    {
+        $this->company_id = $companyId;
+
+        return $this;
+    }
+
+    /**
+     * Get companyId
+     *
+     * @return integer
+     */
+    public function getCompanyId()
+    {
+        return $this->company_id;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \WebPlatform\AseagleBundle\Entity\CompanyProfile $company
+     *
+     * @return Product
+     */
+    public function setCompany(\WebPlatform\AseagleBundle\Entity\CompanyProfile $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \WebPlatform\AseagleBundle\Entity\CompanyProfile
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 }

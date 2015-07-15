@@ -468,7 +468,7 @@ _AsgMainBuilder.MainContent = ( function() {
 			// ------ product_head_image_row_seller_detail
 			var product_head_image_row_seller_detail = $('<div/>')
 			 .addClass('col-xs-4 col-sm-4 card-heading-header').appendTo(product_head_image_row);
-				$('<h3><a class="company-hover-label" href="">'+product_json.sup.n+'<div style="display:none;"></div></a>   <span class="glyphicon glyphicon-check" aria-hidden="true"></span></h3>').appendTo(product_head_image_row_seller_detail);
+				$('<h3><a class="company-hover-label" href="'+product_json.sup.link+'">'+product_json.sup.n+'<div style="display:none;"></div></a>   <span class="glyphicon glyphicon-check" aria-hidden="true"></span></h3>').appendTo(product_head_image_row_seller_detail);
 				$('<h3>('+_AsgUtil.Mapping.getCountryName(product_json.sup.c)+')</h3>').appendTo(product_head_image_row_seller_detail);
 				$('<h3>('+_AsgUtil.Mapping.getCountryName(product_json.sup.c)+')</h3>').appendTo(product_head_image_row_seller_detail);
 				$('<h3>('+_AsgUtil.Mapping.getCountryName(product_json.sup.c)+')</h3>').appendTo(product_head_image_row_seller_detail);

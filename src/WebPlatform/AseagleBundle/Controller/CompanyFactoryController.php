@@ -86,4 +86,10 @@ class CompanyFactoryController extends Controller
         return $this->redirect($this->generateUrl('seller_company_factory_index',array('seller_id'=>$company_factory->getCompany()->getId())));
     }
 
+    public function show_allAction($seller_id)
+    {
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($seller_id);
+        $company_factories = $company_profile->getCompanyFactories();
+        return $this->render('AseagleBundle:CompanyFactory:show_all.html.twig', array('company_profile' => $company_profile, 'factories' => $company_factories));
+    }
 }

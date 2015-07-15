@@ -1,0 +1,83 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+    {% block local_css %}
+        <link rel="stylesheet" href="{{ asset('bundles/libs/css/seller.css') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/libs/css/main.css') }}" />
+    {% endblock %}
+
+    {% block content %}
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+<div class="bs-docs-header" id="content" tabindex="-1">
+    <div class="container">
+
+        <div id="carbonads-container">
+            <div class="carbonad">
+				<span class="carbonad-image">
+				<a href="{{ path('show_seller', {'id': company_profile.getId()}) }}" target="_blank"><img width="130" height="100" border="0" src="{{ image_helper.generate_one_large_image_url(company_profile.picture) }}" class="carbonad-image carbonad-img" style="max-width:130px;"></a>
+				</span>
+                <h1>{{ company_profile.name }}</h1>
+                <p>{{ company_profile.website }}</p>
+            </div>
+        </div>
+
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ path('show_seller', {'id': company_profile.getId()}) }}">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li class="dropdown-header">Nav header</li>
+                        <li><a href="#">Separated link</a></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="col-md-3">
+        <div class="list-group" style="margin-top:40px">
+            <a href="{{ path('show_seller', {'id': company_profile.getId()}) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">Company profile</h4>
+            </a>
+            <a href="{{ path('seller_company_oversea_office_show_all', {'seller_id': company_profile.getId()}) }}" class="list-group-item">Company office</a>
+            <a href="{{ path('seller_company_factory_show_all', {'seller_id': company_profile.getId()}) }}" class="list-group-item">Factories</a>
+            <a href="{{ path('seller_company_certification_show_all', {'seller_id': company_profile.getId()}) }}" class="list-group-item">Certifications</a>
+
+            <!--<a href="#" class="list-group-item">Main market & products</a>-->
+            <!--<a href="#" class="list-group-item">Company Capacity</a>-->
+            <a href="{{ path('seller_company_trademark_show_all', {'seller_id': company_profile.getId()}) }}" class="list-group-item">Trademarks</a>
+            <a href="{{ path('seller_company_patent_show_all', {'seller_id': company_profile.getId()}) }}" class="list-group-item">Patents</a>
+            <a href="{{ path('seller_company_honor_award_show_all', {'seller_id': company_profile.getId()}) }}" class="list-group-item">Awards</a>
+            <a href="{{ path('show_trading_info_seller', {'id': company_profile.getId()}) }}" class="list-group-item">
+                <h4 class="list-group-item-heading">Trade Experience</h4>
+            </a>
+            <a href="#" class="list-group-item">
+                <h4 class="list-group-item-heading">Business Performance</h4>
+            </a>
+
+        </div>
+    </div>
+    <div class="col-md-9">
+        {% block seller_content %}{% endblock %}
+    </div>
+</div>
+        <!-- /.row -->
+    {% endblock %}
+
+    {% block local_footer_libs %}
+
+    {% endblock %}

@@ -12,6 +12,7 @@ services:
          class: "%mapping_helper.class%"
      image_helper:
          class: "%image_helper.class%"
+         arguments:    [@kernel]
      global_helper:
          class: "%global_helper.class%"
      message_helper:

@@ -1,0 +1,55 @@
+{% extends 'AseagleBundle::seller_layout.html.twig' %}
+
+    {% block seller_content %}
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Trade Experience
+                    <small>short description</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-12">
+                <ul>
+                    <li>Total Sale Volumn: {{ company_profile.totalSaleVolumn }}</li>
+                    <li>Export Percentage: {{ company_profile.exportPercentage }}</li>
+                    <li>Main Markets Distribution: {{ company_profile.mainMarketsDistribution }}</li>
+                    <li>Registration Year: {{ company_profile.regYear|date("d/m/Y") }}</li>
+                    <li>Year Start Export: {{ company_profile.yearStartExport }}</li>
+                </ul>
+                <h3>Business Term</h3>
+                <ul>
+                    <li>Deliver Term: {{ company_profile.deliverTerm }}</li>
+                    <li>Payment Currency: {{ company_profile.currency }}</li>
+                    <li>Payment Type: {{ company_profile.paymentType }}</li>
+                    <li>Nearest Port: {{ company_profile.nearestPort }}</li>
+                </ul>
+                <h3>Business Ability</h3>
+                <ul>
+                    <li>Language Spoken: {{ company_profile.language }}</li>
+                    <li>Total Trade Staff: {{ company_profile.totalTradeStaff }}</li>
+                    <li>Total RnD Staff: {{ company_profile.totalRndStaff }}</li>
+                    <li>Total QC Staff: {{ company_profile.totalQcStaff }}</li>
+                    <li>Average Lead Time: {{ company_profile.averageLeadTime }}</li>
+                    <li>Registration Number: {{ company_profile.registrationNumber }}</li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h3 class="page-header">Company Introduction</h3>
+                <div class="bs-callout bs-callout-warning" id="callout-form-validation-state-accessibility">
+                    <span>{{ company_profile.detailIntroduction }}</span>
+                </div>
+            </div>
+        </div>
+    {% endblock %}

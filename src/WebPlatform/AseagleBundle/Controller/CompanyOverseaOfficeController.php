@@ -87,4 +87,10 @@ class CompanyOverseaOfficeController extends Controller
         return $this->redirect($this->generateUrl('seller_company_oversea_office_index',array('seller_id'=>$company_oversea_office->getCompany()->getId())));
     }
 
+    public function show_allAction($seller_id)
+    {
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($seller_id);
+        $company_oversea_offices = $company_profile->getOverseaOffices();
+        return $this->render('AseagleBundle:CompanyOverseaOffice:show_all.html.twig', array('company_profile' => $company_profile, 'oversea_offices' => $company_oversea_offices));
+    }
 }

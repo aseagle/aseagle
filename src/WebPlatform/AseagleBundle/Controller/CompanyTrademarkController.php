@@ -82,4 +82,10 @@ class CompanyTrademarkController extends Controller
         return $this->redirect($this->generateUrl('seller_company_trademark_index',array('seller_id'=>$company_trademark->getCompany()->getId())));
     }
 
+    public function show_allAction($seller_id)
+    {
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($seller_id);
+        $company_trademarks = $company_profile->getCompanyTrademarks();
+        return $this->render('AseagleBundle:CompanyTrademark:show_all.html.twig', array('company_profile' => $company_profile, 'trademarks' => $company_trademarks));
+    }
 }

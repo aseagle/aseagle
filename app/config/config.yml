@@ -28,6 +28,9 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        image_source_path: "%image_source_path%"
+        image_helper: "@image_helper"
 
 # Assetic Configuration
 assetic:

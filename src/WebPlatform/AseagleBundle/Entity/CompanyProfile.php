@@ -370,6 +370,11 @@ class CompanyProfile
      */
     protected $purchase_managements;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="company")
+     */
+    protected $products;
+
     public function __construct()
     {
         $this->company_customers = new ArrayCollection();
@@ -382,9 +387,8 @@ class CompanyProfile
         $this->staffs = new ArrayCollection();
         $this->company_categories = new ArrayCollection();
         $this->purchase_managements = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
-
-    
 
 
     /**
@@ -1767,5 +1771,39 @@ class CompanyProfile
     public function getPurchaseManagements()
     {
         return $this->purchase_managements;
+    }
+
+    /**
+     * Add product
+     *
+     * @param \WebPlatform\AseagleBundle\Entity\Product $product
+     *
+     * @return CompanyProfile
+     */
+    public function addProduct(\WebPlatform\AseagleBundle\Entity\Product $product)
+    {
+        $this->products[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param \WebPlatform\AseagleBundle\Entity\Product $product
+     */
+    public function removeProduct(\WebPlatform\AseagleBundle\Entity\Product $product)
+    {
+        $this->products->removeElement($product);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProducts()
+    {
+        return $this->products;
     }
 }

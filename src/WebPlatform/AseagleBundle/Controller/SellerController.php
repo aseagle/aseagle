@@ -141,7 +141,26 @@ class SellerController extends Controller
     public function showAction($id, Request $request)
     {
         $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($id);
+        $pic = $this->get('image_helper')->generate_image_url($company_profile->getPicture());
+        return $this->render('AseagleBundle:Seller:show.html.twig', array(
+            'company_profile' => $company_profile, 'pic' => $pic
+        ));
+    }
 
+    public function show_trading_infoAction($id, Request $request)
+    {
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($id);
+        $pic = $this->get('image_helper')->generate_image_url($company_profile->getPicture());
+        return $this->render('AseagleBundle:Seller:show_trading_info.html.twig', array(
+            'company_profile' => $company_profile, 'pic' => $pic
+        ));
+    }
 
+    public function welcomeAction($id, Request $request)
+    {
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($id);
+        return $this->render('AseagleBundle:Seller:welcome.html.twig', array(
+            'company_profile' => $company_profile
+        ));
     }
 }

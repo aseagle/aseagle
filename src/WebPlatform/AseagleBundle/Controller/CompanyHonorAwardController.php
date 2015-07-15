@@ -82,4 +82,10 @@ class CompanyHonorAwardController extends Controller
         return $this->redirect($this->generateUrl('seller_company_honor_award_index',array('seller_id'=>$company_honor_award->getCompany()->getId())));
     }
 
+    public function show_allAction($seller_id)
+    {
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($seller_id);
+        $company_awards = $company_profile->getCompanyHonorAwards();
+        return $this->render('AseagleBundle:CompanyHonorAward:show_all.html.twig', array('company_profile' => $company_profile, 'awards' => $company_awards));
+    }
 }
