@@ -4,6 +4,7 @@ parameters:
      image_helper.class: WebPlatform\AseagleBundle\Services\ImageHelper
      global_helper.class: WebPlatform\AseagleBundle\Services\GlobalHelper
      message_helper.class: WebPlatform\AseagleBundle\Services\MessageHelper
+     category_helper.class: WebPlatform\AseagleBundle\Services\CategoryHelper
 services:
 #    aseagle.example:
 #        class: %aseagle.example.class%
@@ -16,4 +17,8 @@ services:
      global_helper:
          class: "%global_helper.class%"
      message_helper:
-              class: "%message_helper.class%"
+         class: "%message_helper.class%"
+     category_helper:
+         class: "%category_helper.class%"
+         arguments:    [@doctrine.orm.entity_manager]
+

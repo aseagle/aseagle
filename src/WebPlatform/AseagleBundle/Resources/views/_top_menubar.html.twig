@@ -1,6 +1,5 @@
 <div id="top_bar" class="navbar navbar-xs yamm navbar-default navbar-fixed-top bar-header" style="background: none repeat scroll 0 0 #113f0f">
     <!--div class="container"-->
-
     <div id="navbar-collapse-1" class="navbar-collapse collapse">
         <ul class="nav navbar-nav" style="float: right; padding-right: 20px;">
             <li class="dropdown">
@@ -52,38 +51,73 @@
         <ul class="nav navbar-nav">
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Menu<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">a</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">a1</a></li>
-                            <li><a href="#">a2</a></li>
-                            <li><a href="#">a3</a></li>
-                            <li><a href="#">a4</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">b</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">b1</a></li>
-                            <li><a href="#">b2</a></li>
-                            <li><a href="#">b3</a></li>
-                            <li><a href="#">b4</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">c</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">c1</a></li>
-                            <li><a href="#">c2</a></li>
-                            <li><a href="#">c3</a></li>
-                            <li><a href="#">c4</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">d</a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">d1</a></li>
-                            <li><a href="#">d2</a></li>
-                            <li><a href="#">d3</a></li>
-                            <li><a href="#">d4</a></li>
-                        </ul>
-                    </li>
+                    {% for cat in cats %}
+                        {% if loop.index <= 14 %}
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ cat.name|capitalize  }}</a>
+                                <ul class="dropdown-menu">
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            {% for subcat in cat.children() %}
+                                                {% if loop.index%10 == 1 %}
+                                                    <ul class="col-sm-2 list-unstyled" style="float: none; display: table-cell">
+                                                    <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                    <!--
+                                                        <li>
+                                                            <p>
+                                                                <strong>Section Title</strong>
+                                                            </p>
+                                                        </li>
+                                                        -->
+                                                {% elseif loop.index%10 == 0 or loop.index == cat.children()|length%}
+                                                    <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                    </ul>
+                                                {% else%}
+                                                    <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </ul>
+                            </li>
+                        {% elseif loop.index == 15  %}
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">More Categories</a>
+                                <ul class="dropdown-menu">
+                                    <div class="yamm-content">
+                                        <div class="row">
+                                            <ul class="col-sm-2 list-unstyled">
+                                                <li>
+                                                    <p>
+                                                        <strong>{{ cat.name|capitalize }}</strong>
+                                                    </p>
+                                                </li>
+                                                {% for subcat in cat.children() %}
+                                                    <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                {% endfor %}
+                        {% elseif loop.index == cats|length  %}
+                                                <li>
+                                                    <p>
+                                                        <strong>{{ cat.name|capitalize }}</strong>
+                                                    </p>
+                                                </li>
+                                                {% for subcat in cat.children() %}
+                                                    <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li>
+                                <p>
+                                    <strong>{{ cat.name|capitalize }}</strong>
+                                </p>
+                            </li>
+                            {% for subcat in cat.children() %}
+                                <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
                 </ul>
             </li>
             <!-- Grid 12 Menu -->
