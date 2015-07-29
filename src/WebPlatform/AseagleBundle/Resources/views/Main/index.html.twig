@@ -62,7 +62,7 @@
     <script>
         $(document).ready(function() {
             $.ajax({url:"left_side_bar/{{cat_id}}", async: false, type: "GET",success:function(result){
-                //console.log(JSON.stringify(result));
+                console.log(JSON.stringify(result));
                 _ajax_cat_filter_json = result;
             }});
 
