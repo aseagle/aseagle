@@ -168,3 +168,24 @@ label.required:after {
     width: 30%;
     margin: auto;
 }
+
+.layout-footer {
+    background: #046100 none repeat scroll 0 0;
+    color: white;
+}
+
+.layout-footer a {
+    color: white;
+    cursor: hand;
+    cursor: pointer;
+}
+
+.layout-footer a:hover {
+    text-decoration: none;
+    color: #3abec0;
+}
+.layout-footer a:focus {
+    outline: none;
+    color: #3abec0;
+    text-decoration: none;
+}

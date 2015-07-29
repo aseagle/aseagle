@@ -146,7 +146,8 @@ class MainController extends Controller
                     'v' => $product->getOwner()->getCompany()->getIsVerified(),
                     'm' => $product->getOwner()->getCompany()->getMemberType(),
                     'm_m' => $product->getOwner()->getCompany()->getMainMarketsDistribution(),
-                    'm_p' => array_map(create_function('$o', 'return $o->getCategoryId();'), $product->getOwner()->getCompany()->getCompanyCategories()->toArray())
+                    'm_p' => array_map(create_function('$o', 'return $o->getCategoryId();'), $product->getOwner()->getCompany()->getCompanyCategories()->toArray()),
+                    'link' => $this->generateUrl('show_seller', array('id' => $product->getOwner()->getCompany()->getId()))
                     ),
                 'cmt' => $product->getComment() == null ? array() : ($product->getComment() == "" ? array() : array($product->getComment())),
                 'd' => $product_detail

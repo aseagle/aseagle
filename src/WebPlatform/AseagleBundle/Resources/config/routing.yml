@@ -155,6 +155,14 @@ show_seller:
     path:     /seller/{id}/show
     defaults: { _controller: AseagleBundle:Seller:show }
 
+show_trading_info_seller:
+    path:     /seller/{id}/show_trading_info
+    defaults: { _controller: AseagleBundle:Seller:show_trading_info }
+
+welcome_seller:
+    path:     /seller/{id}/welcome
+    defaults: { _controller: AseagleBundle:Seller:welcome }
+
 #seller company_customer
 seller_company_customer_index:
     path:     seller/{seller_id}/company_customer
@@ -189,6 +197,10 @@ seller_company_oversea_office_destroy:
     path:     seller/{seller_id}/company_oversea_office/{id}/destroy
     defaults: { _controller: AseagleBundle:CompanyOverseaOffice:destroy }
 
+seller_company_oversea_office_show_all:
+    path:     seller/{seller_id}/company_oversea_office/show_all
+    defaults: { _controller: AseagleBundle:CompanyOverseaOffice:show_all }
+
 #seller company_factory
 seller_company_factory_index:
     path:     seller/{seller_id}/company_factory
@@ -205,6 +217,10 @@ seller_company_factory_edit:
 seller_company_factory_destroy:
     path:     seller/{seller_id}/company_factory/{id}/destroy
     defaults: { _controller: AseagleBundle:CompanyFactory:destroy }
+
+seller_company_factory_show_all:
+    path:     seller/{seller_id}/company_factory/show_all
+    defaults: { _controller: AseagleBundle:CompanyFactory:show_all }
 
 #seller company_certification
 seller_company_certification_index:
@@ -223,6 +239,10 @@ seller_company_certification_destroy:
     path:     seller/{seller_id}/company_certification/{id}/destroy
     defaults: { _controller: AseagleBundle:CompanyCertification:destroy }
 
+seller_company_certification_show_all:
+    path:     seller/{seller_id}/company_certification/show_all
+    defaults: { _controller: AseagleBundle:CompanyCertification:show_all }
+
 #seller company_honor_award
 seller_company_honor_award_index:
     path:     seller/{seller_id}/company_honor_award
@@ -239,6 +259,10 @@ seller_company_honor_award_edit:
 seller_company_honor_award_destroy:
     path:     seller/{seller_id}/company_honor_award/{id}/destroy
     defaults: { _controller: AseagleBundle:CompanyHonorAward:destroy }
+
+seller_company_honor_award_show_all:
+    path:     seller/{seller_id}/company_honor_award/show_all
+    defaults: { _controller: AseagleBundle:CompanyHonorAward:show_all }
 
 #seller company_trademark
 seller_company_trademark_index:
@@ -257,6 +281,10 @@ seller_company_trademark_destroy:
     path:     seller/{seller_id}/company_trademark/{id}/destroy
     defaults: { _controller: AseagleBundle:CompanyTrademark:destroy }
 
+seller_company_trademark_show_all:
+    path:     seller/{seller_id}/company_trademark/show_all
+    defaults: { _controller: AseagleBundle:CompanyTrademark:show_all }
+
 #seller company_patent
 seller_company_patent_index:
     path:     seller/{seller_id}/company_patent
@@ -273,6 +301,10 @@ seller_company_patent_edit:
 seller_company_patent_destroy:
     path:     seller/{seller_id}/company_patent/{id}/destroy
     defaults: { _controller: AseagleBundle:CompanyPatent:destroy }
+
+seller_company_patent_show_all:
+    path:     seller/{seller_id}/company_patent/show_all
+    defaults: { _controller: AseagleBundle:CompanyPatent:show_all }
 
 #purchase controller
 create_buying_request:

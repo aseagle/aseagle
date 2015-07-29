@@ -82,4 +82,11 @@ class CompanyPatentController extends Controller
         return $this->redirect($this->generateUrl('seller_company_patent_index',array('seller_id'=>$company_patent->getCompany()->getId())));
     }
 
+    public function show_allAction($seller_id)
+    {
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($seller_id);
+        $company_patents = $company_profile->getCompanyPatents();
+        return $this->render('AseagleBundle:CompanyPatent:show_all.html.twig', array('company_profile' => $company_profile, 'patents' => $company_patents));
+    }
+
 }

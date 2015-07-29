@@ -45,10 +45,11 @@ class ProductController extends Controller
         $em = $this->getDoctrine()->getManager();
         $cat = $em->getRepository('AseagleBundle:Category')->find($cat_id);
         $owner = $em->getRepository('AseagleBundle:User')->find($user->getId());
-
+        $company = $owner->getCompany();
         $product = new Product();
         $product->setCategory($cat);
         $product->setOwner($owner);
+        $product->setCompany($company);
         if($request->request->get('title') != ""){
             $product->setTitle($request->request->get('title'));
         }

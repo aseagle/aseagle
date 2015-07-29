@@ -86,4 +86,10 @@ class CompanyCertificationController extends Controller
         return $this->redirect($this->generateUrl('seller_company_certification_index', array('seller_id'=>$company_certification->getCompany()->getId())));
     }
 
+    public function show_allAction($seller_id)
+    {
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($seller_id);
+        $company_certifications = $company_profile->getCompanyCertifications();
+        return $this->render('AseagleBundle:CompanyCertification:show_all.html.twig', array('company_profile' => $company_profile, 'certifications' => $company_certifications));
+    }
 }

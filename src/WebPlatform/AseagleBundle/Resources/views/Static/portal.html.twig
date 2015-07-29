@@ -28,14 +28,14 @@
                         <ul class="left-bar" style="display: block; border: 1px solid rgba(0, 0, 0, 0.15);border-radius: 4px; width: 90%;padding: 5px 0;">
                             {% for cat in cats %}
                                 {% if loop.index <= 14 %}
-                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ cat.name }}</a>
+                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ cat.name|capitalize }}</a>
                                         <ul class="dropdown-menu">
                                             <div class="yamm-content">
                                                 <div class="row">
                                                     {% for subcat in cat.children() %}
                                                         {% if loop.index%10 == 1 %}
                                                             <ul class="col-sm-2 list-unstyled">
-                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
                                                             <!--
                                                                 <li>
                                                                     <p>
@@ -44,10 +44,10 @@
                                                                 </li>
                                                                 -->
                                                         {% elseif loop.index%10 == 0 or loop.index == cat.children()|length%}
-                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
                                                             </ul>
                                                         {% else%}
-                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
                                                         {% endif %}
                                                     {% endfor %}
                                                 </div>
@@ -62,20 +62,20 @@
                                                     <ul class="col-sm-2 list-unstyled">
                                                         <li>
                                                             <p>
-                                                                <strong>{{ cat.name }}</strong>
+                                                                <strong>{{ cat.name|capitalize }}</strong>
                                                             </p>
                                                         </li>
                                                     {% for subcat in cat.children() %}
-                                                        <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                        <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
                                                     {% endfor %}
                                 {% elseif loop.index == cats|length  %}
                                                         <li>
                                                             <p>
-                                                                <strong>{{ cat.name }}</strong>
+                                                                <strong>{{ cat.name|capitalize }}</strong>
                                                             </p>
                                                         </li>
                                                         {% for subcat in cat.children() %}
-                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
                                                         {% endfor %}
                                                     </ul>
                                                 </div>
@@ -85,11 +85,11 @@
                                 {% else %}
                                         <li>
                                             <p>
-                                                <strong>{{ cat.name }}</strong>
+                                                <strong>{{ cat.name|capitalize }}</strong>
                                             </p>
                                         </li>
                                         {% for subcat in cat.children() %}
-                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name }}</a></li>
+                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
                                         {% endfor %}
                                 {% endif %}
                             {% endfor %}

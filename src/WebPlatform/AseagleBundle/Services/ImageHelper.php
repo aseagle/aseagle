@@ -10,8 +10,16 @@ namespace WebPlatform\AseagleBundle\Services;
 
 
 class ImageHelper {
-    public function generate_image_url($str_images, $root) {
 
+    protected  $image_source_path;
+
+    public function __construct($kernel)
+    {
+        $this->image_source_path = $kernel->getContainer()->getParameter('image_source_path');
+    }
+
+    public function generate_image_url($str_images) {
+        $root = $this->image_source_path;
         $result = array();
         if(isset($str_images) && $str_images != ""){
             $images = explode(";", $str_images);
@@ -79,13 +87,15 @@ class ImageHelper {
         return $result;
     }
 
-    public function generate_one_large_image_url($str_images, $root) {
+    public function generate_one_large_image_url($str_images) {
 
         $result = '';
         if(isset($str_images) && $str_images != ""){
             $images = explode(";", $str_images);
-            $result = $result.($root.dirname($images[0])."/".basename($images[0]));
+            $result = $result.($this->image_source_path.dirname($images[0])."/".basename($images[0]));
         }
         return $result;
     }
+
+
 } 
