@@ -468,11 +468,12 @@ _AsgMainBuilder.MainContent = ( function() {
 			// ------ product_head_image_row_seller_detail
 			var product_head_image_row_seller_detail = $('<div/>')
 			 .addClass('col-xs-4 col-sm-4 card-heading-header').appendTo(product_head_image_row);
-				$('<h3><a class="company-hover-label" href="'+product_json.sup.link+'">'+product_json.sup.n+'<div style="display:none;"></div></a>   <span class="glyphicon glyphicon-check" aria-hidden="true"></span></h3>').appendTo(product_head_image_row_seller_detail);
+				var seller_verified_icon = product_json.sup.v ? '<span class="glyphicon glyphicon-check" aria-hidden="true"></span>' : '';
+				$('<h3><a class="company-hover-label" href="'+product_json.sup.link+'">'+product_json.sup.n+'<div style="display:none;"></div></a>   '+seller_verified_icon+'</h3>').appendTo(product_head_image_row_seller_detail);
 				$('<h3>('+_AsgUtil.Mapping.getCountryName(product_json.sup.c)+')</h3>').appendTo(product_head_image_row_seller_detail);
-				$('<h3>('+_AsgUtil.Mapping.getCountryName(product_json.sup.c)+')</h3>').appendTo(product_head_image_row_seller_detail);
-				$('<h3>('+_AsgUtil.Mapping.getCountryName(product_json.sup.c)+')</h3>').appendTo(product_head_image_row_seller_detail);
-				$('<h3></h3>').appendTo(product_head_image_row_seller_detail);
+				$('<h3>('+product_json.sup.m_m+')</h3>').appendTo(product_head_image_row_seller_detail);
+				$('<h3>('+JSON.stringify(product_json.sup.m_p)+')</h3>').appendTo(product_head_image_row_seller_detail);
+				$('<br><br><br>').appendTo(product_head_image_row_seller_detail);
 				var product_head_image_row_seller_detail_button = $('<div/>');
 				product_head_image_row_seller_detail_button.appendTo(product_head_image_row_seller_detail);
 					$('<button type="button" class="btn btn-primary btn-xs hover-btn" onclick="myFunction()">Request Quotation</button>').appendTo(product_head_image_row_seller_detail_button);
