@@ -101,13 +101,15 @@ class MainController extends Controller
 
         //$mapping_helper = $this->get('mapping_helper');
         $category_id = $request->get('category_id');
+        $category = $this->getDoctrine()->getRepository('AseagleBundle:Category')->find($category_id);
         $last_index = $request->query->get('last_id');
         $search_string = $request->query->get('search_string');
         $country_id = $request->query->get('country');
 
         $products = $this->getDoctrine()->getRepository('AseagleBundle:Product')->createQueryBuilder('p')
-            ->where('p.category_id = :category_id '.($country_id != "" ? " and p.place_of_origin = ".$country_id : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ))
-            ->setParameter('category_id', $category_id)
+            ->where('p.category_id >= :lft and p.category_id <= :rgt '.($country_id != "" ? " and p.place_of_origin = ".$country_id : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ))
+            ->setParameter('lft', $category->getLft())
+            ->setParameter('rgt', $category->getRgt())
             ->getQuery()
             ->getResult();
 
