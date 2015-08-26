@@ -24,7 +24,9 @@
     {% javascripts '@AseagleBundle/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-
+    {% javascripts 'bundles/libs/vendor/bootstrap/js/modernizr-2.6.2-respond-1.1.0.min.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
     <script src="{{ asset('bundles/libs/vendor/bootstrap/js/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 
     <!-- local head libs -->
