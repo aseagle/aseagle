@@ -21,23 +21,10 @@
     {% block local_css %}{% endblock %}
 
 	<!-- global libs -->
-    {% stylesheets
-    'bundles/libs/vendor/bootstrap/css/bootstrap.min.css'
-    'bundles/libs/vendor/bootstrap/css/bootstrap-theme.min.css'
-    'bundles/libs/vendor/bootstrap/css/offcanvas.css'
-    'bundles/libs/vendor/yamm/yamm.css'
-    'bundles/libs/css/style.css'
-    'bundles/libs/vendor/datetimepicker/css/bootstrap-datetimepicker.min.css'
-    'bundles/libs/vendor/bootstrap-wysihtml5/bootstrap-wysihtml5.css'
-    filter='cssrewrite' %}
-        <link rel="stylesheet" href="{{ asset_url }}" />
-    {% endstylesheets %}
-    {% javascripts '@AseagleBundle/Resources/public/js/*' %}
+        {% javascripts '@AseagleBundle/Resources/public/js/*' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
-    {% javascripts 'bundles/libs/vendor/bootstrap/js/modernizr-2.6.2-respond-1.1.0.min.js' %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+
     <script src="{{ asset('bundles/libs/vendor/bootstrap/js/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
 
     <!-- local head libs -->
@@ -109,17 +96,6 @@
     </footer>
 
     <!-- global libs -->
-    {% javascripts
-    'bundles/libs/vendor/bootstrap/js/bootstrap.min.js'
-    'bundles/libs/vendor/bootstrap/js/offcanvas.js'
-    'bundles/libs/js/require.js'
-    'bundles/libs/vendor/datetimepicker/js/bootstrap-datetimepicker.min.js'
-    'bundles/libs/vendor/bootstrap-wysihtml5/wysihtml5-0.3.0.js'
-    'bundles/libs/vendor/bootstrap-wysihtml5/bootstrap3-wysihtml5.js'
-    'bundles/libs/js/_util/util.js'
-    'bundles/libs/js/_util/mapping_en.js'%}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
     <script src="{{ asset('bundles/libs/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('bundles/libs/vendor/bootstrap/js/offcanvas.js') }}"></script>
     <script src="{{ asset('bundles/libs/js/require.js') }}"></script>
