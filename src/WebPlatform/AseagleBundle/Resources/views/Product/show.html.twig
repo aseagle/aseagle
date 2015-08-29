@@ -24,36 +24,51 @@
                         </div>
                         <div class="col-md-6">
                             <div class="caption-full">
-                                <h4><a href="#">{{ n }}</a>
+                                <h4><a href="#">{{ product_info.n }}</a>
                                 </h4>
                                 <table class="w100">
-                                    <tr><td class="col-name lh20 w25">FOB Price:</td><td>{{ pr }}</td></tr>
-                                    <tr><td class="col-name lh20">Min.Order Quantity:</td><td>{{ m_o }}</td></tr>
-                                    <tr><td class="col-name lh20">Supply Ability:</td><td>{{ s_a }}</td></tr>
-                                    <tr><td class="col-name lh20">Port:</td><td>{{ port }}</td></tr>
-                                    <tr><td class="col-name lh20">Payment Terms:</td><td>{{ pay }}</td></tr>
+                                    <tr><td class="col-name lh20 w25">FOB Price:</td><td>{{ product_info.pr }}</td></tr>
+                                    <tr><td class="col-name lh20">Min.Order Quantity:</td><td>{{ product_info.m_o }}</td></tr>
+                                    <tr><td class="col-name lh20">Supply Ability:</td><td>{{ product_info.s_a }}</td></tr>
+                                    <tr><td class="col-name lh20">Port:</td><td>{{ product_info.port }}</td></tr>
+                                    <tr><td class="col-name lh20">Payment Terms:</td><td>{{ product_info.pay }}</td></tr>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <div class="detail-info table-div-full">
-                        <div class="mapping-info">
-                            <h4>Quick Details</h4>
-                            <div class="content">
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#product_specification">Product Specification</a></li>
+                        <li><a data-toggle="tab" href="#company_profile">Company Profile</a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="product_specification" class="tab-pane fade in active">
+                            <div class="detail-info table-div-full">
+                                <div class="mapping-info">
+                                    <h4>Quick Details</h4>
+                                    <div class="content">
+                                    </div>
+                                </div>
+                                <div class="border-top">
+                                    <h4>Packaging & Delivery</h4>
+                                    <div>
+                                        <p>{{ product_info.d_t }}</p>
+                                        <p>{{ product_info.p_d }}</p>
+                                    </div>
+                                </div>
+                                <div class="border-top">
+                                    <h4>Specifications</h4>
+                                    {{ product_info.spec }}
+                                </div>
                             </div>
                         </div>
-                        <div>
-                            <h4>Packaging & Delivery</h4>
-                            <div>
-                                <p>{{ d_t }}</p>
-                                <p>{{ p_d }}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <h4>Specifications</h4>
-                            {{ spec }}
+                        <div id="company_profile" class="tab-pane fade">
+                            {% include 'AseagleBundle:Seller:_show_form.html.twig' %}
                         </div>
                     </div>
+
+
                 </div>
 
                 <div class="well">
@@ -129,7 +144,7 @@
 
 {% block local_footer_libs %}
     <script>
-        var _json_product = $.parseJSON('{{ json | raw }}');
+        var _json_product = $.parseJSON('{{ product_info.json | raw }}');
     </script>
     <script src="{{ asset('bundles/libs/js/product_detail/product_detail.js') }}"></script>
     <script src="{{ asset('bundles/libs/vendor/elevatezoom/jquery.elevateZoom-3.0.8.min.js') }}"></script>

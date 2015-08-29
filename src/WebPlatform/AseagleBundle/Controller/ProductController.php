@@ -274,7 +274,14 @@ class ProductController extends Controller
         $product_info['s_a'] = $product->getSupplyAbility() != null ? ($product->getSupplyAbility() + " " + $product->getSupplyAbilityUnit() + '/' + $product->getSupplyAbilityUnit()) : null;
         $product_info['d_t'] = $product->getDeliverTime();
         $product_info['p_d'] = $product->getPackaging();
-        return $this->render('AseagleBundle:Product:show.html.twig', $product_info);
+
+        //get company info
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($product->getCompany()->getId());
+        $pic = $this->get('image_helper')->generate_image_url($company_profile->getPicture());
+
+        return $this->render('AseagleBundle:Product:show.html.twig', array(
+            'product_info' => $product_info, 'company_profile' => $company_profile, 'pic' => $pic
+        ));
     }
 
     public static function notEmptyOrNull($value){
