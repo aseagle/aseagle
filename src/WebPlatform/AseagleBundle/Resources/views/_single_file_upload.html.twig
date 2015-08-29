@@ -110,7 +110,7 @@
     <script>
         $( document ).ready( function(){
             // Load existing files:
-            var root_path = '/aseagle/web/files/';
+            var root_path = '{{ image_source_path }}';
             var path = $('#form_image').val().replace(/[^\/]*$/, '');
             var filename = $('#form_image').val().replace(/^.*[\\\/]/, '');
             if($('#form_image').val().length){
