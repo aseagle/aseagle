@@ -51,9 +51,9 @@ class ImageHelper {
                 $filename = basename($image);
                 $dirname = dirname($image);
                 if ($result == ''){
-                $result = $result.($root.$dirname."/thumbnail/".$filename);
+                $result = $result.($this->image_source_path.$dirname."/thumbnail/".$filename);
                 }else{
-                    $result = $result.','.($root.$dirname."/thumbnail/".$filename);
+                    $result = $result.','.($this->image_source_path.$dirname."/thumbnail/".$filename);
                 }
             }
         }
@@ -69,9 +69,9 @@ class ImageHelper {
                 $filename = basename($image);
                 $dirname = dirname($image);
                 if ($result == ''){
-                    $result = $result.($root.$dirname."/small/".$filename);
+                    $result = $result.($this->image_source_path.$dirname."/small/".$filename);
                 }else{
-                    $result = $result.','.($root.$dirname."/small/".$filename);
+                    $result = $result.','.($this->image_source_path.$dirname."/small/".$filename);
                 }
             }
         }
@@ -82,7 +82,7 @@ class ImageHelper {
         $result = '';
         if(isset($str_images) && $str_images != ""){
             $images = explode(";", $str_images);
-            $result = $result.($root.dirname($images[0])."/small/".basename($images[0]));
+            $result = $result.($this->image_source_path.dirname($images[0])."/small/".basename($images[0]));
         }
         return $result;
     }
