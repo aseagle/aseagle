@@ -77,7 +77,7 @@ class ImageHelper {
         }
         return $result;
     }
-    public function generate_one_small_image_url($str_images, $root) {
+    public function generate_one_small_image_url($str_images) {
 
         $result = '';
         if(isset($str_images) && $str_images != ""){

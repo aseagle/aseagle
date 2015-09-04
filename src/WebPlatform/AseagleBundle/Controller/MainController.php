@@ -129,13 +129,12 @@ class MainController extends Controller
             );
 
             $image_helper = $this->get('image_helper');
-            $root = "/aseagle/web/files/";
             array_push($mapped_products_info, array(
                 'id' => $product->getId(),
                 'cat_id' => $product->getCategoryId(),
                 'n' => $product->getTitle(),
                 'pl' => $product->getPlaceOfOrigin(),
-                'img' => $image_helper->generate_one_small_image_url($product->getPicture(),$root),
+                'img' => $image_helper->generate_one_small_image_url($product->getPicture()),
                 'pr' => $product->getPriceCurrency().$product->getPriceOrigin().'/'.$product->getPriceUnitType(),
                 'm_o' => $product->getMinOrder().' '.$product->getMinOrderUnitType(),
                 'port' => $product->getPort(),
@@ -218,13 +217,12 @@ class MainController extends Controller
             );
 
             $image_helper = $this->get('image_helper');
-            $root = "/aseagle/web/files/";
             array_push($mapped_products_info, array(
                 'id' => $product->getId(),
                 'cat_id' => $product->getCategoryId(),
                 'n' => $product->getTitle(),
                 'pl' => $product->getPlaceOfOrigin(),
-                'img' => $image_helper->generate_one_small_image_url($product->getPicture(),$root),
+                'img' => $image_helper->generate_one_small_image_url($product->getPicture()),
                 'pr' => $product->getPriceCurrency().$product->getPriceOrigin().'/'.$product->getPriceUnitType(),
                 'm_o' => $product->getMinOrder().' '.$product->getMinOrderUnitType(),
                 'port' => $product->getPort(),

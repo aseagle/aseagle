@@ -347,3 +347,6 @@ seller_get_buying_request_detail:
     path:     purchase/seller_get_buying_request_detail
     defaults: { _controller: AseagleBundle:Purchase:seller_get_buying_request_detail }
 
+create_get_quotation:
+    path:     product/{id}/purchase/create_get_quotation
+    defaults: { _controller: AseagleBundle:Purchase:create_get_quotation }

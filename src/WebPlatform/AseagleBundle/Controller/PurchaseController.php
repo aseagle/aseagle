@@ -97,6 +97,56 @@ class PurchaseController extends Controller
 
     }
 
+    public function create_get_quotationAction($id,Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('AseagleBundle:Product')->find($id);
+        $company = $product->getCompany();
+        $user = $this->getUser();
+        $buying_request = new BuyingRequest();
+        $buying_request->setProduct($product);
+        $buying_request->setTitle("I would like to have quotes of ".$product->getTitle());
+        $form = $this->createFormBuilder($buying_request)
+            ->add('title', 'text', array('label' => 'Title:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a title')))
+            ->add('buying_request_message', 'textarea', array('label' => 'Detail:', 'attr' => array('class'=>'form-control textarea-wysihtml5')) )
+            ->add('quantity', 'integer', array('label' => 'Quantity:', 'attr'=> array('class'=>'form-control input-md')))
+            ->add('quantity_type', 'text', array('label' => 'Quantity Type:', 'attr'=> array('class'=>'form-control input-md')) )
+            ->add('expired_date', 'collot_datetime', array('label' => 'Expired Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
+            ->add('save', 'submit', array('label' => 'Save', 'attr' => array('class' => 'btn btn-primary')))
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+            $buying_request->setBuyer($user);
+            $buying_request->setProduct($product);
+            $buying_request->setCategory($product->getCategory());
+            $buying_request->setStatus('pending');
+            $em->persist($buying_request);
+            $em->flush();
+
+            //send message
+            $message_helper = $this->get('message_helper');
+            $message_helper->sendMessage('','c_'.$company->getId(),'[Quotation Request] '.$buying_request->getTitle().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'),$buying_request->getBuyingRequestMessage().$buying_request->getQuantity().$buying_request->getQuantityType().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'), $user, $em);
+
+            //insert purchase management
+            $pm = new PurchaseManagement();
+            $pm->setCompany($company);
+            $pm->setBuyingRequest($buying_request);
+            $em->persist($pm);
+            $em->flush();
+
+            $this->get('session')->getFlashBag()->add('success', 'Quotation Request '.$buying_request->getTitle().' is created!');
+            return $this->redirect($this->generateUrl('buyer_get_buying_request'));
+        }else{
+            $image_helper = $this->get('image_helper');
+            $product->setPicture($image_helper->generate_one_small_image_url($product->getPicture()));
+            return $this->render('AseagleBundle:Purchase:get_quotation.html.twig', array(
+                'form' => $form->createView(),'product' => $product
+            ));
+        }
+
+    }
+
     public function create_quotationAction(Request $request, $purchase_id)
     {
         //get current user
