@@ -1,7 +1,7 @@
 {% extends 'AseagleBundle::layout.html.twig' %}
 {% form_theme form 'AseagleBundle:Form:fields.html.twig' %}
     {% block content %}
-        <h1>New Buying Request</h1>
+        <div><div class="col-md-2"></div><h1>New Buying Request</h1></div>
         {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}}) }}
         {{ form_errors(form) }}
         {{ form_widget(form) }}

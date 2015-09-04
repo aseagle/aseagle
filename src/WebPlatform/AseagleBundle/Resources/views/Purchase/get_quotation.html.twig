@@ -1,20 +1,22 @@
 {% extends 'AseagleBundle::layout.html.twig' %}
 {% form_theme form 'AseagleBundle:Form:fields.html.twig' %}
 {% block content %}
-    <h1>Get Quotation</h1>
-    {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}}) }}
-    <div class="form-group">
-        <label class="col-md-2"></label>
-        <div class="col-md-6">
-            <a href="{{ path('show_product',{id: product.id}) }}" target="_blank">
-                <img src="{{ product.picture }}" width="50" height="50" class="img-rounded" rel="popover" style="margin-right: 5px">
-                {{ product.title }}
-            </a>
+    <div class="container">
+        <div><div class="col-md-2"></div><h1>Get Quotation</h1></div>
+        {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}}) }}
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <a href="{{ path('show_product',{id: product.id}) }}" target="_blank">
+                    <img src="{{ product.picture }}" width="50" height="50" class="img-rounded" rel="popover" style="margin-right: 5px">
+                    {{ product.title }}
+                </a>
+            </div>
         </div>
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
     </div>
-    {{ form_errors(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}
 {% endblock %}
 {% block local_footer_libs %}
     <script>
