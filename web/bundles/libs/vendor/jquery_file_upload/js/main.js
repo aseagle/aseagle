@@ -18,6 +18,7 @@ $(function () {
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
+        //acceptFileTypes: /\.(gif|jpe?g|png)$/i,
 		autoUpload: true,
         url: '/aseagle/web/app.php/upload_file'
     });
