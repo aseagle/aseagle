@@ -33,6 +33,10 @@
                                     <tr><td class="col-name lh20">Port:</td><td>{{ product_info.port }}</td></tr>
                                     <tr><td class="col-name lh20">Payment Terms:</td><td>{{ product_info.pay }}</td></tr>
                                     <tr><td class="col-name lh20">Place of Origin:</td><td>{{ product_info.pl }}</td></tr>
+                                    <tr><td colspan="2">
+                                            <a href="{{ path("create_get_quotation",{id: product_info.id}) }}" class="btn btn-warning"  target="_blank">Request Quotation</a>
+                                            <a href="{{ path("contact_supplier", {id: company_profile.id}) }}" class="btn btn-default"  target="_blank">Contact Supplier</a>
+                                    </td></tr>
                                 </table>
                             </div>
                         </div>
@@ -68,10 +72,9 @@
                             {% include 'AseagleBundle:Seller:_show_form.html.twig' %}
                         </div>
                     </div>
-
-
                 </div>
 
+                <!--
                 <div class="well">
 
                     <div class="text-right">
@@ -123,6 +126,7 @@
                         </div>
                     </div>
                 </div>
+                -->
             </div>
         </div>
     </div>

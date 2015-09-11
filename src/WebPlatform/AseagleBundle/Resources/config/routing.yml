@@ -350,3 +350,7 @@ seller_get_buying_request_detail:
 create_get_quotation:
     path:     product/{id}/purchase/create_get_quotation
     defaults: { _controller: AseagleBundle:Purchase:create_get_quotation }
+
+contact_supplier:
+    path:     seller/{id}/contact_supplier
+    defaults: { _controller: AseagleBundle:Purchase:contact_supplier }

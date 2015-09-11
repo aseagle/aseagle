@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use WebPlatform\AseagleBundle\Entity\BuyingRequest;
 use WebPlatform\AseagleBundle\Entity\PurchaseManagement;
 use WebPlatform\AseagleBundle\Entity\Quotation;
+use WebPlatform\AseagleBundle\Entity\SentMessage;
 
 
 class PurchaseController extends Controller
@@ -144,6 +145,33 @@ class PurchaseController extends Controller
                 'form' => $form->createView(),'product' => $product
             ));
         }
+
+    }
+
+    public function contact_supplierAction($id,Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $company = $em->getRepository('AseagleBundle:CompanyProfile')->find($id);
+        $user = $this->getUser();
+        $sent_message = new SentMessage();
+        $form = $this->createFormBuilder($sent_message)
+            ->add('subject', 'text', array('label' => 'Title:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a subject')))
+            ->add('body', 'textarea', array('label' => 'Detail:', 'attr' => array('class'=>'form-control textarea-wysihtml5')) )
+            ->add('save', 'submit', array('label' => 'Send', 'attr' => array('class' => 'btn btn-primary')))
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isValid()) {
+
+            //send message
+            $message_helper = $this->get('message_helper');
+            $message_helper->sendMessage('','c_'.$company->getId(),$sent_message->getSubject(),$sent_message->getBody(), $user, $em);
+
+            $this->get('session')->getFlashBag()->add('success', 'Message is sent!');
+        }
+        return $this->render('AseagleBundle:Purchase:contact_supplier.html.twig', array(
+            'form' => $form->createView(),'company' => $company
+        ));
 
     }
 
