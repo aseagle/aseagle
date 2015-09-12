@@ -44,7 +44,7 @@ class Country
     private $count;
 
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="place_of_origin")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="country_of_origin")
      */
     protected $products;
 

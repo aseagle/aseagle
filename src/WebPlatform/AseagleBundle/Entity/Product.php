@@ -132,7 +132,14 @@ class Product
      * @ORM\Column(name="place_of_origin", type="integer", nullable=true)
      */
     private $place_of_origin = null;
-    
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="province_id", type="integer", nullable=true)
+     */
+    private $province_id = null;
+
     /**
      * @var integer
      *
@@ -514,6 +521,12 @@ class Product
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
     protected $company;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Country", inversedBy="products")
+     * @ORM\JoinColumn(name="place_of_origin", referencedColumnName="id")
+     */
+    protected $country_of_origin;
 
     /**
      * @ORM\OneToMany(targetEntity="ProductTag", mappedBy="product")
@@ -2326,5 +2339,53 @@ class Product
     public function getCompany()
     {
         return $this->company;
+    }
+
+    /**
+     * Set provinceId
+     *
+     * @param integer $provinceId
+     *
+     * @return Product
+     */
+    public function setProvinceId($provinceId)
+    {
+        $this->province_id = $provinceId;
+
+        return $this;
+    }
+
+    /**
+     * Get provinceId
+     *
+     * @return integer
+     */
+    public function getProvinceId()
+    {
+        return $this->province_id;
+    }
+
+    /**
+     * Set countryOfOrigin
+     *
+     * @param \WebPlatform\AseagleBundle\Entity\Country $countryOfOrigin
+     *
+     * @return Product
+     */
+    public function setCountryOfOrigin(\WebPlatform\AseagleBundle\Entity\Country $countryOfOrigin = null)
+    {
+        $this->country_of_origin = $countryOfOrigin;
+
+        return $this;
+    }
+
+    /**
+     * Get countryOfOrigin
+     *
+     * @return \WebPlatform\AseagleBundle\Entity\Country
+     */
+    public function getCountryOfOrigin()
+    {
+        return $this->country_of_origin;
     }
 }
