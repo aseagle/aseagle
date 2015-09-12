@@ -620,12 +620,12 @@ _AsgMainBuilder.MainContent = ( function() {
 			var product_head_image_row_seller_detail = $('<div/>')
 			 .addClass('col-xs-4 col-sm-4 card-heading-header').appendTo(product_head_image_row);
 				var seller_verified_icon = product_json.sup.v ? '<span class="glyphicon glyphicon-check" aria-hidden="true"></span>' : '';
-				$('<h3><a class="company-hover-label" href="'+product_json.sup.link+'">'+product_json.sup.n+'<div style="display:none;"></div></a>   '+seller_verified_icon+'</h3>').appendTo(product_head_image_row_seller_detail);
-				$('<h3>('+_AsgUtil.Mapping.getCountryName(product_json.sup.c)+')</h3>').appendTo(product_head_image_row_seller_detail);
-				$('<h3>Main market: '+product_json.sup.m_m+'</h3>').appendTo(product_head_image_row_seller_detail);
-				$('<h3>Main product: '+product_json.sup.m_p.toString()+'</h3>').appendTo(product_head_image_row_seller_detail);
+				$('<h3 class="title"><a class="company-hover-label" href="'+product_json.sup.link+'">'+product_json.sup.n+'<div style="display:none;"></div></a>   '+seller_verified_icon+'</h3>').appendTo(product_head_image_row_seller_detail);
+				$('<h3>(from '+_AsgUtil.Mapping.getCountryName(product_json.sup.c)+')</h3>').appendTo(product_head_image_row_seller_detail);
+				$('<h3 class="prop"><em>Main market:</em> '+product_json.sup.m_m+'</h3>').appendTo(product_head_image_row_seller_detail);
+				$('<h3 class="prop"><em>Main product:</em> '+product_json.sup.m_p.toString()+'</h3>').appendTo(product_head_image_row_seller_detail);
 				$('<br><br>').appendTo(product_head_image_row_seller_detail);
-				var product_head_image_row_seller_detail_button = $('<div/>');
+				var product_head_image_row_seller_detail_button = $('<div class="col-xs-12 pull-right"></div>');
 				product_head_image_row_seller_detail_button.appendTo(product_head_image_row_seller_detail);
 					$('<button type="button" class="btn btn-primary btn-xs hover-btn btn-block" onclick="request_quotation_modal()">Request Quotation</button>').appendTo(product_head_image_row_seller_detail_button);
 					$('<button type="button" class="btn btn-default btn-xs hover-btn btn-block" onclick="contact_supplier_modal()">Contact Supplier</button>').appendTo(product_head_image_row_seller_detail_button);

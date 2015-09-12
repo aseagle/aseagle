@@ -2929,7 +2929,7 @@ ul.box-filter span {
 }
 .box.productcarousel .carousel-controls a.carousel-control,
 #related .carousel-controls a.carousel-control {
-  background-image: url('/aseagle/web/bundles/framework/assets/carousel_control.png');
+  background-image: url('/bundles/framework/assets/carousel_control.png');
   background-color: #a44688;
   border-radius: 50%;
   width: 30px;
