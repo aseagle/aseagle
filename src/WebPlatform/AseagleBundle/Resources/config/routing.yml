@@ -4,6 +4,10 @@ aseagle_test:
     defaults: { _controller: AseagleBundle:Default:index }
 
 #the portal
+index:
+    path:     /
+    defaults: { _controller: AseagleBundle:Static:welcome }
+
 welcome:
     path:     /welcome
     defaults: { _controller: AseagleBundle:Static:welcome }
@@ -343,3 +347,10 @@ seller_get_buying_request_detail:
     path:     purchase/seller_get_buying_request_detail
     defaults: { _controller: AseagleBundle:Purchase:seller_get_buying_request_detail }
 
+create_get_quotation:
+    path:     product/{id}/purchase/create_get_quotation
+    defaults: { _controller: AseagleBundle:Purchase:create_get_quotation }
+
+contact_supplier:
+    path:     seller/{id}/contact_supplier
+    defaults: { _controller: AseagleBundle:Purchase:contact_supplier }

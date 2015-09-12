@@ -66,7 +66,7 @@ class CompanyCertificationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->flush();
 
-            $this->get('session')->getFlashBag()->add('success', 'Award '.$company_certification->getName().' is updated!');
+            $this->get('session')->getFlashBag()->add('success', 'Certificate '.$company_certification->getName().' is updated!');
             return $this->redirect($this->generateUrl('seller_company_certification_index', array('seller_id'=>$company_certification->getCompany()->getId())));
         }else{
             return $this->render('AseagleBundle:CompanyCertification:edit.html.twig', array(
@@ -82,7 +82,7 @@ class CompanyCertificationController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($company_certification);
         $em->flush();
-        $this->get('session')->getFlashBag()->add('success', 'Award '.$name.' is deleted!');
+        $this->get('session')->getFlashBag()->add('success', 'Certificate '.$name.' is deleted!');
         return $this->redirect($this->generateUrl('seller_company_certification_index', array('seller_id'=>$company_certification->getCompany()->getId())));
     }
 

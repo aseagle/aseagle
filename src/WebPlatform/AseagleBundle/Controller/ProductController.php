@@ -17,10 +17,9 @@ class ProductController extends Controller
     {
         $products = $this->getUser()->getProducts();
         $image_helper = $this->get('image_helper');
-        $root = "/aseagle/web/files/";
         foreach($products as $product)
         {
-            $product->setPicture($image_helper->generate_one_small_image_url($product->getPicture(),$root));
+            $product->setPicture($image_helper->generate_one_small_image_url($product->getPicture()));
         }
         //get current user
         $user = $this->getUser();
@@ -264,8 +263,8 @@ class ProductController extends Controller
             'id' => $product->getId(),
             'cat_id' => $product->getCategoryId(),
             'n' => $product->getTitle(),
-            'pr' => $product->getPriceOrigin(),
-            'm_o' => $product->getMinOrder(),
+            'pr' => ($product->getPriceOrigin() != null ? $product->getPriceOrigin()." ".$product->getPriceCurrency().($product->getPriceUnitType() != null ? "/".$product->getPriceUnitType() : "") : ""),
+            'm_o' => ($product->getMinOrder() != null ? $product->getMinOrder()." ".$product->getMinOrderUnitType() : ""),
             'port' => $product->getPort(),
             'pay' => $product->getPaymentTerms(),
             'cmt' => $product->getComment() == null ? array() : ($product->getComment() == "" ? array() : array($product->getComment())),
@@ -274,10 +273,18 @@ class ProductController extends Controller
         );
         $product_info['json'] = json_encode($product_info);
         $product_info['spec'] = $product->getSpecification();
-        $product_info['s_a'] = $product->getSupplyAbility() != null ? ($product->getSupplyAbility() + " " + $product->getSupplyAbilityUnit() + '/' + $product->getSupplyAbilityUnit()) : null;
+        $product_info['pl'] = $product->getPlaceOfOrigin();
+        $product_info['s_a'] = $product->getSupplyAbility() != null ? ($product->getSupplyAbility()." ".$product->getSupplyAbilityUnit().($product->getSupplyAbilityPerTime() != null ? '/'.$product->getSupplyAbilityPerTime() : "")) : "";
         $product_info['d_t'] = $product->getDeliverTime();
         $product_info['p_d'] = $product->getPackaging();
-        return $this->render('AseagleBundle:Product:show.html.twig', $product_info);
+
+        //get company info
+        $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($product->getCompany()->getId());
+        $pic = $this->get('image_helper')->generate_image_url($company_profile->getPicture());
+
+        return $this->render('AseagleBundle:Product:show.html.twig', array(
+            'product_info' => $product_info, 'company_profile' => $company_profile, 'pic' => $pic
+        ));
     }
 
     public static function notEmptyOrNull($value){

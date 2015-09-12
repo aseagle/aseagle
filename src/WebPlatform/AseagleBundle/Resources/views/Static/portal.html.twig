@@ -1,5 +1,5 @@
 {% extends 'AseagleBundle::layout.html.twig' %}
-{% block title %}Welcome{% endblock %}
+{% block title %}The Leading B2B Market Place for Agriculture Products{% endblock %}
 {% block local_css %}
     <link rel="stylesheet" href="{{ asset('bundles/libs/vendor/bootplus/css/bootplus.css') }}"
           xmlns="http://www.w3.org/1999/html"/>
@@ -28,14 +28,14 @@
                         <ul class="left-bar" style="display: block; border: 1px solid rgba(0, 0, 0, 0.15);border-radius: 4px; width: 90%;padding: 5px 0;">
                             {% for cat in cats %}
                                 {% if loop.index <= 14 %}
-                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ cat.name|capitalize }}</a>
+                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ cat.name|title }}</a>
                                         <ul class="dropdown-menu">
                                             <div class="yamm-content">
                                                 <div class="row">
                                                     {% for subcat in cat.children() %}
                                                         {% if loop.index%10 == 1 %}
                                                             <ul class="col-sm-2 list-unstyled">
-                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|title }}</a></li>
                                                             <!--
                                                                 <li>
                                                                     <p>
@@ -44,10 +44,10 @@
                                                                 </li>
                                                                 -->
                                                         {% elseif loop.index%10 == 0 or loop.index == cat.children()|length%}
-                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|title }}</a></li>
                                                             </ul>
                                                         {% else%}
-                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|title }}</a></li>
                                                         {% endif %}
                                                     {% endfor %}
                                                 </div>
@@ -62,20 +62,20 @@
                                                     <ul class="col-sm-2 list-unstyled">
                                                         <li>
                                                             <p>
-                                                                <strong>{{ cat.name|capitalize }}</strong>
+                                                                <strong>{{ cat.name|title }}</strong>
                                                             </p>
                                                         </li>
                                                     {% for subcat in cat.children() %}
-                                                        <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                        <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|title }}</a></li>
                                                     {% endfor %}
                                 {% elseif loop.index == cats|length  %}
                                                         <li>
                                                             <p>
-                                                                <strong>{{ cat.name|capitalize }}</strong>
+                                                                <strong>{{ cat.name|title }}</strong>
                                                             </p>
                                                         </li>
                                                         {% for subcat in cat.children() %}
-                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|title }}</a></li>
                                                         {% endfor %}
                                                     </ul>
                                                 </div>
@@ -85,11 +85,11 @@
                                 {% else %}
                                         <li>
                                             <p>
-                                                <strong>{{ cat.name|capitalize }}</strong>
+                                                <strong>{{ cat.name|title }}</strong>
                                             </p>
                                         </li>
                                         {% for subcat in cat.children() %}
-                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|capitalize }}</a></li>
+                                            <li><a href="{{path('main',{'category_id': subcat.id})}}">{{ subcat.name|title }}</a></li>
                                         {% endfor %}
                                 {% endif %}
                             {% endfor %}
@@ -101,15 +101,15 @@
                         <div class="carousel-inner">
                             {% for banner_product in banner_products %}
                                 <div class="item {% if loop.index == 1 %}active{% endif %}">
-                                    <a href="http://pavothemes.com"><img style="height: 380px" width="873" height="380" src="{{ banner_product.img }}" alt="{{ banner_product.n }}"></a>
+                                    <a href="{{ path('show_product',{id: banner_product.id}) }}"><img style="height: 380px" width="873" height="380" src="{{ banner_product.img }}" alt="{{ banner_product.n }}"></a>
                                     <div class="pav-caption slideExpandUp big-caption pink" style="top:85px;left:50px">
                                         {{ banner_product.n }}
                                     </div>
                                     <div class="pav-caption pullUp detail" style="top:238px;left:50px">
-                                        <a href="#" class="button">Detail<i class="fa fa-long-arrow-right"></i></a>
+                                        <a href="{{ path('show_product',{id: banner_product.id}) }}" class="button">Detail<i class="fa fa-long-arrow-right"></i></a>
                                     </div>
                                     <div class="pav-caption expandUp desc" style="top:130px;left:50px">
-                                        {{ banner_product.bd }}
+                                        {{ banner_product.bd | raw }}
                                     </div>
                                 </div>
                             {% endfor %}
@@ -158,17 +158,16 @@
                             <div class="product-block">
                                 <div class="image ">
                                     <div class="image_container">
-                                        <a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=43" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
+                                        <a href="{{ path('show_product',{id: banner_product.id}) }}" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
                                         <!-- Show Swap -->
                                     </div>
-                                    <a class="pav-colorbox cboxElement" href="index.php?route=themecontrol/product&amp;product_id=43"><span class="fa fa-eye"></span>Quick View</a>
                                     <div class="img-overlay"></div>
                                 </div>
                                 <div class="product-meta">
-                                    <div class="name"><a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=43">{{ banner_product.n }}</a></div>
+                                    <div class="name"><a href="{{ path('show_product',{id: banner_product.id}) }}">{{ banner_product.n }}</a></div>
                                     <!--div class="rating"><img src="http://demopavothemes.com/pav_floral/catalog/view/theme/pav_floral/image/stars-5.png" alt="text_reviews"></div-->
                                     <div class="description">
-                                        {{ banner_product.bd }}
+                                        {{ banner_product.bd | raw }}
                                     </div>
                                     <div class="price">
                                         {{ banner_product.pr }}
@@ -212,24 +211,23 @@
                                         <div class="image ">
                                             <!--span class="product-label-special label">Sale</span-->
                                             <div class="image_container">
-                                                <a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=42" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
+                                                <a href="{{ path('show_product',{id: banner_product.id}) }}" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
                                                 <!-- Show Swap -->
                                             </div>
-                                            <a class="pav-colorbox cboxElement" href="index.php?route=themecontrol/product&amp;product_id=42"><span class="fa fa-eye"></span>Quick View</a>
                                             <div class="img-overlay"></div>
                                         </div>
                                         <div class="product-meta">
-                                            <div class="name"><a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=42">{{ banner_product.n }}</a></div>
+                                            <div class="name"><a href="{{ path('show_product',{id: banner_product.id}) }}">{{ banner_product.n }}</a></div>
                                             <!--div class="rating"><img src="http://demopavothemes.com/pav_floral/catalog/view/theme/pav_floral/image/stars-4.png" alt="text_reviews"></div-->
                                             <div class="description">
-                                                {{ banner_product.bd }}
+                                                {{ banner_product.bd | raw }}
                                             </div>
                                             <div class="price">
                                                 <span class="price-old">{{ banner_product.pr }}</span> <span class="price-new">{{ banner_product.pr }}</span>
                                             </div>
-                                            <div class="cart"><button class="button" onclick="addToCart('42');">
+                                            <div class="cart"><button class="button" onclick="">
                                                     <span class="fa fa-shopping-cart icon"></span>
-                                                    <span>Add to Cart</span>
+                                                    <span>Similar Products</span>
                                                 </button>
                                             </div>
                                         </div>
@@ -270,24 +268,23 @@
                     <div class="image ">
                         <!--span class="product-label-special label">Sale</span-->
                         <div class="image_container">
-                            <a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=42" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
+                            <a href="{{ path('show_product',{id: banner_product.id}) }}" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
                             <!-- Show Swap -->
                         </div>
-                        <a class="pav-colorbox cboxElement" href="index.php?route=themecontrol/product&amp;product_id=42"><span class="fa fa-eye"></span>Quick View</a>
                         <div class="img-overlay"></div>
                     </div>
                     <div class="product-meta">
-                        <div class="name"><a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=42">{{ banner_product.n }}</a></div>
+                        <div class="name"><a href="{{ path('show_product',{id: banner_product.id}) }}">{{ banner_product.n }}</a></div>
                         <!--div class="rating"><img src="http://demopavothemes.com/pav_floral/catalog/view/theme/pav_floral/image/stars-4.png" alt="text_reviews"></div-->
                         <div class="description">
-                            {{ banner_product.bd }}
+                            {{ banner_product.bd | raw }}
                         </div>
                         <div class="price">
                             <span class="price-old">{{ banner_product.pr }}</span> <span class="price-new">{{ banner_product.pr }}</span>
                         </div>
-                        <div class="cart"><button class="button" onclick="addToCart('42');">
+                        <div class="cart"><button class="button" onclick="">
                                 <span class="fa fa-shopping-cart icon"></span>
-                                <span>Add to Cart</span>
+                                <span>Similar Products</span>
                             </button>
                         </div>
                     </div>
@@ -306,24 +303,23 @@
                         <div class="image ">
                             <!--span class="product-label-special label">Sale</span-->
                             <div class="image_container">
-                                <a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=42" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
+                                <a href="{{ path('show_product',{id: banner_product.id}) }}" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
                                 <!-- Show Swap -->
                             </div>
-                            <a class="pav-colorbox cboxElement" href="index.php?route=themecontrol/product&amp;product_id=42"><span class="fa fa-eye"></span>Quick View</a>
                             <div class="img-overlay"></div>
                         </div>
                         <div class="product-meta">
-                            <div class="name"><a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=42">{{ banner_product.n }}</a></div>
+                            <div class="name"><a href="{{ path('show_product',{id: banner_product.id}) }}">{{ banner_product.n }}</a></div>
                             <!--div class="rating"><img src="http://demopavothemes.com/pav_floral/catalog/view/theme/pav_floral/image/stars-4.png" alt="text_reviews"></div-->
                             <div class="description">
-                                {{ banner_product.bd }}
+                                {{ banner_product.bd | raw }}
                             </div>
                             <div class="price">
                                 <span class="price-old">{{ banner_product.pr }}</span> <span class="price-new">{{ banner_product.pr }}</span>
                             </div>
-                            <div class="cart"><button class="button" onclick="addToCart('42');">
+                            <div class="cart"><button class="button" onclick="">
                                     <span class="fa fa-shopping-cart icon"></span>
-                                    <span>Add to Cart</span>
+                                    <span>Similar Products</span>
                                 </button>
                             </div>
                         </div>
@@ -342,24 +338,23 @@
                         <div class="image ">
                             <!--span class="product-label-special label">Sale</span-->
                             <div class="image_container">
-                                <a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=42" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
+                                <a href="{{ path('show_product',{id: banner_product.id}) }}" class="img front"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
                                 <!-- Show Swap -->
                             </div>
-                            <a class="pav-colorbox cboxElement" href="index.php?route=themecontrol/product&amp;product_id=42"><span class="fa fa-eye"></span>Quick View</a>
                             <div class="img-overlay"></div>
                         </div>
                         <div class="product-meta">
-                            <div class="name"><a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=42">{{ banner_product.n }}</a></div>
+                            <div class="name"><a href="{{ path('show_product',{id: banner_product.id}) }}">{{ banner_product.n }}</a></div>
                             <!--div class="rating"><img src="http://demopavothemes.com/pav_floral/catalog/view/theme/pav_floral/image/stars-4.png" alt="text_reviews"></div-->
                             <div class="description">
-                                {{ banner_product.bd }}
+                                {{ banner_product.bd | raw }}
                             </div>
                             <div class="price">
                                 <span class="price-old">{{ banner_product.pr }}</span> <span class="price-new">{{ banner_product.pr }}</span>
                             </div>
-                            <div class="cart"><button class="button" onclick="addToCart('42');">
+                            <div class="cart"><button class="button">
                                     <span class="fa fa-shopping-cart icon"></span>
-                                    <span>Add to Cart</span>
+                                    <span>Similar Product</span>
                                 </button>
                             </div>
                         </div>
@@ -427,14 +422,13 @@
                     <div class="image">
                         <!--span class="product-label-special label">Sale</span-->
                         <a href="http://demopavothemes.com/pav_floral/image/catalog/demo/product-10.jpg" class="info-view colorbox product-zoom hidden-sm hidden-xs cboxElement" title="T-Shirt"><span class="fa fa-search-plus"></span></a>
-                        <a class="img" href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=48"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
+                        <a class="img" href="{{ path('show_product',{id: banner_product.id}) }}"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
                         <div class="quickview hidden-sm hidden-xs">
-                            <a class="iframe-link pav-colorbox" href="http://demopavothemes.com/pav_floral/index.php?route=themecontrol/product&amp;product_id=48" title="Quick View"><span class="fa fa-eye"></span>Quick View</a>
                         </div>
                         <div class="img-overlay"></div>
                     </div>
                     <div class="product-meta">
-                        <div class="name"><a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=48">{{ banner_product.n }}</a></div>
+                        <div class="name"><a href="{{ path('show_product',{id: banner_product.id}) }}">{{ banner_product.n }}</a></div>
                         <div class="rating">
                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
@@ -442,7 +436,7 @@
                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                             <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                         </div>
-                        <div class="description">{{ banner_product.bd }}</div>
+                        <div class="description">{{ banner_product.bd | raw }}</div>
                         <div class="group-item">
                             <div class="price" itemtype="http://schema.org/Offer" itemscope="">
                                 <span class="price-old">{{ banner_product.pr }}</span>
@@ -475,14 +469,13 @@
                         <div class="image">
                             <!--span class="product-label-special label">Sale</span-->
                             <a href="http://demopavothemes.com/pav_floral/image/catalog/demo/product-10.jpg" class="info-view colorbox product-zoom hidden-sm hidden-xs cboxElement" title="T-Shirt"><span class="fa fa-search-plus"></span></a>
-                            <a class="img" href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=48"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
+                            <a class="img" href="{{ path('show_product',{id: banner_product.id}) }}"><img width="263" style="height: 197px" src="{{ banner_product.img }}" title="{{ banner_product.n }}" alt="{{ banner_product.n }}" class="img-responsive"></a>
                             <div class="quickview hidden-sm hidden-xs">
-                                <a class="iframe-link pav-colorbox" href="http://demopavothemes.com/pav_floral/index.php?route=themecontrol/product&amp;product_id=48" title="Quick View"><span class="fa fa-eye"></span>Quick View</a>
                             </div>
                             <div class="img-overlay"></div>
                         </div>
                         <div class="product-meta">
-                            <div class="name"><a href="http://demopavothemes.com/pav_floral/index.php?route=product/product&amp;product_id=48">{{ banner_product.n }}</a></div>
+                            <div class="name"><a href="{{ path('show_product',{id: banner_product.id}) }}">{{ banner_product.n }}</a></div>
                             <!--div class="rating">
                                 <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                                 <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
@@ -490,7 +483,7 @@
                                 <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                                 <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
                             </div-->
-                            <div class="description">{{ banner_product.bd }}</div>
+                            <div class="description">{{ banner_product.bd | raw }}</div>
                             <div class="group-item">
                                 <div class="price" itemtype="http://schema.org/Offer" itemscope="">
                                     <span class="price-old">{{ banner_product.pr }}</span>

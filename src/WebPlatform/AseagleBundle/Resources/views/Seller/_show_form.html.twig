@@ -1,0 +1,73 @@
+<!-- Portfolio Item Heading -->
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Company Profile
+            <small>company short description</small>
+        </h1>
+    </div>
+</div>
+<!-- /.row -->
+
+<!-- Portfolio Item Row -->
+<div class="row">
+
+    <div class="col-md-6">
+        <img class="img-responsive" width="750" height="500" src="{{ pic[0].url }}" alt="">
+    </div>
+
+    <div class="col-md-6">
+        <h3>Basic Information</h3>
+        <ul>
+            <li>Membership Type: {{ company_profile.memberType }}</li>
+            {% if (company_profile.isVerified) %}<li>Verified</li>{% endif %}
+            <li>Company Type: {% if (company_profile.memberType) %}  Public {% else %} Private {% endif %}</li>
+            <li>Country: {{ company_profile.regCountry.name }}</li>
+            <li>Year Established: {{ company_profile.regYear|date("d/m/Y") }}</li>
+
+        </ul>
+        <h3>Trading Information</h3>
+        <ul>
+            <li>Main Market: {{ company_profile.mainMarketsDistribution }}</li>
+            <li>Main Products: {{ company_profile.mainProducts }}</li>
+            <li>Total sale volumn: {{ company_profile.totalSaleVolumn }}</li>
+        </ul>
+    </div>
+
+</div>
+<!-- /.row -->
+
+<!-- Related Projects Row -->
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <h3 class="page-header">Company Introduction</h3>
+        <div class="bs-callout bs-callout-warning" id="callout-form-validation-state-accessibility">
+            <span>{{ company_profile.detailIntroduction }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <h3 class="page-header">Company Advantage</h3>
+        <div class="bs-callout bs-callout-warning" id="callout-form-validation-state-accessibility">
+            <span>{{ company_profile.companyAdvantage }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">Photo Galery</h3>
+    </div>
+    {% for p in pic %}
+        <div class="col-sm-3 col-xs-6">
+            <a href="#" data-image="{{ p.smallUrl }}" data-zoom-image="{{ p.url }}">
+                <img class="img-responsive portfolio-item" width="500" height="300" src="{{ p.smallUrl }}" alt="">
+            </a>
+        </div>
+    {% endfor %}
+
+</div>

@@ -1,0 +1,39 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+{% form_theme form 'AseagleBundle:Form:fields.html.twig' %}
+{% block content %}
+    <div class="container">
+        <div><div class="col-md-2"></div><h1>Get Quotation</h1></div>
+        {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}}) }}
+        <div class="form-group">
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+                <a href="{{ path('show_product',{id: product.id}) }}" target="_blank">
+                    <img src="{{ product.picture }}" width="50" height="50" class="img-rounded" rel="popover" style="margin-right: 5px">
+                    {{ product.title }}
+                </a>
+            </div>
+        </div>
+        {{ form_errors(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+{% block local_footer_libs %}
+    <script>
+        $(document).ready(function() {
+            $(".img-rounded").popover({
+                trigger: 'hover',
+                placement : 'right', //placement of the popover. also can use top, bottom, left or right
+                title : '<div style="text-align:center; color:red; text-decoration:underline; font-size:14px;"> </div>', //this is the top title bar of the popover. add some basic css
+                html: 'true', //needed to show html of course
+                content : function () {
+                    return '<div id="popOverBox"><img src="'+$(this)[0].src + '" width="251" height="201" /></div>';//this is the content of the html box. add the image here or anything you want really.
+                }
+
+            });
+            function resizeInput() {
+                $(this).attr('size', $(this).val().length);
+            }
+        });
+    </script>
+{% endblock %}

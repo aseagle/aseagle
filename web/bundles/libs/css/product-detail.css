@@ -28,6 +28,11 @@
 
 .detail-info > div {
     margin-top: 20px;
+
+}
+
+.border-top
+{
     border-top: 1px solid #ddd;
 }
 
@@ -38,4 +43,8 @@ div#gallery{
 #show_gallery div#gallery img {
     display: inline;
     width: 84.5px;
+}
+
+.trading-info {
+    margin-bottom: 20px;
 }

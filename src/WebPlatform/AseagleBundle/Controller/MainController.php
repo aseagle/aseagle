@@ -102,13 +102,15 @@ class MainController extends Controller
 
         //$mapping_helper = $this->get('mapping_helper');
         $category_id = $request->get('category_id');
+        $category = $this->getDoctrine()->getRepository('AseagleBundle:Category')->find($category_id);
         $last_index = $request->query->get('last_id');
         $search_string = $request->query->get('search_string');
         $country_id = $request->query->get('country');
 
         $products = $this->getDoctrine()->getRepository('AseagleBundle:Product')->createQueryBuilder('p')
-            ->where('p.category_id = :category_id '.($country_id != "0" && $country_id != "" ? " and p.place_of_origin = ".$country_id : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ))
-            ->setParameter('category_id', $category_id)
+            ->where('p.category_id >= :lft and p.category_id <= :rgt '.($country_id != "" ? " and p.place_of_origin = ".$country_id : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ))
+            ->setParameter('lft', $category->getLft())
+            ->setParameter('rgt', $category->getRgt())
             ->getQuery()
             ->getResult();
 
@@ -128,13 +130,12 @@ class MainController extends Controller
             );
 
             $image_helper = $this->get('image_helper');
-            $root = "/aseagle/web/files/";
             array_push($mapped_products_info, array(
                 'id' => $product->getId(),
                 'cat_id' => $product->getCategoryId(),
                 'n' => $product->getTitle(),
                 'pl' => $product->getPlaceOfOrigin(),
-                'img' => $image_helper->generate_one_small_image_url($product->getPicture(),$root),
+                'img' => $image_helper->generate_one_small_image_url($product->getPicture()),
                 'pr' => $product->getPriceCurrency().$product->getPriceOrigin().'/'.$product->getPriceUnitType(),
                 'm_o' => $product->getMinOrder().' '.$product->getMinOrderUnitType(),
                 'port' => $product->getPort(),
@@ -217,13 +218,12 @@ class MainController extends Controller
             );
 
             $image_helper = $this->get('image_helper');
-            $root = "/aseagle/web/files/";
             array_push($mapped_products_info, array(
                 'id' => $product->getId(),
                 'cat_id' => $product->getCategoryId(),
                 'n' => $product->getTitle(),
                 'pl' => $product->getPlaceOfOrigin(),
-                'img' => $image_helper->generate_one_small_image_url($product->getPicture(),$root),
+                'img' => $image_helper->generate_one_small_image_url($product->getPicture()),
                 'pr' => $product->getPriceCurrency().$product->getPriceOrigin().'/'.$product->getPriceUnitType(),
                 'm_o' => $product->getMinOrder().' '.$product->getMinOrderUnitType(),
                 'port' => $product->getPort(),
