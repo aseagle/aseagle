@@ -189,3 +189,11 @@ label.required:after {
     color: #3abec0;
     text-decoration: none;
 }
+
+.no-padding {
+    padding: 0;
+}
+
+.no-padding-left {
+    padding-left: 0;
+}

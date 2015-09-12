@@ -4,6 +4,18 @@
         <div><div class="col-md-2"></div><h1>New Buying Request</h1></div>
         {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}}) }}
         {{ form_errors(form) }}
-        {{ form_widget(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.buying_request_message) }}
+        {{ form_row(form.category) }}
+        <div class="form-group">
+            {{ form_errors(form.quantity) }}
+            {{ form_label(form.quantity, null, { 'label_attr': {'class': 'col-md-2 control-label'}}) }}
+            <div class="col-md-6">
+                <div class="col-md-8 no-padding-left">{{ form_widget(form.quantity) }}</div>
+                <div class="col-md-4 no-padding">{{ form_widget(form.quantity_type) }}</div>
+            </div>
+        </div>
+        {{ form_row(form.expired_date) }}
+        {{ form_row(form.save) }}
         {{ form_end(form) }}
     {% endblock %}
