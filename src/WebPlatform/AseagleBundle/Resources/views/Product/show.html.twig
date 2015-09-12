@@ -10,7 +10,7 @@
             <div class="col-md-12">
                 <div class="product-info thumbnail no-border">
                     <div class="trading-info table-div-full">
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <div id="show_gallery">
                                 <img id="image_zoom" src="{{ product_info.pic[0].smallUrl }}" data-zoom-image="{{ product_info.pic[0].url }}"/>
                                 <div id="gallery">
@@ -22,12 +22,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <div class="caption-full">
                                 <h4><a href="#">{{ product_info.n }}</a>
                                 </h4>
                                 <table class="w100">
-                                    <tr><td class="col-name lh20 w25">FOB Price:</td><td>{{ product_info.pr }}</td></tr>
+                                    <tr><td class="col-name lh20 w30">FOB Price:</td><td>{{ product_info.pr }}</td></tr>
                                     <tr><td class="col-name lh20">Min.Order Quantity:</td><td>{{ product_info.m_o }}</td></tr>
                                     <tr><td class="col-name lh20">Supply Ability:</td><td>{{ product_info.s_a }}</td></tr>
                                     <tr><td class="col-name lh20">Port:</td><td>{{ product_info.port }}</td></tr>
@@ -39,6 +39,9 @@
                                     </td></tr>
                                 </table>
                             </div>
+                        </div>
+                        <div class="col-md-3">
+                            {% include 'AseagleBundle:Seller:_general_info.html.twig' %}
                         </div>
                     </div>
 
