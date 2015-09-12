@@ -58,13 +58,13 @@
                                 <div class="border-top">
                                     <h4>Packaging & Delivery</h4>
                                     <div>
-                                        <p>{{ product_info.d_t }}</p>
-                                        <p>{{ product_info.p_d }}</p>
+                                        <p>{{ product_info.d_t | raw }}</p>
+                                        <p>{{ product_info.p_d | raw }}</p>
                                     </div>
                                 </div>
                                 <div class="border-top">
                                     <h4>Specifications</h4>
-                                    {{ product_info.spec }}
+                                    {{ product_info.spec | raw }}
                                 </div>
                             </div>
                         </div>
