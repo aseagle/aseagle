@@ -30,9 +30,9 @@ class Country
     private $name;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @ORM\Column(name="region_id", type="integer", nullable=true)
+     * @ORM\Column(name="region_id", type="string", nullable=true)
      */
     private $region_id = null;
 
@@ -178,29 +178,6 @@ class Country
         return $this->products;
     }
 
-
-    /**
-     * Set region_id
-     *
-     * @param integer $regionId
-     * @return Country
-     */
-    public function setRegionId($regionId)
-    {
-        $this->region_id = $regionId;
-
-        return $this;
-    }
-
-    /**
-     * Get region_id
-     *
-     * @return integer 
-     */
-    public function getRegionId()
-    {
-        return $this->region_id;
-    }
 
     /**
      * Add reg_companies
@@ -403,5 +380,29 @@ class Country
     public function getCompanyPatents()
     {
         return $this->company_patents;
+    }
+
+    /**
+     * Set regionId
+     *
+     * @param string $regionId
+     *
+     * @return Country
+     */
+    public function setRegionId($regionId)
+    {
+        $this->region_id = $regionId;
+
+        return $this;
+    }
+
+    /**
+     * Get regionId
+     *
+     * @return string
+     */
+    public function getRegionId()
+    {
+        return $this->region_id;
     }
 }

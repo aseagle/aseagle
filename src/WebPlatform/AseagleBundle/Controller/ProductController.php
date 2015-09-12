@@ -53,6 +53,9 @@ class ProductController extends Controller
         if($request->request->get('title') != ""){
             $product->setTitle($request->request->get('title'));
         }
+		if($request->request->get('place_of_origin') != ""){
+            $product->setPlaceOfOrigin($request->request->get('place_of_origin'));
+        }		
         if($request->request->get('brief_description') != ""){
             $product->setBriefDescription($request->request->get('brief_description'));
         }

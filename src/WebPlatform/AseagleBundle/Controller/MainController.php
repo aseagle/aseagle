@@ -80,7 +80,8 @@ class MainController extends Controller
         $params = $request->query->all();
         $filter_string = '';
         foreach($params as $key => $value){
-            if(is_numeric($key)){
+			$key = trim($key, "_");
+            if(is_numeric($key) && $value != ''){
                 $pieces = explode(",", $value);
                 if(count($pieces) > 0){
                     $filter_string .= ' (';
@@ -106,7 +107,7 @@ class MainController extends Controller
         $country_id = $request->query->get('country');
 
         $products = $this->getDoctrine()->getRepository('AseagleBundle:Product')->createQueryBuilder('p')
-            ->where('p.category_id = :category_id '.($country_id != "" ? " and p.place_of_origin = ".$country_id : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ))
+            ->where('p.category_id = :category_id '.($country_id != "0" && $country_id != "" ? " and p.place_of_origin = ".$country_id : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ))
             ->setParameter('category_id', $category_id)
             ->getQuery()
             ->getResult();

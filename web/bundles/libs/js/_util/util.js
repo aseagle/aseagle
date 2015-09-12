@@ -119,5 +119,54 @@ _AsgUtil.HeaderNavbar = ( function() {
 		});
 
 	}
-	return pub;d
+	return pub;
+})();
+
+_AsgUtil.LeftSideBar = ( function() {
+	var pub = {};
+	var cat_list = [];
+	var filter_list = [];
+	function __find(id, cat) {
+		if(cat.id == id) {
+			return true;
+		} else {
+			if(cat.c.length == 0) {
+				return false;
+			} else {
+				for(var i = 0; i < cat.c.length; i++) {
+					if(__find(id, cat.c[i]) == true) {
+						if(cat.c[i].c.length == 0) { // get all the sibling of this
+							for(var j = 0; j < cat.c.length; j++) {
+								cat_list.push({id : cat.c[j].id, parent_id: cat.id});
+							}
+						} else {
+							cat_list.unshift({id : cat.c[i].id, parent_id: cat.id});
+						}
+						return true;
+					}
+				}
+			}
+		}
+	}
+	
+	pub.category_compile = function(id) {
+		__find(id, cat_structure[0]);
+		cat_list.unshift({id : cat_structure[0].id, parent_id: null});
+		return cat_list;
+	}
+	
+	pub.filter_compile = function(id) {
+		var cat = cat_col_mapping[id];
+		for (key in cat) { 
+			if (cat.hasOwnProperty(key)) {
+				console.log(key + " = " + cat[key]);
+				if(cat[key].def_v.length > 0 ) {
+					filter_list.push(key);
+				}
+			}
+		}
+		return filter_list;
+	}
+	
+	return pub;
 })();
