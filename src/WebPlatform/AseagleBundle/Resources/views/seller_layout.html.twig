@@ -14,10 +14,12 @@
         <div id="carbonads-container">
             <div class="carbonad">
 				<span class="carbonad-image">
-				<a href="{{ path('show_seller', {'id': company_profile.getId()}) }}" target="_blank"><img width="130" height="100" border="0" src="{{ image_helper.generate_one_large_image_url(company_profile.picture) }}" class="carbonad-image carbonad-img" style="max-width:130px;"></a>
+				    <a href="{{ path('show_seller', {'id': company_profile.getId()}) }}" target="_blank"><img src="{{ image_helper.generate_one_large_image_url(company_profile.picture) }}" class="carbonad-image carbonad-img"></a>
 				</span>
-                <h1>{{ company_profile.name }}</h1>
-                <p>{{ company_profile.website }}</p>
+                <span>
+                    <h1>{{ company_profile.name }}</h1>
+                    <p>{{ company_profile.website }}</p>
+                </span>
             </div>
         </div>
 
