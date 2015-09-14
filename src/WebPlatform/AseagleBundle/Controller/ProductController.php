@@ -273,7 +273,7 @@ class ProductController extends Controller
         );
         $product_info['json'] = json_encode($product_info);
         $product_info['spec'] = $product->getSpecification();
-        $product_info['pl'] = $product->getCountryOfOrigin()->getName();
+        $product_info['pl'] = $product->getCountryOfOrigin() != null ? $product->getCountryOfOrigin()->getName() : "";
         $product_info['s_a'] = $product->getSupplyAbility() != null ? ($product->getSupplyAbility()." ".$product->getSupplyAbilityUnit().($product->getSupplyAbilityPerTime() != null ? '/'.$product->getSupplyAbilityPerTime() : "")) : "";
         $product_info['d_t'] = $product->getDeliverTime();
         $product_info['p_d'] = $product->getPackaging();
