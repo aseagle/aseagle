@@ -105,12 +105,32 @@ class MainController extends Controller
         $category = $this->getDoctrine()->getRepository('AseagleBundle:Category')->find($category_id);
         $last_index = $request->query->get('last_id');
         $search_string = $request->query->get('search_string');
+		$from_id = $request->query->get('from_id');
+		$from_id_string = '';
+		if(isset($from_id)) {
+			$from_id_string.= ' and p.id < '.$from_id;
+		} 
+		
         $country_id = $request->query->get('country');
-
+		$pieces = explode(",", $country_id);
+		$country_string ='';
+		if(count($pieces) > 0){
+			$country_string .= ' (';
+			foreach($pieces as $pi){
+				if(is_numeric($pi)){
+					$country_string .= " p.place_of_origin=".$pi. " or";
+				}
+			}
+			$country_string = substr($country_string, 0, -2);
+			$country_string .= ') ';
+		}				
+				
         $products = $this->getDoctrine()->getRepository('AseagleBundle:Product')->createQueryBuilder('p')
-            ->where('p.category_id >= :lft and p.category_id <= :rgt '.($country_id != "0" && $country_id != "" ? " and p.place_of_origin = ".$country_id : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ))
+            ->where('p.category_id >= :lft and p.category_id <= :rgt '.($country_id != "0" && $country_id != "" ? " and ".$country_string : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ).$from_id_string)
             ->setParameter('lft', $category->getLft())
             ->setParameter('rgt', $category->getRgt())
+			->setMaxResults(3)
+			->addOrderBy('p.id', 'DESC')
             ->getQuery()
             ->getResult();
 
