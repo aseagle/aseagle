@@ -48,8 +48,16 @@ class PurchaseController extends Controller
                     $pm->setBuyingRequest($buying_request);
                     $em->persist($pm);
                     $em->flush();
+
+                    foreach ($com->getCompany()->getStaffs() as $staff){
+                        $this->get('email_helper')->receive_buying_request($staff,$pm);
+                    }
+
                 }
             }
+
+            //send email
+            $this->get('email_helper')->post_buying_request($user,$buying_request);
 
             $this->get('session')->getFlashBag()->add('success', 'Buying Request '.$buying_request->getTitle().' is created!');
             return $this->redirect($this->generateUrl('buyer_get_buying_request'));
@@ -129,12 +137,19 @@ class PurchaseController extends Controller
             $message_helper = $this->get('message_helper');
             $message_helper->sendMessage('','c_'.$company->getId(),'[Quotation Request] '.$buying_request->getTitle().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'),$buying_request->getBuyingRequestMessage().$buying_request->getQuantity().$buying_request->getQuantityType().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'), $user, $em);
 
+            //send email
+            $this->get('email_helper')->post_buying_request($user,$buying_request);
+
             //insert purchase management
             $pm = new PurchaseManagement();
             $pm->setCompany($company);
             $pm->setBuyingRequest($buying_request);
             $em->persist($pm);
             $em->flush();
+
+            foreach ($company->getStaffs() as $staff){
+                $this->get('email_helper')->receive_buying_request($staff,$pm);
+            }
 
             $this->get('session')->getFlashBag()->add('success', 'Quotation Request '.$buying_request->getTitle().' is created!');
             return $this->redirect($this->generateUrl('buyer_get_buying_request'));
@@ -166,6 +181,11 @@ class PurchaseController extends Controller
             //send message
             $message_helper = $this->get('message_helper');
             $message_helper->sendMessage('','c_'.$company->getId(),$sent_message->getSubject(),$sent_message->getBody(), $user, $em);
+
+            //send email
+            foreach ($company->getStaffs() as $staff){
+                $this->get('email_helper')->message_supplier($staff,$sent_message);
+            }
 
             $this->get('session')->getFlashBag()->add('success', 'Message is sent!');
         }

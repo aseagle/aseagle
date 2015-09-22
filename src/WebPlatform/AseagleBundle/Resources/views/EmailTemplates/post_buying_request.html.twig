@@ -1,0 +1,25 @@
+{% block body_html %}
+    {% block body_text %}
+        {% autoescape false %}
+        <span>Dear {{ user.username }},</span>
+        <br/><br/>
+        <span>
+            You have successfully posted your Buying Request <strong>{{ br.title }}</strong> as below:
+        </span><br/>
+        {% if br.product is not null %}
+            <span>Product: {{ br.product.title }}</span><br/>
+        {% endif %}
+        <span>Description: {{ br.buyingRequestMessage }}</span><br/>
+        <span>Quantity: {{ br.quantity~" "~br.quantityType }}</span><br/>
+        <span>Expired Date: {{ br.expiredDate|date("d/m/Y") }}</span><br/><br/>
+        <span>Your buying request will be forwarded to relevant Suppliers and they would send quotations for your consideration soon. Thank you!
+        </span><br/><br/>
+        <span>
+            <a style="text-decoration: none;" href="{{ url('welcome') }}">
+                <img style="width: 130px; height: 25px" src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/libs/img/logo.png') }}" />
+            </a>
+        </span><br/><br/>
+        <span>Aseagle team</span>
+        {% endautoescape %}
+    {% endblock %}
+{% endblock %}

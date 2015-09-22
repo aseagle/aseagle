@@ -224,6 +224,8 @@ class ProductController extends Controller
         $em->persist($product);
         $em->flush();
 
+        $this->get('email_helper')->upload_product($user,$product);
+
         return new Response(json_encode(array('result'=>'Product '.$product->getTitle().' is created!')),200,array('Content-Type'=>'application/json'));
     }
 

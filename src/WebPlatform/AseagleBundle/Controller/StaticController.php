@@ -10,21 +10,6 @@ class StaticController extends Controller
 
     public function welcomeAction()
     {
-        /*
-        //test send mail
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Hello Email')
-            ->setFrom('aseaglenet@gmail.com')
-            ->setTo('wildnightwind111@gmail.com')
-            ->setBody("aloha");
-        $this->get('mailer')->send($message);
-        */
-        $user = $this->getDoctrine()->getRepository('AseagleBundle:User')->find(1);
-        $product_test = $this->getDoctrine()->getRepository('AseagleBundle:Product')->find(18);
-        $email_helper = $this->get('email_helper');
-        $email_helper->upload_product($user,$product_test);
-
-
         //get category
         $cats = $this->getDoctrine()->getRepository('AseagleBundle:Category')->findBy(array('parent_id' => '1'),null,null,null);
 

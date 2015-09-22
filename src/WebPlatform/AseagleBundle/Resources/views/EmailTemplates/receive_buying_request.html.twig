@@ -1,0 +1,43 @@
+{% block body_html %}
+    {% block body_text %}
+        {% autoescape false %}
+        <span>Dear {{ user.username }},</span>
+        <br/><br/>
+        <span>
+            We have received the following buying request which match well with your product listings:
+        </span><br/>
+            {% set br = pm.buyingRequest %}
+        <table>
+            <tr>
+                <td>Looking for:</td><td>{{ br.title }}</td>
+            </tr>
+            <tr>
+                <td style="vertical-align: top">Details:</td><td>{{ br.buyingRequestMessage }}</td>
+            </tr>
+            <tr>
+                <td>Category:</td><td>{{ br.category.name }}</td>
+            </tr>
+            <tr>
+                <td>Quantity:</td><td>{{ br.quantity~" "~br.quantityType }}</td>
+            </tr>
+            <tr>
+                <td>Expired Date:</td><td>{{ br.expiredDate|date("d/m/Y") }}</td>
+            </tr>
+            {% if br.product is not null and br.product.countryOfOrigin is not null %}
+                <tr>
+                    <td>Place of Origin:</td><td>{{ br.product.countryOfOrigin.name }}</td>
+                </tr>
+            {% endif %}
+        </table>
+                <br/><br/>
+        <span>To  send quotation, click on <a href="{{ url('create_quotation', {'purchase_id': pm.id ,'page': 'home'}) }}">here</a>.
+        </span><br/><br/>
+        <span>
+            <a style="text-decoration: none;" href="{{ url('welcome') }}">
+                <img style="width: 130px; height: 25px" src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/libs/img/logo.png') }}" />
+            </a>
+        </span><br/><br/>
+        <span>Aseagle team</span>
+        {% endautoescape %}
+    {% endblock %}
+{% endblock %}

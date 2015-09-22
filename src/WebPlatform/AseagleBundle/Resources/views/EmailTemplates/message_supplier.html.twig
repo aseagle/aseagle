@@ -4,11 +4,10 @@
         <span>Dear {{ user.username }},</span>
         <br/><br/>
         <span>
-            Congratulations! You have successfully uploaded the product <strong>{{ product.title }}</strong> as below:
-        </span><br/>
-        <span><img src="{{ app.request.getSchemeAndHttpHost() ~ product.picture }}" width="150" height="150"></span>
-        <br/><br/>
-        <span>If you would like to edit your products, please <a href="{{ url('edit_product', {'id': product.id}) }}">click here</a>
+            You have one new message from a potential buyer. To view the message, please click
+            <a href="{{ url('message') }}">here</a>
+        </span><br/><br/>
+        <span>We encourage you to reply the message as soon as possible, this is very important to build trust and increase your chance of closing deals.
         </span><br/><br/>
         <span>
             <a style="text-decoration: none;" href="{{ url('welcome') }}">
