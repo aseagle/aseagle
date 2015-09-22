@@ -88,7 +88,7 @@ fos_user:
                 from_email: # Use this node only if you don't want the global email address for the confirmation email
                                 address: "noreply@aseagle.net"
                                 sender_name: "Aseagle"
-                template: FOSUserBundle:Registration:email.txt.twig
+                template: AseagleBundle:EmailTemplates:confirmation.html.twig
 
 sc_datetimepicker:
     picker: ~
