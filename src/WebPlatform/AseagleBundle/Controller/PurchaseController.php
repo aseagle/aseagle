@@ -37,7 +37,7 @@ class PurchaseController extends Controller
 
             //send message
             $message_helper = $this->get('message_helper');
-            $message_helper->sendMessage($buying_request->getCategory()->getId(),'','[Buying Request] '.$buying_request->getTitle().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'),$buying_request->getBuyingRequestMessage().$buying_request->getQuantity().$buying_request->getQuantityType().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'), $user, $em);
+            $message_helper->sendMessage($buying_request->getCategory()->getId(),'','[Buying Request] '.$buying_request->getTitle().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'),$buying_request->getBuyingRequestMessage().$buying_request->getQuantity().$buying_request->getQuantityType().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'), $user, $em, false);
 
             //insert purchase management
             if($buying_request->getCategory() !== NULL){

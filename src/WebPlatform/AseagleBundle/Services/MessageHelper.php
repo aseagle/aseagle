@@ -14,7 +14,7 @@ use WebPlatform\AseagleBundle\Entity\SentMessage;
 use Doctrine\ORM\Mapping as ORM;
 
 class MessageHelper extends Controller{
-    public function sendMessage($cat_id, $post_received_ids, $subject, $body, $sender, $em) {
+    public function sendMessage($cat_id, $post_received_ids, $subject, $body, $sender, $em, $write_contact=true) {
 
         //create & save sentmessage
         $sent_message = new SentMessage();
@@ -68,14 +68,16 @@ class MessageHelper extends Controller{
                     $em->flush();
                 }
                 //save Contacts
-                $check = $em->getRepository('AseagleBundle:ContactList')->findOneBy(array('user_id' => $sender->getId() ,'contact_id' => $com->getId(), 'is_company' => true));
-                if($check == null){
-                    $contact = new ContactList();
-                    $contact->setUser($sender);
-                    $contact->setIsCompany(true);
-                    $contact->setContactId($com->getId());
-                    $em->persist($contact);
-                    $em->flush();
+                if($write_contact){
+                    $check = $em->getRepository('AseagleBundle:ContactList')->findOneBy(array('user_id' => $sender->getId() ,'contact_id' => $com->getId(), 'is_company' => true));
+                    if($check == null){
+                        $contact = new ContactList();
+                        $contact->setUser($sender);
+                        $contact->setIsCompany(true);
+                        $contact->setContactId($com->getId());
+                        $em->persist($contact);
+                        $em->flush();
+                    }
                 }
             }
         }else{
@@ -102,14 +104,16 @@ class MessageHelper extends Controller{
                         $em->flush();
                     }
                     //save Contacts
-                    $check = $em->getRepository('AseagleBundle:ContactList')->findOneBy(array('user_id' => $sender->getId() ,'contact_id' => $com->getId(), 'is_company' => true));
-                    if($check == null){
-                        $contact = new ContactList();
-                        $contact->setUser($sender);
-                        $contact->setIsCompany(true);
-                        $contact->setContactId($com->getId());
-                        $em->persist($contact);
-                        $em->flush();
+                    if($write_contact){
+                        $check = $em->getRepository('AseagleBundle:ContactList')->findOneBy(array('user_id' => $sender->getId() ,'contact_id' => $com->getId(), 'is_company' => true));
+                        if($check == null){
+                            $contact = new ContactList();
+                            $contact->setUser($sender);
+                            $contact->setIsCompany(true);
+                            $contact->setContactId($com->getId());
+                            $em->persist($contact);
+                            $em->flush();
+                        }
                     }
                 }else{
                     $receiver = $em->getRepository('AseagleBundle:User')->find(intval($value));
@@ -129,13 +133,15 @@ class MessageHelper extends Controller{
                     $em->flush();
 
                     //save Contacts
-                    $check = $em->getRepository('AseagleBundle:ContactList')->findOneBy(array('user_id' => $sender->getId() ,'contact_id' => $receiver->getId()));
-                    if($check == null){
-                        $contact = new ContactList();
-                        $contact->setUser($sender);
-                        $contact->setContactId($receiver->getId());
-                        $em->persist($contact);
-                        $em->flush();
+                    if($write_contact){
+                        $check = $em->getRepository('AseagleBundle:ContactList')->findOneBy(array('user_id' => $sender->getId() ,'contact_id' => $receiver->getId()));
+                        if($check == null){
+                            $contact = new ContactList();
+                            $contact->setUser($sender);
+                            $contact->setContactId($receiver->getId());
+                            $em->persist($contact);
+                            $em->flush();
+                        }
                     }
                 }
             }
