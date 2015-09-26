@@ -2,12 +2,9 @@
     <h4><a href="{{ path("show_seller",{id: company_profile.id}) }}">{{ company_profile.name }}</a>
     </h4>
     <table class="w100">
-        <tr><td class="col-name lh20">Country:</td></tr>
-        <tr><td>{{ company_profile.regCountry.name }}</td></tr>
-        <tr><td class="col-name lh20">Registration Year:</td></tr>
-        <tr><td>{{ company_profile.regYear | date("d/m/Y") }}</td></tr>
-        <tr><td class="col-name lh20">Revenue:</td></tr>
-        <tr><td>{{ company_profile.annualRevenue }} {{ company_profile.annualRevenueCurrency }}</td></tr>
+        <tr><td class="col-name lh20 col-50-auto">Country:</td><td>{{ company_profile.regCountry.name }}</td></tr>
+        <tr><td class="col-name lh20">Registration Year:</td><td>{{ company_profile.regYear | date("d/m/Y") }}</td></tr>
+        <tr><td class="col-name lh20">Revenue:</td><td>{{ company_profile.annualRevenue }} {{ company_profile.annualRevenueCurrency }}</td></tr>
     </table>
    
 </div>

@@ -172,6 +172,11 @@ label.required:after {
     margin: auto;
 }
 
+.col-50-auto {
+    width: 50%;
+    margin: auto;
+}
+
 .col-30-auto {
     width: 30%;
     margin: auto;
