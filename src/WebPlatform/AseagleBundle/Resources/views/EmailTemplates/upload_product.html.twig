@@ -1,0 +1,21 @@
+{% block body_html %}
+    {% block body_text %}
+        {% autoescape false %}
+        <span>Dear {{ user.username }},</span>
+        <br/><br/>
+        <span>
+            Congratulations! You have successfully uploaded the product <strong>{{ product.title }}</strong> as below:
+        </span><br/>
+        <span><img src="{{ app.request.getSchemeAndHttpHost() ~ product.picture }}" width="150" height="150"></span>
+        <br/><br/>
+        <span>If you would like to edit your products, please <a href="{{ url('edit_product', {'id': product.id}) }}">click here</a>
+        </span><br/><br/>
+        <span>
+            <a style="text-decoration: none;" href="{{ url('welcome') }}">
+                <img style="width: 130px; height: 25px" src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/libs/img/logo.png') }}" />
+            </a>
+        </span><br/><br/>
+        <span>Aseagle team</span>
+        {% endautoescape %}
+    {% endblock %}
+{% endblock %}

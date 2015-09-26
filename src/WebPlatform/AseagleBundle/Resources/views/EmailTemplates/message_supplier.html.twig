@@ -1,0 +1,20 @@
+{% block body_html %}
+    {% block body_text %}
+        {% autoescape false %}
+        <span>Dear {{ user.username }},</span>
+        <br/><br/>
+        <span>
+            You have one new message from a potential buyer. To view the message, please click
+            <a href="{{ url('message') }}">here</a>
+        </span><br/><br/>
+        <span>We encourage you to reply the message as soon as possible, this is very important to build trust and increase your chance of closing deals.
+        </span><br/><br/>
+        <span>
+            <a style="text-decoration: none;" href="{{ url('welcome') }}">
+                <img style="width: 130px; height: 25px" src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/libs/img/logo.png') }}" />
+            </a>
+        </span><br/><br/>
+        <span>Aseagle team</span>
+        {% endautoescape %}
+    {% endblock %}
+{% endblock %}

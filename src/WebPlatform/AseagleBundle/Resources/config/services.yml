@@ -5,6 +5,7 @@ parameters:
      global_helper.class: WebPlatform\AseagleBundle\Services\GlobalHelper
      message_helper.class: WebPlatform\AseagleBundle\Services\MessageHelper
      category_helper.class: WebPlatform\AseagleBundle\Services\CategoryHelper
+     email_helper.class: WebPlatform\AseagleBundle\Services\EmailHelper
 services:
 #    aseagle.example:
 #        class: %aseagle.example.class%
@@ -21,4 +22,7 @@ services:
      category_helper:
          class: "%category_helper.class%"
          arguments:    [@doctrine.orm.entity_manager]
+     email_helper:
+              class: "%email_helper.class%"
+              arguments:    [@mailer,@templating,@image_helper]
 

@@ -1,0 +1,17 @@
+{% block subject %}Confirmation{% endblock %}
+{% block body_html %}
+    {% block body_text %}
+        {% autoescape false %}
+        <span>Dear {{ user.username }},</span>
+        <br/><br/>
+        <span>
+            Thank you for joining Aseagle.net, the leading B2B platform for Agricultural Products.
+            Please kindly click on below link to activate your email:
+        </span>
+        <span><a href="{{ confirmationUrl }}">Active link</a></span>
+        <br/><br/>
+        <span>Thank you and see you on Aseagle.net</span><br/><br/>
+        <span>Aseagle team</span>
+        {% endautoescape %}
+    {% endblock %}
+{% endblock %}
