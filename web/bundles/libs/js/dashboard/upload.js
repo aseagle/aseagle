@@ -72,9 +72,9 @@ _AsgDashboard.Upload = ( function() {
 			  '<label class="col-md-4 control-label" for="textinput">'+_AsgUtil.Mapping.getColumnName(cat_id, col_id)+'</label>'  +
 			  '<div class="col-md-6">';
     	temp += '<select id="selectbasic" name="product_detail'+col_id +'" class="form-control" style="padding: 3px">';
-    	
+    	temp += '<option value="0"></option>';
     	$.each(default_values, function(i) {
-    		temp += '<option value="'+(i+1)+'" ' + (value != null ? (value == (i+1) ? ' selected=true ' : '') : "") + '>'+_AsgUtil.Mapping.getDefaultValue(default_values[i])+'</option>';
+    		temp += '<option value="'+default_values[i]+'" ' + (value != null ? (value == default_values[i] ? ' selected=true ' : '') : "") + '>'+_AsgUtil.Mapping.getDefaultValue(default_values[i])+'</option>';
     	});
     	temp += '</select>';
     	temp += '</div>';

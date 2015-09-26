@@ -256,6 +256,62 @@ angular.module('msgcenter', [
             $(element).summernote({focus: true, height: 80});
         }
     };
+})
+.directive('imgInitial', [function() {
+	return {
+		restrict: 'A',
+		transclude: false,
+		link: function(scope, element, attrs) {
+			$(element).initial({name:attrs.name});
+		}
+	};
+}])
+.directive('trimDatetime', function() {
+	function gui_datetime_difference(sdt) {
+		var now = new Date();
+		var dt = new Date(sdt);
+		var delta = Math.round((now - dt) / 1000);
+		if (delta < 60) {
+			return delta + " seconds ago";
+		} else if (delta < 60 * 60) {
+			return Math.round(delta / 60) + " minutes ago";
+		} else if (delta < 60 * 60 * 24) {
+			return Math.round(delta / (60 * 60)) + " hours ago";
+		} else if (delta < 60 * 60 * 24 * 7) {
+			return Math.round(delta / (60 * 60 * 24)) + " days ago";
+		} else if(delta < 60 * 60 * 24 * 7 * 365){
+			var options = {
+				month: "long", day: "numeric"
+			};
+			return dt.toLocaleDateString("en-US",options);
+		} else {
+			var options = {
+				year: "numeric", month: "long", day: "numeric"
+			};
+			return dt.toLocaleDateString("en-US",options);		
+		}
+	}
+	
+	return {
+		restrict: 'E',
+		scope: {
+		  datetime: '=createDatetime'
+		},
+        link: function(scope, element, attrs) {
+			function update() {
+				var sdt = scope.datetime;
+
+				ret = '<span style="font-size:small">'+gui_datetime_difference(sdt)+'</span>';
+				element.html(ret);
+			}
+			
+			scope.$watch('datetime', function(newValue, oldValue) {
+				if ( typeof newValue !== 'undefined') {
+					update();
+				}
+			});
+        }
+    };
 });
 
  

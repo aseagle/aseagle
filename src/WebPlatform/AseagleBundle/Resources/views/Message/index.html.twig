@@ -1,7 +1,6 @@
 {% extends 'AseagleBundle::layout.html.twig' %}
 {% block title %}Areagle - Message Center{% endblock %}
 {% block local_css %}
-    <link href="{{ asset('bundles/libs/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/libs/vendor/metisMenu/metisMenu.min.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/libs/vendor/timeline/timeline.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/libs/vendor/morris/morris.css') }}" rel="stylesheet">
@@ -42,7 +41,8 @@
                     <li ui-sref-active="active"><a ui-sref="draft" href="#/draft"><i class="fa fa-pencil-square-o"></i> Drafts</a></li>
                     <li ui-sref-active="active"><a ui-sref="sent" href="#/sent"><i class="fa fa-mail-forward"></i> Sent</a></li>
                     <li ui-sref-active="active"><a ui-sref="starred" href="#/starred"><i class="fa fa-star"></i> Starred</a></li>
-                    <li ui-sref-active="active"><a ui-sref="junk" href="#/junk"><i class="fa fa-folder"></i> Junk</a></li>
+					<li ui-sref-active="active"><a ui-sref="purchase" href="#/purchase"><i class="fa fa-hand-o-right"></i> Purchase Request</a></li>
+                    <li ui-sref-active="active"><a ui-sref="quotation" href="#/quotation"><i class="fa fa-hand-o-left"></i> Quotations</a></li>
                 </ul>
             </div>
         </div><!-- /.col (LEFT) -->
