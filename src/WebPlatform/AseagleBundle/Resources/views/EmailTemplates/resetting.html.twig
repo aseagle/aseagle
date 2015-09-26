@@ -1,0 +1,17 @@
+{% block subject %}Resetting your password{% endblock %}
+{% block body_html %}
+    {% block body_text %}
+        {% autoescape false %}
+        <span>Dear {{ user.username }},</span>
+        <br/><br/>
+        <span>
+            In order to change your password,
+            Please kindly click on below link:
+        </span>
+        <span><a href="{{ confirmationUrl }}">Reset Link</a></span>
+        <br/><br/>
+
+        <span>Aseagle team</span>
+        {% endautoescape %}
+    {% endblock %}
+{% endblock %}
