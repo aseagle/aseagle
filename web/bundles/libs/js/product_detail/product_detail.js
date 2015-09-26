@@ -14,7 +14,11 @@ _AsgProductDetailBuilder.DetailInfo = ( function() {
         for (col in product_json.d) {
             index++;
             $("<td/>").addClass('col-name').addClass('w11').html(_AsgUtil.Mapping.getColumnName(product_json.cat_id, parseInt(col))).appendTo(tr);
-            $("<td/>").addClass('col-value').addClass('w22').text(product_json.d[col]).appendTo(tr);
+            if(col > 30) {
+				$("<td/>").addClass('col-value').addClass('w22').text(_AsgUtil.Mapping.getDefaultValue(product_json.d[col])).appendTo(tr);
+			} else {
+				$("<td/>").addClass('col-value').addClass('w22').text(product_json.d[col]).appendTo(tr);
+			}
 
             if(index == 3){
                 tr.clone().appendTo(table);
@@ -36,6 +40,7 @@ _AsgProductDetailBuilder.DetailInfo = ( function() {
 })();
 
 $(document).ready(function(){
+	console.log(JSON.stringify(_json_product));
     _AsgProductDetailBuilder.DetailInfo.build(_json_product);
     _AsgUtil.HeaderNavbar.build();
 });

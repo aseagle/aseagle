@@ -257,7 +257,23 @@ class ProductController extends Controller
         self::notEmptyOrNull($product->getProductDetail22()) ? $product_detail['22'] = $product->getProductDetail22() : null;
         self::notEmptyOrNull($product->getProductDetail23()) ? $product_detail['23'] = $product->getProductDetail23() : null;
         self::notEmptyOrNull($product->getProductDetail24()) ? $product_detail['24'] = $product->getProductDetail24() : null;
-
+		self::notEmptyOrNull($product->getProductDetail25()) ? $product_detail['25'] = $product->getProductDetail25() : null;
+        self::notEmptyOrNull($product->getProductDetail26()) ? $product_detail['26'] = $product->getProductDetail26() : null;
+        self::notEmptyOrNull($product->getProductDetail27()) ? $product_detail['27'] = $product->getProductDetail27() : null;
+        self::notEmptyOrNull($product->getProductDetail28()) ? $product_detail['28'] = $product->getProductDetail28() : null;
+        self::notEmptyOrNull($product->getProductDetail29()) ? $product_detail['29'] = $product->getProductDetail29() : null;
+        self::notEmptyOrNull($product->getProductDetail30()) ? $product_detail['30'] = $product->getProductDetail30() : null;
+        self::notEmptyOrNull($product->getProductDetail31()) ? $product_detail['31'] = $product->getProductDetail31() : null;
+        self::notEmptyOrNull($product->getProductDetail32()) ? $product_detail['32'] = $product->getProductDetail32() : null;
+        self::notEmptyOrNull($product->getProductDetail33()) ? $product_detail['33'] = $product->getProductDetail33() : null;
+        self::notEmptyOrNull($product->getProductDetail34()) ? $product_detail['34'] = $product->getProductDetail34() : null;
+		self::notEmptyOrNull($product->getProductDetail35()) ? $product_detail['35'] = $product->getProductDetail35() : null;
+        self::notEmptyOrNull($product->getProductDetail36()) ? $product_detail['36'] = $product->getProductDetail36() : null;
+        self::notEmptyOrNull($product->getProductDetail37()) ? $product_detail['37'] = $product->getProductDetail37() : null;
+        self::notEmptyOrNull($product->getProductDetail38()) ? $product_detail['38'] = $product->getProductDetail38() : null;
+        self::notEmptyOrNull($product->getProductDetail39()) ? $product_detail['39'] = $product->getProductDetail39() : null;
+        self::notEmptyOrNull($product->getProductDetail40()) ? $product_detail['40'] = $product->getProductDetail40() : null;
+       
         $root = "/aseagle/web/files/";
         $product_info = array(
             'id' => $product->getId(),
