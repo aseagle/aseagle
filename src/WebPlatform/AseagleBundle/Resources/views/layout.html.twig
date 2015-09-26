@@ -39,7 +39,7 @@
 
     {% include 'AseagleBundle::_top_menubar.html.twig' %}
 
-    <div class="block">
+    <div class="block min-body">
         {% for flashMessage in app.session.flashbag.get('success') %}
             <input id="flash-notice" class="alert-success" type="hidden" value="{{ flashMessage }}"/>
         {% endfor %}

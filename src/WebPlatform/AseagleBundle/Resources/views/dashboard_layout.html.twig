@@ -54,24 +54,22 @@
 
                             </ul>
                         </li>
+
+
+                        {% if app.user.getIsSeller() == true %}
                         <li>
                             <a href="#"><i class="fa fa-building-o fa-fw"></i> Company Profile<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
-                                {% if app.user.getIsSeller() != true %}
-                                    <li><a href="{{path('new_seller')}}">Company Information</a></li>
-                                {% else %}
-                                    <li><a href="{{path('edit_seller',{'id' : app.user.getCompany().getId()})}}">General Information</a></li>
-                                    <li><a href="{{path('seller_company_customer_index',{'seller_id' : app.user.getCompany().getId()})}}">Customers</a></li>
-                                    <li><a href="{{path('seller_company_factory_index',{'seller_id' : app.user.getCompany().getId()})}}">Factories</a></li>
-                                    <li><a href="{{path('seller_company_certification_index',{'seller_id' : app.user.getCompany().getId()})}}">Certifications</a></li>
-                                    <li><a href="{{path('seller_company_oversea_office_index',{'seller_id' : app.user.getCompany().getId()})}}">Oversea Offices</a></li>
-                                    <li><a href="{{path('seller_company_trademark_index',{'seller_id' : app.user.getCompany().getId()})}}">Trademarks</a></li>
-                                    <li><a href="{{path('seller_company_honor_award_index',{'seller_id' : app.user.getCompany().getId()})}}">Honor Awards</a></li>
-                                    <li><a href="{{path('seller_company_patent_index',{'seller_id' : app.user.getCompany().getId()})}}">Patents</a></li>
-                                {% endif %}
+                                <li><a href="{{path('edit_seller',{'id' : app.user.getCompany().getId()})}}">General Information</a></li>
+                                <li><a href="{{path('seller_company_customer_index',{'seller_id' : app.user.getCompany().getId()})}}">Customers</a></li>
+                                <li><a href="{{path('seller_company_factory_index',{'seller_id' : app.user.getCompany().getId()})}}">Factories</a></li>
+                                <li><a href="{{path('seller_company_certification_index',{'seller_id' : app.user.getCompany().getId()})}}">Certifications</a></li>
+                                <li><a href="{{path('seller_company_oversea_office_index',{'seller_id' : app.user.getCompany().getId()})}}">Oversea Offices</a></li>
+                                <li><a href="{{path('seller_company_trademark_index',{'seller_id' : app.user.getCompany().getId()})}}">Trademarks</a></li>
+                                <li><a href="{{path('seller_company_honor_award_index',{'seller_id' : app.user.getCompany().getId()})}}">Honor Awards</a></li>
+                                <li><a href="{{path('seller_company_patent_index',{'seller_id' : app.user.getCompany().getId()})}}">Patents</a></li>
                             </ul>
                         </li>
-                        {% if app.user.getIsSeller() == true %}
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Product Management<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
@@ -89,6 +87,19 @@
                                 <li><a href="#">My Preferences</a></li>
                             </ul>
                         </li>
+                        {% if app.user.getIsSeller() != true %}
+                            <li>
+                                <a href="#" class="flat-blue-btn"><i class="fa fa-building-o fa-fw"></i>Become Seller<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level collapse">
+                                    <li><a href="">Join Existing Company</a></li>
+                                    <li><a href="{{path('new_seller')}}">Register New Company</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{path('upload_product')}}" class="flat-blue-btn"><i class="fa fa-building-o fa-fw"></i>Create Product<span class="fa"></span></a>
+                            </li>
+                        {% endif %}
                     </ul>
 				</div>
 	        </div>

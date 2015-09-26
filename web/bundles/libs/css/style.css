@@ -3,6 +3,10 @@ body {
     padding-bottom: 20px;
 }
 
+.min-body {
+    min-height: 500px;
+}
+
 td, th {
     line-height: 1.5;
 }
@@ -201,3 +205,15 @@ label.required:after {
 .no-padding-left {
     padding-left: 0;
 }
+
+.flat-blue-btn {
+    background-color: #4F9CD4 !important;
+    color: white !important;
+}
+
+
+a.flat-blue-btn:hover {
+    background-color: #2177B5 !important;
+    color: white !important;
+}
+
