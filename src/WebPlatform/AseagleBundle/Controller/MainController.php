@@ -123,12 +123,16 @@ class MainController extends Controller
 			}
 			$country_string = substr($country_string, 0, -2);
 			$country_string .= ') ';
-		}				
-				
-        $products = $this->getDoctrine()->getRepository('AseagleBundle:Product')->createQueryBuilder('p')
-            ->where('p.category_id >= :lft and p.category_id <= :rgt '.($country_id != "0" && $country_id != "" ? " and ".$country_string : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ).$from_id_string)
+		}
+
+        $cats = $this->getDoctrine()->getManager()->createQuery('SELECT c.id FROM AseagleBundle:Category c WHERE c.lft >= :lft and c.rgt <= :rgt ')
             ->setParameter('lft', $category->getLft())
             ->setParameter('rgt', $category->getRgt())
+            ->getResult();
+
+        $products = $this->getDoctrine()->getRepository('AseagleBundle:Product')->createQueryBuilder('p')
+            ->where('p.category_id IN(:cats) '.($country_id != "0" && $country_id != "" ? " and ".$country_string : "").($search_string != "" ? " and p.title LIKE '%".$search_string."%'" : "").($filter_string != "" ? " and ".$filter_string : "" ).$from_id_string)
+            ->setParameter('cats', array_values($cats))
 			->setMaxResults(3)
 			->addOrderBy('p.id', 'DESC')
             ->getQuery()
