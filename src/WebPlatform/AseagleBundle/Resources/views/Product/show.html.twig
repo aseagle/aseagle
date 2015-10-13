@@ -34,8 +34,8 @@
                                     <tr><td class="col-name lh20">Payment Terms:</td><td>{{ product_info.pay }}</td></tr>
                                     <tr><td class="col-name lh20">Place of Origin:</td><td>{{ product_info.pl }}</td></tr>
                                     <tr><td colspan="2">
-                                            <a href="{{ path("create_get_quotation",{id: product_info.id}) }}" class="btn btn-warning"  target="_blank">Request Quotation</a>
-                                            <a href="{{ path("contact_supplier", {id: company_profile.id}) }}" class="btn btn-default"  target="_blank">Contact Supplier</a>
+                                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#request_quotation">Request Quotation</button>
+                                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#contact_supplier">Contact Supplier</button>
                                     </td></tr>
                                 </table>
                             </div>
@@ -146,6 +146,14 @@
             </div>
         </footer>
         -->
+    </div>
+
+    <div>
+        {% include 'AseagleBundle:Purchase:_get_quotation.html.twig' %}
+    </div>
+
+    <div>
+        {% include 'AseagleBundle:Purchase:_contact_supplier.html.twig' %}
     </div>
 
 {% endblock %}

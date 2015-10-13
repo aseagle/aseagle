@@ -151,12 +151,11 @@ class PurchaseController extends Controller
                 $this->get('email_helper')->receive_buying_request($staff,$pm);
             }
 
-            $this->get('session')->getFlashBag()->add('success', 'Quotation Request '.$buying_request->getTitle().' is created!');
-            return $this->redirect($this->generateUrl('buyer_get_buying_request'));
+            return new Response(json_encode(array('result'=>'Quotation Request <strong>'.$buying_request->getTitle().'</strong> is created!')),200,array('Content-Type'=>'application/json'));
         }else{
             $image_helper = $this->get('image_helper');
             $product->setPicture($image_helper->generate_one_small_image_url($product->getPicture()));
-            return $this->render('AseagleBundle:Purchase:get_quotation.html.twig', array(
+            return $this->render('AseagleBundle:Purchase:_get_quotation.html.twig', array(
                 'form' => $form->createView(),'product' => $product
             ));
         }
@@ -187,9 +186,9 @@ class PurchaseController extends Controller
                 $this->get('email_helper')->message_supplier($staff,$sent_message);
             }
 
-            $this->get('session')->getFlashBag()->add('success', 'Message is sent!');
+            return new Response(json_encode(array('result'=>'Message is sent.')),200,array('Content-Type'=>'application/json'));
         }
-        return $this->render('AseagleBundle:Purchase:contact_supplier.html.twig', array(
+        return $this->render('AseagleBundle:Purchase:_contact_supplier.html.twig', array(
             'form' => $form->createView(),'company' => $company
         ));
 

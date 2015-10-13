@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use WebPlatform\AseagleBundle\Entity\Product;
+use WebPlatform\AseagleBundle\Entity\BuyingRequest;
+use WebPlatform\AseagleBundle\Entity\SentMessage;
 use Doctrine\DBAL\DriverManager;
 
 class ProductController extends Controller
@@ -287,6 +289,7 @@ class ProductController extends Controller
             'pay' => $product->getPaymentTerms(),
             'cmt' => $product->getComment() == null ? array() : ($product->getComment() == "" ? array() : array($product->getComment())),
             'pic' => $image_helper->generate_image_url($product->getPicture(),$root),//$product->getPicture(),
+            'sm_pic' => $image_helper->generate_one_small_image_url($product->getPicture()),
             'd' => $product_detail
         );
         $product_info['json'] = json_encode($product_info);
@@ -300,8 +303,27 @@ class ProductController extends Controller
         $company_profile = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($product->getCompany()->getId());
         $pic = $this->get('image_helper')->generate_image_url($company_profile->getPicture());
 
+        //form get_quotation
+        $user = $this->getUser();
+        $buying_request = new BuyingRequest();
+        $buying_request->setProduct($product);
+        $buying_request->setTitle("I would like to have quotes of ".$product->getTitle());
+        $quote_form = $this->createFormBuilder($buying_request)
+            ->add('title', 'text', array('label' => 'Title:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a title')))
+            ->add('buying_request_message', 'textarea', array('label' => 'Detail:', 'attr' => array('class'=>'form-control textarea-wysihtml5')) )
+            ->add('quantity', 'integer', array('label' => 'Quantity:', 'attr'=> array('class'=>'form-control input-md')))
+            ->add('quantity_type', 'text', array('label' => 'Quantity Type:', 'attr'=> array('class'=>'form-control input-md')) )
+            ->add('expired_date', 'collot_datetime', array('label' => 'Expired Date:', 'attr'=> array('class'=>'form-control input-md form_datetime'),'pickerOptions' => array('format' => 'dd/mm/yyyy')))
+            ->getForm();
+
+        $sent_message = new SentMessage();
+        $con_supplier_form = $this->createFormBuilder($sent_message)
+            ->add('subject', 'text', array('label' => 'Title:', 'attr' => array('class'=>'form-control input-md', 'placeholder' => 'Give a subject')))
+            ->add('body', 'textarea', array('label' => 'Detail:', 'attr' => array('class'=>'form-control textarea-wysihtml5')) )
+            ->getForm();
+
         return $this->render('AseagleBundle:Product:show.html.twig', array(
-            'product_info' => $product_info, 'company_profile' => $company_profile, 'pic' => $pic
+            'product_info' => $product_info, 'company_profile' => $company_profile, 'pic' => $pic, 'quote_form' => $quote_form->createView(), 'message_form' => $con_supplier_form->createView(),
         ));
     }
 

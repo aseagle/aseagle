@@ -1,0 +1,64 @@
+{% form_theme message_form 'AseagleBundle:Form:modal_sm_fields.html.twig' %}
+<div class="modal fade" id="contact_supplier" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Contact Supplier</h4>
+            </div>
+            {{ form_start(message_form,{ 'attr': {'id':'contact_supplier_form','class': 'form-horizontal'},'action': path('contact_supplier',{'id': company_profile.id})}) }}
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="col-md-2 control-label required" for="form_subject">To:</label>
+                    <div class="col-md-10">
+                        <a href="{{ path('show_seller',{id: company_profile.id}) }}" target="_blank">
+                            {{ company_profile.name }}
+                        </a>
+                    </div>
+                </div>
+                {{ form_errors(message_form) }}
+                {{ form_widget(message_form) }}
+            </div>
+            <div class="modal-footer contact-supplier-footer">
+                <div class="result col-md-8"></div>
+                <button id="form_save" type="submit" class="btn btn-primary">Send</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+            {{ form_end(message_form) }}
+        </div>
+    </div>
+</div>
+
+<script src="http://malsup.github.com/jquery.form.js"></script>
+
+{% block local_footer_libs %}
+    <script>
+        $(document).ready(function() {
+            $(".img-rounded").popover({
+                trigger: 'hover',
+                placement : 'right', //placement of the popover. also can use top, bottom, left or right
+                title : '<div style="text-align:center; color:red; text-decoration:underline; font-size:14px;"> </div>', //this is the top title bar of the popover. add some basic css
+                html: 'true', //needed to show html of course
+                content : function () {
+                    return '<div id="popOverBox"><img src="'+$(this)[0].src + '" width="251" height="201" /></div>';//this is the content of the html box. add the image here or anything you want really.
+                }
+
+            });
+            function resizeInput() {
+                $(this).attr('size', $(this).val().length);
+            }
+
+            //set form to ajax form
+            $("#contact_supplier_form").ajaxForm(function(result) {
+                if(result.result){
+
+                    $(".contact-supplier-footer").find('.result').html(result.result);
+                    $(".contact-supplier-footer").addClass('alert-success');
+
+                    //show_alert('alert-success',result.result);
+                    //window.scrollTo(0,0);
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% block form_row %}
+    <div class="form-group">
+        {{ form_errors(form) }}
+        {{ form_label(form, null, { 'label_attr': {'class': 'col-md-2 control-label'}}) }}
+        <div class="col-md-8">
+            {{ form_widget(form) }}
+        </div>
+    </div>
+{% endblock form_row %}
+
+{% block _form_quantity_row %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block _form_quantity_type_row %}
+    {{ form_widget(form) }}
+{% endblock %}

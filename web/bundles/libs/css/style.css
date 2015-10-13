@@ -60,7 +60,7 @@ td.col-name{
     -moz-transition: all 0.1s linear;
     -webkit-transition: all 0.1s linear;
 }
-#top_bar { box-shadow: none; z-index: 10030; }
+#top_bar { box-shadow: none; z-index: 1038; }
 #lower_bar { background-image: none; box-shadow: none; top: 40px;}
 .navbar-xs { min-height:40px; height: 40px; }
 .navbar-xs .navbar-brand { padding: 0px 12px;font-size: 40px;line-height: 40px; }
@@ -222,3 +222,6 @@ a.flat-blue-btn:hover {
     color: white !important;
 }
 
+.top-5-per {
+    margin-top: 5%
+}
