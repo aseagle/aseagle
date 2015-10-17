@@ -144,8 +144,14 @@ class MessageController extends Controller
         $receivers = array();
         $reuserids = explode(",", $message->getReceiverIds());
         foreach($reuserids as $reuserid){
-            $reuser = $this->getDoctrine()->getRepository('AseagleBundle:User')->find($reuserid);
-            array_push($receivers, array( 'id' => $reuser->getId(), 'fname' => $reuser->getUsername()));
+            if(strpos($reuserid,'c_') !== false){
+                $com_id = explode("_", $reuserid);
+                $recom = $this->getDoctrine()->getRepository('AseagleBundle:CompanyProfile')->find($com_id[1]);
+                array_push($receivers, array( 'id' => $recom->getId(), 'fname' => $recom->getName()));
+            }else{
+                $reuser = $this->getDoctrine()->getRepository('AseagleBundle:User')->find($reuserid);
+                array_push($receivers, array( 'id' => $reuser->getId(), 'fname' => $reuser->getUsername()));
+            }
         }
         $result = array(
             'id' => $message->getId(),
