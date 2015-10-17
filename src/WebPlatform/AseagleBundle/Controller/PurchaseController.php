@@ -135,7 +135,7 @@ class PurchaseController extends Controller
 
             //send message
             $message_helper = $this->get('message_helper');
-            $message_helper->sendMessage('','c_'.$company->getId(),'[Quotation Request] '.$buying_request->getTitle().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'),$buying_request->getBuyingRequestMessage().$buying_request->getQuantity().$buying_request->getQuantityType().$buying_request->getExpiredDate()->format('Y-m-d H:i:s'), $user, $em);
+            $message_helper->sendMessage('','c_'.$company->getId(),'[Quotation Request] '.$buying_request->getTitle().' '.$buying_request->getExpiredDate()->format('Y-m-d H:i:s'),$buying_request->getBuyingRequestMessage().'<br>'.$buying_request->getQuantity().' '.$buying_request->getQuantityType().'<br>'.$buying_request->getExpiredDate()->format('Y-m-d H:i:s'), $user, $em);
 
             //send email
             $this->get('email_helper')->post_buying_request($user,$buying_request);
@@ -230,7 +230,7 @@ class PurchaseController extends Controller
 
             //send message
             $message_helper = $this->get('message_helper');
-            $message_helper->sendMessage('', $pm->getBuyingRequest()->getBuyerId(),'[Quote] '.$pm->getBuyingRequest()->getTitle().$pm->getBuyingRequest()->getExpiredDate()->format('Y-m-d H:i:s'),$quotation->getQuoteMessage().$quotation->getPrice().$quotation->getQuantity().$quotation->getQuantityType().$quotation->getPaymentTerm().$quotation->getDeliverTime(), $user, $em);
+            $message_helper->sendMessage('', $pm->getBuyingRequest()->getBuyerId(),'[Quote] '.$pm->getBuyingRequest()->getTitle().$pm->getBuyingRequest()->getExpiredDate()->format('Y-m-d H:i:s'),$quotation->getQuoteMessage().'<br>'.$quotation->getPrice().'<br>'.$quotation->getQuantity().'<br>'.$quotation->getQuantityType().'<br>'.$quotation->getPaymentTerm().'<br>'.$quotation->getDeliverTime(), $user, $em);
 
             $this->get('session')->getFlashBag()->add('success', 'Quotation for Request '.$pm->getBuyingRequest()->getTitle().' is created!');
             return $this->redirect($this->generateUrl('seller_get_buying_request'));
@@ -274,7 +274,7 @@ class PurchaseController extends Controller
 
             //send message
             $message_helper = $this->get('message_helper');
-            $message_helper->sendMessage('', $pm->getBuyingRequest()->getBuyerId(),'[Quote] '.$pm->getBuyingRequest()->getTitle().$pm->getBuyingRequest()->getExpiredDate()->format('Y-m-d H:i:s'),$quotation->getQuoteMessage().$quotation->getPrice().$quotation->getQuantity().$quotation->getQuantityType().$quotation->getPaymentTerm().$quotation->getDeliverTime(), $user, $em);
+            $message_helper->sendMessage('', $pm->getBuyingRequest()->getBuyerId(),'[Quote] '.$pm->getBuyingRequest()->getTitle().$pm->getBuyingRequest()->getExpiredDate()->format('Y-m-d H:i:s'),$quotation->getQuoteMessage().'<br>'.$quotation->getPrice().'<br>'.$quotation->getQuantity().'<br>'.$quotation->getQuantityType().'<br>'.$quotation->getPaymentTerm().'<br>'.$quotation->getDeliverTime(), $user, $em);
 
             $this->get('session')->getFlashBag()->add('success', 'Quotation for Request '.$pm->getBuyingRequest()->getTitle().' is updated!');
             return $this->redirect($this->generateUrl('create_quote'));
