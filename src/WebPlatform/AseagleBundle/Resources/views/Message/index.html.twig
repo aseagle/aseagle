@@ -104,7 +104,7 @@
 		<td class="small-col"><i class="fa fa-star"></i></td>
 		<td class="name"><a href="#/open/{[{mail.id}]}">{[{mail.author.fname}]}</a></td>
 		<td class="subject"><a href="#/open/{[{mail.id}]}"">{[{mail.subj}]}<span>{[{mail.body}]}</span></a></td>
-		<td class="time">{[{get_time(mail.date)}]}</td>
+		<td class="time"><trim-datetime create-datetime="mail.date"></trim-datetime></td>
 		</tr>
 		</table>
 	</ng-view>
@@ -135,9 +135,11 @@
 			<div class="inbox-info-bar">
 				<div class="row">
 					<div class="col-sm-9">
-						<img src="img/avatars/{[{mail.author.id}]}.png" alt="me" class="away">
+						<!--img src="img/avatars/{[{mail.author.id}]}.png" alt="me" class="away"-->
 						<strong>{[{mail.author.fname}]}</strong>
-						<span class="hidden-mobile">&lt;{[{mail.author.company.name}]}&gt;to <strong>me</strong> on <i>{[{mail.date}]}</i></span>
+						<!--span class="hidden-mobile">&lt;{[{mail.author.company.name}]}&gt;to <strong>me</strong> on <i>{[{mail.date}]}</i></span-->
+						<span class="hidden-mobile"> sent to <strong>me</strong> on <trim-datetime create-datetime="mail.date"></trim-datetime></span>
+					
 					</div>
 					<div class="col-sm-3 text-right">
 						<div class="btn-group text-left">
@@ -192,7 +194,8 @@
 						<label class="control-label col-md-1"><strong>To</strong></label>
 						<div class="col-md-11">
 							<div class="bs-example">
-								<input class="form-control" placeholder="Receiever" type="text" ng-model="Receivers" tag-input>
+								<input class="form-control" placeholder="Receiever" type="text" ng-model="Receivers" ng-if="!is_reply" tag-input>
+								<input class="form-control" placeholder="Receiever" type="text" ng-model="Receivers" ng-if="is_reply" style="background-color: white" disabled>
 							</div>
 						</div>
 					</div>

@@ -48,7 +48,7 @@ class MessageController extends Controller
         $page = $request->query->get('page');
 
         $orderbysender = $sort_by_sender != "" ? ( $sort_by_sender == "1" ? " m.author_id ASC" : " m.author_id DESC") : "";
-        $orderbydate = $sort_by_date != "" ? ( $sort_by_date == "1" ? " m.date ASC" : " m.date DESC") : "";
+        $orderbydate = $sort_by_date != "" ? ( $sort_by_date == "1" ? " m.date ACS" : " m.date DESC") : " m.date DESC";
         $orderby = ($orderbysender != "" ? $orderbysender.($orderbydate != "" ? ",".$orderbydate : "") : ($orderbydate != "" ? $orderbydate : ""));
         $messages = $this->getDoctrine()->getManager()->createQuery(
             "SELECT m
@@ -105,7 +105,7 @@ class MessageController extends Controller
         $messages = $this->getDoctrine()->getManager()->createQuery(
             "SELECT m
             FROM AseagleBundle:SentMessage m
-            WHERE "."m.user_id = ".$user->getId()
+            WHERE "."m.user_id = ".$user->getId()." ORDER BY m.date DESC"
         )->getResult();
 
         $mapped_messages_info = array();

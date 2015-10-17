@@ -183,15 +183,16 @@ angular.module('msgcenter', [
 		
 	};
 })
-.controller('ReplyController', function ($scope, $location, OpenMessage) {
+.controller('ReplyController', function ($scope, $location, $http, OpenMessage) {
 	//$("#emailbody").wysihtml5();
 	var currentopenmessage = OpenMessage.getcurrent();
 	
 	$scope.SenderId;
 	$scope.Receivers = currentopenmessage.author.fname;
-	$scope.Subject = currentopenmessage.subj;
+	$scope.Receivers_id = currentopenmessage.author.id;
+	$scope.Subject = "Re:" + currentopenmessage.subj;
 	$scope.Body = currentopenmessage.body;
-		
+	$scope.is_reply = true;	
 	$scope.$on('$viewContentLoaded',function(event){ 
 		$('#emailbody').code("<br><br><blockquote>"+$scope.Body+"</blockquote>");
 	});	
@@ -201,7 +202,7 @@ angular.module('msgcenter', [
 		$http({
 		  method  : 'POST',
 		  url     : './messagecenter/send',
-		  data    : $.param({ received_ids : $scope.Receivers, subject : $scope.Subject, body : $('#emailbody').code()}),  // pass in data as strings	
+		  data    : $.param({ received_ids : $scope.Receivers_id, subject : $scope.Subject, body : $('#emailbody').code()}),  // pass in data as strings	
 		  headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
 		 }).success(function(data) {
 				$location.path('/mail');
@@ -300,8 +301,8 @@ angular.module('msgcenter', [
         link: function(scope, element, attrs) {
 			function update() {
 				var sdt = scope.datetime;
-
-				ret = '<span style="font-size:small">'+gui_datetime_difference(sdt)+'</span>';
+				console.log(JSON.stringify(sdt.date));
+				var ret = '<span style="font-size:small">'+gui_datetime_difference(sdt.date)+'</span>';
 				element.html(ret);
 			}
 			
