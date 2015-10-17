@@ -225,3 +225,8 @@ a.flat-blue-btn:hover {
 .top-5-per {
     margin-top: 5%
 }
+
+.normal-dropdown {
+    max-height: 300px;
+    overflow: auto;
+}
