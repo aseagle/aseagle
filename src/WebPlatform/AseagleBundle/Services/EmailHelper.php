@@ -94,4 +94,20 @@ class EmailHelper {
         $this->mailer->send($message);
     }
 
+    public function check_wish_list($wp,$product)
+    {
+        $message = \Swift_Message::newInstance()
+            ->setSubject('One Product matches your wish product')
+            ->setFrom($this->default_from)
+            ->setTo($wp->getUser()->getEmail())
+            ->setBody(
+                $this->templating->render(
+                    'AseagleBundle:EmailTemplates:match_wish_product.html.twig',
+                    array('user' => $wp->getUser(),'wp' => $wp,'p' => $product)
+                ),
+                'text/html'
+            )
+        ;
+        $this->mailer->send($message);
+    }
 } 

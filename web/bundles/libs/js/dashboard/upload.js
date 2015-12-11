@@ -108,9 +108,9 @@ _AsgDashboard.Upload = ( function() {
     function _build_product_detail(cat_id) {
     	var current_product_detail_list = cat_col_mapping[cat_id];
     	
-    	$("#category_id").val(cat_id);
+    	$("#category_id,#select_category").val(cat_id);
     	$("#category_id").text(cat_id);
-    	
+
     	//$(".product-detail-fields").empty();
 		__build_select_box_place_of_origin(cat_id,null,country_mapping,null);
     	$.each(current_product_detail_list, function(i) {			

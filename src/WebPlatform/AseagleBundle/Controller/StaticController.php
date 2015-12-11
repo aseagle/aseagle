@@ -33,4 +33,9 @@ class StaticController extends Controller
         }
         return $this->render('AseagleBundle:Static:portal.html.twig', array('cats' => $cats, 'banner_products' => $banner_products_info));
     }
+
+    public function buyer_servicesAction()
+    {
+        return $this->render('AseagleBundle:Static:buyer_services.html.twig');
+    }
 }

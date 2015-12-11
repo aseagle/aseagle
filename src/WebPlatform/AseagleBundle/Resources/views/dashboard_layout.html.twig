@@ -39,6 +39,7 @@
                                 <li><a href="#">Recommended Services</a></li>
                             </ul>
                         </li>
+
                         <li>
                             <a href="#"><i class="fa fa-bars fa-fw"></i> Purchase Management<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
@@ -77,6 +78,9 @@
                                     <li><a href="{{path('list_product',{'seller_id' : app.user.getCompany().getId()})}}">Product List</a></li>
                                     <li><a href="#">Make Groups</a></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="{{ path('buyer_wish_product_index') }}"><i class="fa fa-dashboard fa-fw"></i> Wish Product<span class="fa"></span></a>
                         </li>
                         {% endif %}
                         <li>

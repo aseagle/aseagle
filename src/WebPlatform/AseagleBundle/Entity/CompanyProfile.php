@@ -309,6 +309,20 @@ class CompanyProfile
     private $is_verified = null;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="ceo_name", type="string", length=255, nullable=true)
+     */
+    private $ceo_name = null;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="shareholders", type="string", length=500, nullable=true)
+     */
+    private $shareholders = null;
+
+    /**
      * @ORM\OneToMany(targetEntity="CompanyCustomer", mappedBy="company")
      */
     protected $company_customers;
@@ -374,6 +388,11 @@ class CompanyProfile
      * @ORM\OneToMany(targetEntity="Product", mappedBy="company")
      */
     protected $products;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CompanyVerifying", mappedBy="company")
+     */
+    protected $verify_request;
 
     public function __construct()
     {
@@ -1805,5 +1824,89 @@ class CompanyProfile
     public function getProducts()
     {
         return $this->products;
+    }
+
+    /**
+     * Set ceoName
+     *
+     * @param string $ceoName
+     *
+     * @return CompanyProfile
+     */
+    public function setCeoName($ceoName)
+    {
+        $this->ceo_name = $ceoName;
+
+        return $this;
+    }
+
+    /**
+     * Get ceoName
+     *
+     * @return string
+     */
+    public function getCeoName()
+    {
+        return $this->ceo_name;
+    }
+
+    /**
+     * Set shareholders
+     *
+     * @param string $shareholders
+     *
+     * @return CompanyProfile
+     */
+    public function setShareholders($shareholders)
+    {
+        $this->shareholders = $shareholders;
+
+        return $this;
+    }
+
+    /**
+     * Get shareholders
+     *
+     * @return string
+     */
+    public function getShareholders()
+    {
+        return $this->shareholders;
+    }
+
+
+
+    /**
+     * Add verifyRequest
+     *
+     * @param \WebPlatform\AseagleBundle\Entity\CompanyVerifying $verifyRequest
+     *
+     * @return CompanyProfile
+     */
+    public function addVerifyRequest(\WebPlatform\AseagleBundle\Entity\CompanyVerifying $verifyRequest)
+    {
+        $this->verify_request[] = $verifyRequest;
+
+        return $this;
+    }
+
+    /**
+     * Remove verifyRequest
+     *
+     * @param \WebPlatform\AseagleBundle\Entity\CompanyVerifying $verifyRequest
+     */
+    public function removeVerifyRequest(\WebPlatform\AseagleBundle\Entity\CompanyVerifying $verifyRequest)
+    {
+        $this->verify_request->removeElement($verifyRequest);
+    }
+
+    /**
+     * Get verifyRequest
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVerifyRequest()
+    {
+        return $this->verify_request;
     }
 }

@@ -1,0 +1,29 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+
+    {% block dashboard_content %}
+        <h1>Wish Product</h1>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Category</th>
+                <th>Country</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th><a href="{{ path('buyer_wish_product_new') }}" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></a></th>
+            </tr>
+            </thead>
+            {% for wish_product in wish_products %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ wish_product.category.name }}</td>
+                    <td>{{ wish_product.country.name }}</td>
+                    <td>{{ wish_product.title}}</td>
+                    <td>{{ wish_product.price~' '~wish_product.currency }}</td>
+
+                    <td><a href="{{ path('buyer_wish_product_edit', {'id': wish_product.id}) }}" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="{{ path('buyer_wish_product_destroy', {'id': wish_product.id}) }}" onclick="return confirm('Are you sure you want to delete Wish Product {{ wish_product.title }}?')" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endblock %}

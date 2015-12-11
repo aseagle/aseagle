@@ -1,0 +1,19 @@
+{% block body_html %}
+    {% block body_text %}
+        {% autoescape false %}
+        <span>Dear {{ user.username }},</span>
+        <br/><br/>
+        <span>
+            There is one product matching to your wish product. To view that product, please click
+            <a href="{{ url('show_product', {'id': p.id}) }}">here</a>
+        </span><br/><br/>
+
+        <span>
+            <a style="text-decoration: none;" href="{{ url('welcome') }}">
+                <img style="width: 130px; height: 25px" src="{{ app.request.getSchemeAndHttpHost() ~ asset('bundles/libs/img/logo.png') }}" />
+            </a>
+        </span><br/><br/>
+        <span>Aseagle team</span>
+        {% endautoescape %}
+    {% endblock %}
+{% endblock %}

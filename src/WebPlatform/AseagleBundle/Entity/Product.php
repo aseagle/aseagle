@@ -2388,4 +2388,19 @@ class Product
     {
         return $this->country_of_origin;
     }
+
+
+    //check product if it satisfies customer wishproduct list
+    public function checkWishProduct($em,$email_service){
+        $wishlist = $em->getRepository('AseagleBundle:WishProduct')->createQueryBuilder('w')
+            ->where('w.category_id='.$this->category_id.' and w.country_id='.$this->country_of_origin." and w.title LIKE '%".$this->title."%'")
+            ->addOrderBy('w.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+        foreach($wishlist as $wp)
+        {
+            //send email
+            $email_service->check_wish_list($wp,$this);
+        }
+    }
 }

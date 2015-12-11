@@ -12,6 +12,10 @@ welcome:
     path:     /welcome
     defaults: { _controller: AseagleBundle:Static:welcome }
 
+buyer_services:
+    path:     /buyer_services
+    defaults: { _controller: AseagleBundle:Static:buyer_services }
+
 main:
     path:     /main/{category_id}
     defaults: { _controller: AseagleBundle:Main:index }
@@ -354,3 +358,25 @@ create_get_quotation:
 contact_supplier:
     path:     seller/{id}/contact_supplier
     defaults: { _controller: AseagleBundle:Purchase:contact_supplier }
+
+#buyer wish_product
+buyer_wish_product_index:
+    path:     wish_product
+    defaults: { _controller: AseagleBundle:WishProduct:index }
+
+buyer_wish_product_new:
+    path:     wish_product/new
+    defaults: { _controller: AseagleBundle:WishProduct:new }
+
+buyer_wish_product_edit:
+    path:     wish_product/{id}/edit
+    defaults: { _controller: AseagleBundle:WishProduct:edit }
+
+buyer_wish_product_destroy:
+    path:     wish_product/{id}/destroy
+    defaults: { _controller: AseagleBundle:WishProduct:destroy }
+
+#Verifying Request
+verifying_request_new:
+    path:     seller/{id}/verifying_request/new
+    defaults: { _controller: AseagleBundle:VerifyingRequest:new }

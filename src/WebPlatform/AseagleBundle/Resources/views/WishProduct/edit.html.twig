@@ -1,0 +1,18 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+{% form_theme form 'AseagleBundle:Form:fields.html.twig' %}
+{% block dashboard_local_css %}
+    <link rel="stylesheet" href="{{ asset('bundles/libs/css/product.css') }}" />
+{% endblock %}
+    {% block dashboard_content %}
+        <div><div class="col-md-2"></div><h1>Edit Wish Product</h1></div>
+
+        {{ form_start(form,{ 'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(form) }}
+        {{ form_row(form.category) }}
+        {{ form_row(form.country) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.price) }}
+        {{ form_row(form.currency) }}
+        {{ form_row(form.save) }}
+        {{ form_end(form) }}
+    {% endblock %}

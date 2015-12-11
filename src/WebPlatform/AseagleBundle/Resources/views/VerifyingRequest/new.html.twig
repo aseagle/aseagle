@@ -1,0 +1,30 @@
+{% extends 'AseagleBundle::dashboard_layout.html.twig' %}
+{% form_theme ver_form 'AseagleBundle:Form:fields_3_6.html.twig' %}
+
+    {% block dashboard_content %}
+
+        <h1>Free Verification</h1>
+        {{ form_start(ver_form,{ 'attr': {'class': 'form-horizontal'}}) }}
+        {{ form_errors(ver_form) }}
+        <br/>
+        <h4>COMPANY INFORMATION</h4>
+        {{ form_row(ver_form.company.name) }}
+        {{ form_row(ver_form.company.reg_address) }}
+        {{ form_row(ver_form.company.ops_address) }}
+        {{ form_row(ver_form.company.registration_number) }}
+        {{ form_row(ver_form.company.main_products) }}
+        <br/>
+        <h4>OWNERSHIP INFORMATION</h4>
+        {{ form_row(ver_form.company.type) }}
+        {{ form_row(ver_form.company.legal_owner) }}
+        {{ form_row(ver_form.company.ceo_name) }}
+        {{ form_row(ver_form.company.shareholders) }}
+        {{ form_row(ver_form.contact_person) }}
+        {{ form_row(ver_form.contact_email) }}
+        {{ form_row(ver_form.contact_phone) }}
+        <br/>
+        <h4>COMPANY PHOTO</h4>
+        {{ form_row(ver_form.company.picture) }}
+        {{ form_end(ver_form) }}
+
+    {% endblock %}

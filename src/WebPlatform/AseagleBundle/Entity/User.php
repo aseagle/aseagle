@@ -133,6 +133,11 @@ class User extends BaseUser
     protected $quotations;
 
     /**
+     * @ORM\OneToMany(targetEntity="WishProduct", mappedBy="user")
+     */
+    protected $wishproducts;
+
+    /**
      * @ORM\ManyToOne(targetEntity="CompanyProfile", inversedBy="staffs")
      * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
      */
@@ -153,6 +158,7 @@ class User extends BaseUser
         $this->author_messages = new ArrayCollection();
         $this->contact_list = new ArrayCollection();
         $this->quotations = new ArrayCollection();
+        $this->wishproducts = new ArrayCollection();
     }
 
     /**
@@ -749,5 +755,39 @@ class User extends BaseUser
     public function getQuotations()
     {
         return $this->quotations;
+    }
+
+    /**
+     * Add wishproduct
+     *
+     * @param \WebPlatform\AseagleBundle\Entity\WishProduct $wishproduct
+     *
+     * @return User
+     */
+    public function addWishproduct(\WebPlatform\AseagleBundle\Entity\WishProduct $wishproduct)
+    {
+        $this->wishproducts[] = $wishproduct;
+
+        return $this;
+    }
+
+    /**
+     * Remove wishproduct
+     *
+     * @param \WebPlatform\AseagleBundle\Entity\WishProduct $wishproduct
+     */
+    public function removeWishproduct(\WebPlatform\AseagleBundle\Entity\WishProduct $wishproduct)
+    {
+        $this->wishproducts->removeElement($wishproduct);
+    }
+
+    /**
+     * Get wishproducts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWishproducts()
+    {
+        return $this->wishproducts;
     }
 }

@@ -226,7 +226,23 @@ class ProductController extends Controller
         $em->persist($product);
         $em->flush();
 
-        $this->get('email_helper')->upload_product($user,$product);
+        //send email
+        $email_service = $this->get('email_helper');
+        $email_service->upload_product($user,$product);
+
+        //check wish list
+        //$product->checkWishProduct($em,$email_service);
+        $wishlist = $em->getRepository('AseagleBundle:WishProduct')->createQueryBuilder('w')
+            ->where('w.category_id='.$product->getCategory()->getId().($product->getCountryOfOrigin()!=null ? ' and w.country_id='.$product->getCountryOfOrigin() : '')." and w.title LIKE '%".$product->getTitle()."%'")
+            ->addOrderBy('w.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+        foreach($wishlist as $wp)
+        {
+            //send email
+            $email_service->check_wish_list($wp,$product);
+        }
+
 
         return new Response(json_encode(array('result'=>'Product '.$product->getTitle().' is created!')),200,array('Content-Type'=>'application/json'));
     }
@@ -581,4 +597,6 @@ class ProductController extends Controller
         return $this->redirect($this->generateUrl('list_product',array('seller_id'=>$product->getOwner()->getCompany()->getId())));
         //TODO: Delete physical picture files
     }
+
+
 }

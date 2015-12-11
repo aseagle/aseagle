@@ -1,7 +1,7 @@
 {% block form_row %}
     <div class="form-group">
         {{ form_errors(form) }}
-        {{ form_label(form, null, { 'label_attr': {'class': 'col-md-2 control-label'}}) }}
+        {{ form_label(form, null, { 'label_attr': {'class': 'col-md-3 control-label'}}) }}
         <div class="col-md-6">
             {{ form_widget(form) }}
         </div>
@@ -10,7 +10,7 @@
 
 {% block submit_row %}
     <div class="form-group">
-        <label class="col-md-2 control-label"></label>
+        <label class="col-md-3 control-label"></label>
         <div class="col-md-6">
             {{ form_widget(form) }}
         </div>
@@ -20,7 +20,7 @@
 {% block _form_image_widget %}
     <div class="form-group">
         {{ form_errors(form) }}
-        {{ form_label(form, null, { 'label_attr': {'class': 'col-md-2 control-label'}}) }}
+        {{ form_label(form, null, { 'label_attr': {'class': 'col-md-3 control-label'}}) }}
         <div class="col-md-6">
             {{ form_widget(form) }}{% include 'AseagleBundle::_single_file_upload.html.twig' %}
         </div>
@@ -30,19 +30,21 @@
 {% block _form_picture_widget %}
     <div class="form-group">
         {{ form_errors(form) }}
-        {{ form_label(form, null, { 'label_attr': {'class': 'col-md-2 control-label'}}) }}
+        {{ form_label(form, null, { 'label_attr': {'class': 'col-md-3 control-label'}}) }}
         <div class="col-md-6">
             {{ form_widget(form) }}{% include 'AseagleBundle::_file_upload.html.twig' %}
         </div>
     </div>
 {% endblock %}
 
-{% block _form_quantity_row %}
-    {{ form_widget(form) }}
-{% endblock %}
-
-{% block _form_quantity_type_row %}
-    {{ form_widget(form) }}
+{% block _form_company_picture_widget %}
+    <div class="form-group">
+        {{ form_errors(form) }}
+        {{ form_label(form, null, { 'label_attr': {'class': 'col-md-3 control-label'}}) }}
+        <div class="col-md-6">
+            {{ form_widget(form) }}{% include 'AseagleBundle::_file_upload.html.twig' %}
+        </div>
+    </div>
 {% endblock %}
 
 {% block _form_company_row %}
