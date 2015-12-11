@@ -18,12 +18,10 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">For Seller <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="{{path('upload_product')}}">Create Product</a></li>
-                    <li><a href="#">Memberships</a></li>
-                    {% if app.user.company is not null %}
-                        <li><a href="{{path('verifying_request_new',{'id': app.user.company.id})}}">Free Verification</a></li>
-                    {% endif %}
+                    <li><a href="{{ path('seller_services') }}#memberships">Memberships</a></li>
+                    <li><a href="{{ path('seller_services') }}#free_verification">Free Verification</a></li>
                     <li><a href="#">Import-Export consultancy</a></li>
-                    <li><a href="#">Freight forwarding services</a></li>
+                    <li><a href="{{ path('seller_services') }}#freight_forwarding_services">Freight forwarding services</a></li>
                 </ul>
             </li>
             <li class="dropdown">

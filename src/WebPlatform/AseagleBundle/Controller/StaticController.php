@@ -38,4 +38,10 @@ class StaticController extends Controller
     {
         return $this->render('AseagleBundle:Static:buyer_services.html.twig');
     }
+
+    public function seller_servicesAction()
+    {
+        return $this->render('AseagleBundle:Static:seller_services.html.twig');
+    }
+
 }

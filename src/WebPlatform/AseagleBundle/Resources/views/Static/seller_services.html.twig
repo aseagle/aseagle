@@ -1,0 +1,40 @@
+{% extends 'AseagleBundle::layout.html.twig' %}
+{% block title %}The Leading B2B Market Place for Agriculture Products{% endblock %}
+
+
+{% block content %}
+    <div class="" style="margin: auto; width: 63%">
+        <div id="memberships"><br/><br/></div>
+        <h2><a href="#memberships">Memberships</a></h2>
+        <p>   Updating
+        </p>
+        <div id="free_verification"><br/><br/></div>
+        <h2><a href="#free_verification">Free Verification</a></h2>
+        <p>
+            Verification is not compulsory but we highly recommend you to get your company/business  verified due to the following reasons:
+            <br/>
+            <ul>
+                <li>A verified company will definitely gain more confidence and trust level from buyers</li>
+                <li>Having your company verified, you show your sincerity and commitment when doing business, and this is important point that buyers care about</li>
+                <li>Verified members would enjoy more benefits from our platform compared to the unverified ones</li>
+            </ul>
+        <br/>
+        {% if app.user is not null and app.user.company is not null  %}
+            So what are you waiting for? <a href="{{path('verifying_request_new',{'id': app.user.company.id})}}"><strong>Click Here</strong></a> to get your company verified now!
+        {% else %}
+
+        {% endif %}
+
+        </p>
+        <div id="freight_forwarding_services"><br/><br/></div>
+        <h2><a href="#freight_forwarding_services">Freight Forwarding Services</a></h2>
+        <p>
+            Most of the time, transportation and freight fees become a significant expense for your business. Therefore, many businesses
+
+        </p>
+
+    </div>
+{% endblock %}
+
+
+
