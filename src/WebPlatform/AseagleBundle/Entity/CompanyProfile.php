@@ -157,9 +157,9 @@ class CompanyProfile
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="reg_year", type="date")
+     * @ORM\Column(name="reg_year", type="date", nullable=true)
      */
-    private $reg_year;
+    private $reg_year = null;
 
     /**
      * @var string
